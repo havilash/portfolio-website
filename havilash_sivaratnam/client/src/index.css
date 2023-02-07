@@ -1,3 +1,127 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+@import url("https://fonts.googleapis.com/css2?family=Consolas");
+
+@layer base {
+  html {
+    --nav-height: 4rem;
+
+    --hue-color: 30;
+
+    --primary-color: hsl(var(--hue-color), 100%, 47%);
+    --secondary-color: hsl(var(--hue-color), 93%, 62%);
+
+    --text-color: hsl(var(--hue-color), 0%, 95%);
+
+    --box-color: hsl(var(--hue-color), 1%, 16%);
+    --body-color-1: hsl(var(--hue-color), 1%, 15%);
+    --body-color-2: hsl(var(--hue-color), 0%, 95%);
+
+    --nav-bg-color: hsla(var(--hue-color), 1%, 12%, 0.95);
+
+    /* swiper */
+    --swiper-theme-color: var(--main-color-500) !important;
+  }
+
+  * {
+    @apply box-border p-0 m-0;
+  }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply transition-all
+    m-0 h-screen
+    bg-body-color-1
+    font-poppins text-base text-text-color;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-consolas text-primary-color font-bold text-base;
+  }
+
+  h1 {
+    @apply text-2xl text-primary-color;
+  }
+  h2 {
+    @apply text-xl text-secondary-color;
+  }
+  h3 {
+    @apply text-lg text-secondary-color;
+  }
+
+  p {
+    @apply text-base font-medium text-text-color;
+  }
+
+  ul {
+    @apply list-none;
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  section {
+    @apply absolute top-0 left-0 h-auto w-full p-4 m-0 px-[1%];
+  }
+
+  /* scroll bar */
+  ::-webkit-scrollbar {
+    @apply w-3 h-4;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-nav-bg-color;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-color;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary-color;
+  }
+}
+
+@layer components {
+  #root {
+    @apply h-full w-full;
+  }
+
+  .container {
+    @apply max-w-6xl w-full h-full mx-6 pt-[10vh] md:pt-0;
+  }
+
+  .foreground {
+    @apply fixed top-0 left-0 w-full h-full z-[49] transition-all bg-black bg-opacity-40;
+  }
+
+  .button {
+    @apply inline-block bg-primary-color hover:bg-secondary-color px-1 select-none;
+  }
+}
+
+@layer utilities {
+}

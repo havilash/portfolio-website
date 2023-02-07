@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .typing-effect {
+    --delay: 0.3s;
+  }
+
+  .typing-effect p:nth-child(1),
+  .typing-effect p:nth-child(2) {
+    @apply whitespace-nowrap overflow-hidden border-transparent w-0 mix-blend-difference
+    font-consolas font-semibold text-5xl xs:text-6xl sm:text-7xl md:text-8xl;
+  }
+
+  .typing-effect p:nth-child(1) {
+    /* --n = character amount */
+    animation: typing-animation-1 1s steps(6) forwards,
+      blink-animation 0.9s step-end 1.11 alternate;
+    -webkit-animation-delay: var(--delay);
+    animation-delay: var(--delay);
+  }
+
+  .typing-effect p:nth-child(2) {
+    /* define animation types for text + cursor */
+    animation: typing-animation-2 2s steps(12) forwards,
+      blink-animation 0.9s step-end infinite alternate;
+    -webkit-animation-delay: calc(1.1s + var(--delay));
+    animation-delay: calc(1.1s + var(--delay));
+  }
+
+  @keyframes blink-animation {
+    50% {
+      border-right: 3px solid;
+    }
+  }
+
+  @keyframes typing-animation-1 {
+    from {
+      width: 0;
+    }
+    to {
+      width: 6ch;
+    }
+  }
+  @keyframes typing-animation-2 {
+    from {
+      width: 0;
+    }
+    to {
+      width: 12ch;
+    }
+  }
+}
