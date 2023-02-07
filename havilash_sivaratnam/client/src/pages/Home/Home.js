@@ -18,12 +18,11 @@ export default function Home() {
   }
 
   useEffect(() => {
-    setTitleIsVisible(true)
-    // setTitleIsVisible(!sortIsRunning)
-    // setTimeout(() => {
-    //   if (!sortIsRunning) return
-    //   setTitleIsVisible(true)
-    // }, 7000)
+    setTitleIsVisible(!sortIsRunning)
+    setTimeout(() => {
+      if (!sortIsRunning) return
+      setTitleIsVisible(true)
+    }, 7000)
 
   }, [sortIsRunning])
 

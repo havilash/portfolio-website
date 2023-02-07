@@ -26,22 +26,22 @@
 @layer components {
   .nav__bars {
     @apply cursor-pointer
-    text-4xl mix-blend-difference;
+    text-4xl;
   }
 
   .nav__list {
     @apply flex min-w-[70vw] h-[35vh] flex-col justify-between
     sm:flex-row sm:items-center
-    lg:min-w-[50vw] md:min-w-[55vw] sm:h-[30vh] mix-blend-difference
+    lg:min-w-[50vw] md:min-w-[55vw] sm:h-[30vh]
     pt-8 sm:p-0;
   }
 
   .nav__item {
-    @apply px-2 text-start sm:text-center text-2xl sm:text-xl mix-blend-difference;
+    @apply px-2 text-start sm:text-center text-2xl sm:text-xl;
   }
 
   .nav__link {
-    @apply hover:opacity-80 cursor-pointer;
+    @apply hover:opacity-80 cursor-pointer mix-blend-difference;
   }
 
   .nav__item.active {

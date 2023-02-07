@@ -5,7 +5,7 @@ export default function () {
     const location = useLocation()
 
   return (
-    <div>
+    <section className='section p-0 m-0 h-screen w-full flex flex-col justify-center'>
         <h1 className='text-center text-9xl text-red-500'>
             404
         </h1>
@@ -15,6 +15,6 @@ export default function () {
         <p className='text-center text-lg mt-8'>
             The requested URL "{location.pathname}" was not found on this server.
         </p>
-    </div>
+    </section>
   )
 }

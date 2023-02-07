@@ -95,7 +95,7 @@ export default function Game( { className, setCurrentSort, setSortIsRunning, res
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = BODY_COLOR_2;
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2');
     bars.forEach((bar, i) => {
       bar.draw(ctx, i)
     })
