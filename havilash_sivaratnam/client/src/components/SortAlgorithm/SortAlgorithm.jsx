@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useAsyncTask, useAsyncRun } from 'react'
 import { bubbleSort, combSort, heapSort, insertionSort, mergeSort, quickSort, selectionSort, shellSort, bogoSort } from './SortFunctions'
 
 import '../../index.css'
@@ -8,17 +8,13 @@ const FPS = 12;
 const BAR_WIDTH = 10;
 const SORT_FUNCTIONS = [insertionSort, selectionSort, mergeSort, quickSort, shellSort, bubbleSort, combSort, heapSort]
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
-export default function Game( props ) {  // { className, sortRef, sortFunc, isRunningRef, resetRef }
+export default function SortAlgorithm( props ) {  // { className, sortRef, sortFunc, setIsRunning, resetRef }
   const canvasRef = useRef(null);
   const [isRunning, setIsRunning] = useState(false)
   const [sortFunc, setSortFunc] = useState(() => (props.sortFunc || SORT_FUNCTIONS[Math.floor(Math.random()*SORT_FUNCTIONS.length)]))
   var bars = [];
-  var canvas;
-  var ctx;
+  const ctxRef = useRef(null);
 
   class Bar{
     constructor(h) {
@@ -35,17 +31,18 @@ export default function Game( props ) {  // { className, sortRef, sortFunc, isRu
   }
 
   function reset() {
-    // var canvas = canvasRef.current;
-    // var ctx = canvas.getContext("2d")
-    start(ctx)
+    start(ctxRef.current)
   }
 
   useEffect(() => {
-    setSortFunc(() => (props.sortFunc || SORT_FUNCTIONS[Math.floor(Math.random()*SORT_FUNCTIONS.length)]))
+    setSortFunc(() => (props.sortFunc))
   }, [props.sortFunc])
 
   useEffect(() => {
-    props.setCurrentSort(sortFunc.name);
+    console.log(sortFunc.name)
+    if (!ctxRef.current)
+      return
+    reset()
   }, [sortFunc])
 
   useEffect(() => {
@@ -79,12 +76,13 @@ export default function Game( props ) {  // { className, sortRef, sortFunc, isRu
   }
 
   useEffect(() => {
-    props.isRunningRef.current = isRunning
+    props.setIsRunning(isRunning)
   }, [isRunning])
 
   useEffect(() => {
-    canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
+    var canvas = canvasRef.current;
+    ctxRef.current = canvas.getContext("2d")
+    var ctx = ctxRef.current;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -96,13 +94,15 @@ export default function Game( props ) {  // { className, sortRef, sortFunc, isRu
   async function start(ctx) {
     if (isRunning)
       return
+
     setIsRunning(true)
 
     bars = generateBars(true)
     draw(ctx)
-    await sortFunc(bars, () => draw(ctx))
+    sortFunc(bars, () => draw(ctx))
+      .then(() => setIsRunning(false))
 
-    setIsRunning(false)
+    // setIsRunning(false)
   }
   
   function draw(ctx) {

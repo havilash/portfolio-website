@@ -26,7 +26,7 @@ module.exports = {
         'box-color': 'var(--box-color)',
         'body-color-1': 'var(--body-color-1)',
         'body-color-2': 'var(--body-color-2)',
-        'nav-bg-color': 'var(--nav-bg-color)',
+        'box-color-alt': 'var(--box-color-alt)',
       },
     },
   },

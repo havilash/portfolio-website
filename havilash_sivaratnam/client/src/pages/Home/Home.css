@@ -3,6 +3,34 @@
 @tailwind utilities;
 
 @layer components {
+  .sort-functions {
+    @apply z-10 absolute overflow-scroll max-h-[40vh] w-auto bg-box-color-alt
+    overflow-x-hidden right-1 bottom-[3.25rem] sm:bottom-10;
+  }
+
+  .sort-functions::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .sort-functions__list {
+    @apply p-0;
+  }
+
+  .sort-functions__item {
+    @apply px-6 py-2 select-none;
+  }
+
+  .sort-functions__item.active {
+    @apply bg-black;
+  }
+
+  .sort-button {
+    @apply absolute text-sm bottom-1 right-1 z-0 font-consolas font-semibold
+    w-10 h-10 sm:w-auto sm:h-auto overflow-hidden py-1 px-2
+    bg-body-color-2 hover:bg-body-color-2 mix-blend-difference
+    text-body-color-2 sm:text-body-color-1 opacity-60 hover:opacity-50;
+  }
+
   .typing-effect {
     --delay: 0.3s;
   }

@@ -22,7 +22,7 @@
     --body-color-2: hsl(var(--hue-color), 0%, 95%);
     /* --body-color-2: hsl(var(--hue-color), 1%, 80%); */
 
-    --nav-bg-color: hsla(var(--hue-color), 1%, 12%, 0.95);
+    --box-color-alt: hsla(var(--hue-color), 1%, 12%, 0.95);
 
     /* swiper */
     --swiper-theme-color: var(--main-color-500) !important;
@@ -95,7 +95,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-nav-bg-color;
+    @apply bg-box-color-alt;
     background-clip: content-box;
   }
 
