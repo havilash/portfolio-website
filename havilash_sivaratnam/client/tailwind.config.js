@@ -11,7 +11,8 @@ module.exports = {
     },
     extend: {
       screens: {
-        'xs': '576px', // min-width
+        'xs': '576px',
+        '10xl': '4096px',
       },
       spacing: {
         'nav-height': 'var(--nav-height)'

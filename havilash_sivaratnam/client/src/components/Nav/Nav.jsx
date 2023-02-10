@@ -10,12 +10,8 @@ export default function Nav() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const headerRef = useRef(null);
   const navBarsRef = useRef(null);
+  const navListRef = useRef(null)
   
-  useEffect(() => {
-    if (location.pathname === "/"){
-      // headerRef.current.classList.add("sm:sticky", "sm:top-[100vw]")
-    }
-  }, [location])
 
   useEffect(() => {
     const header = headerRef.current;
@@ -32,7 +28,7 @@ export default function Nav() {
 
 
   return (
-    <header ref={headerRef} className='transition-all fixed'>
+    <header ref={headerRef} className='transition-all fixed header--home'>
       <nav className='nav'>
 
         {/* nav bars, logo */}
@@ -45,7 +41,7 @@ export default function Nav() {
         </i>
 
         {/* nav list */}
-        <ul className='nav__list'>
+        <ul ref={navListRef} className='nav__list'>
           <li className={'nav__item ' + activeFunc("/")}>
             <Link to="/" className="nav__link">
               Home

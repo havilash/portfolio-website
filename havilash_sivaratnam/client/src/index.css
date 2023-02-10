@@ -18,7 +18,9 @@
 
     --box-color: hsl(var(--hue-color), 1%, 16%);
     --body-color-1: hsl(var(--hue-color), 1%, 15%);
+
     --body-color-2: hsl(var(--hue-color), 0%, 95%);
+    /* --body-color-2: hsl(var(--hue-color), 1%, 80%); */
 
     --nav-bg-color: hsla(var(--hue-color), 1%, 12%, 0.95);
 
@@ -36,6 +38,7 @@
     overflow-x: hidden;
   }
 
+  *,
   html {
     @apply scroll-smooth;
   }
@@ -83,7 +86,7 @@
   }
 
   section {
-    @apply absolute top-0 left-0 h-auto w-full p-4 m-0 px-[1%];
+    @apply h-auto w-full p-4 m-0 px-[1%];
   }
 
   /* scroll bar */

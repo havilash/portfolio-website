@@ -12,9 +12,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App h-auto w-full">
+      <div className="app relative h-auto w-full">
         <Nav />
-        <div className='content flex justify-center items-center z-10'>
+        <div className='content h-auto w-full flex justify-center items-center z-10'>
           <Routes>
             <Route exact path="/*" element={<Error404/>} />
             <Route exact path="/" element={<Home/>} />

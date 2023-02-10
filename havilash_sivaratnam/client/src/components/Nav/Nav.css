@@ -14,7 +14,7 @@
   }
 
   nav {
-    @apply h-screen sm:h-nav-height w-[75vw] sm:w-full
+    @apply h-screen sm:h-nav-height 10xl:h-[calc(var(--nav-height)_+_1rem)] w-[75vw] sm:w-full
     flex flex-col sm:flex-row sm:items-center justify-between
     p-6 gap-4 sm:gap-0 sm:p-8
     bg-nav-bg-color sm:bg-transparent
@@ -26,18 +26,18 @@
 @layer components {
   .nav__bars {
     @apply cursor-pointer
-    text-4xl;
+    text-4xl 10xl:text-7xl;
   }
 
   .nav__list {
-    @apply flex min-w-[70vw] h-[35vh] flex-col justify-between
+    @apply flex flex-col justify-between
     sm:flex-row sm:items-center
-    lg:min-w-[50vw] md:min-w-[55vw] sm:h-[30vh]
+    w-[70vw] lg:w-[50vw] md:w-[55vw] max-w-6xl h-[38vh] sm:h-auto
     pt-8 sm:p-0;
   }
 
   .nav__item {
-    @apply px-2 text-start sm:text-center text-2xl sm:text-xl;
+    @apply px-2 text-start sm:text-center text-2xl sm:text-xl 10xl:text-4xl;
   }
 
   .nav__link {

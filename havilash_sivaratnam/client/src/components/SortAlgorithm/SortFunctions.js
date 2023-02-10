@@ -172,7 +172,7 @@ async function qSort(arr, low, high, draw) {
  
         let pi = partition(arr, low, high, draw);
         draw()
-        await sleep(30)
+        await sleep(1)
  
         qSort(arr, low, pi - 1, draw);
         qSort(arr, pi + 1, high, draw);
@@ -271,5 +271,38 @@ function getNextGap(gap) {
         return 1;
     return gap;
 }
-   
+
+
+// Bogo Sort
+export async function bogoSort(arr, draw) {
+  while (!isSorted(arr)) {
+  	arr = shuffle(arr);
+    draw();
+    await sleep(1)
+  }
+  return arr;
+}
+
+function isSorted(arr) {
+    for(var i = 1; i < arr.length; i++){
+        if (arr[i-1] > arr[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 
