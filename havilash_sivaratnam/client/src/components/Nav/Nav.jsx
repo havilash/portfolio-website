@@ -22,13 +22,26 @@ export default function Nav() {
     navBars.classList.toggle("left-[80vw]", isNavOpen);
   }, [isNavOpen]);
 
-  function activeFunc(url) {
-    return (location.pathname === url) ? "active" : "";
+  function renderNavItems(items){
+    let output = []
+    Object.keys(items).forEach((name) => {
+      let url = items[name]
+      output.push(
+        <li className={'nav__item ' + ((location.pathname === url) ? "active" : "")}>
+            <Link to={url} className="nav__link">
+              {name}
+            </Link>
+          </li>
+      )
+    })
+
+    return output
   }
 
 
   return (
-    <header ref={headerRef} className='transition-all fixed header--home'>
+    <header ref={headerRef} 
+      className={'transition-all fixed header--home' + (location.pathname == "/") ? "" : ""}>
       <nav className='nav'>
 
         {/* nav bars, logo */}
@@ -42,31 +55,13 @@ export default function Nav() {
 
         {/* nav list */}
         <ul ref={navListRef} className='nav__list'>
-          <li className={'nav__item ' + activeFunc("/")}>
-            <Link to="/" className="nav__link">
-              Home
-            </Link>
-          </li>
-          <li className={'nav__item ' + activeFunc("/education")}>
-            <Link to="/education" className="nav__link">
-              Education
-            </Link>
-          </li>
-          <li className={'nav__item ' + activeFunc("/skills")}>
-            <Link to="/skills" className="nav__link">
-              Skills
-            </Link>
-          </li>
-          <li className={'nav__item ' + activeFunc("/projects")}>
-            <Link to="/projects" className="nav__link">
-              Projects
-            </Link>
-          </li>
-          <li className={'nav__item ' + activeFunc("/portfolio")}>
-            <Link to="/portfolio" className="nav__link">
-              Portfolio
-            </Link>
-          </li>
+          {renderNavItems({
+            "Home": "/",
+            "Education": "/education",
+            "Skills": "/skills",
+            "Projects": "/projects",
+            "Portfolio": "/portfolio",
+          })}
         </ul>
 
         <ul className='nav__social sm:hidden'>
