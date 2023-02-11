@@ -27,7 +27,8 @@ export default function Home() {
   const [titleIsVisible, setTitleIsVisible] = useState(false)
   const sortResetRef = useRef(null);
   const [sortFunc, setSortFunc] = useState(() => SORT_FUNCTIONS[Math.floor(Math.random()*SORT_FUNCTIONS.length)])
-  const [isSortFOpen, setIsSortFOpen] = useState(false);  // sort-functions element visibility state
+  const [isSortFuncsElemOpen, setIsSortFuncsElemOpen] = useState(false);  // sort-functions element visibility state
+  const sortFuncsElemRef = useRef(null)
 
   useEffect(() => {
     setTitleIsVisible(!sortIsRunning)
@@ -45,7 +46,10 @@ export default function Home() {
 
       output.push(
         <li key={`sf-${i}`} className={'sort-functions__item' + ((sortFunc == value) ? " active" : "")} 
-          onClick={() => setSortFunc(() => value)}>
+          onClick={() => {
+              sortResetRef.current(value)
+              setSortFunc(() => value)
+            }}>
           {key}
         </li>
       )
@@ -60,10 +64,10 @@ export default function Home() {
         <SortAlgorithm className='absolute h-screen w-screen top-0 left-0 -z-50 overflow-hidden' 
           width={window.innerWidth} sortFunc={sortFunc} setIsRunning={setSortIsRunning} resetRef={sortResetRef}/>
         <button className='sort-button button' 
-          onClick={() => setIsSortFOpen(!isSortFOpen)}>
+          onClick={() => setIsSortFuncsElemOpen(!isSortFuncsElemOpen)}>
           {getKeyByValue(SORT_NAMES_FUNCTIONS, sortFunc)}
         </button>
-        <div className={'sort-functions' + (isSortFOpen ? "" : " hidden")}>
+        <div ref={sortFuncsElemRef} className={'sort-functions' + (isSortFuncsElemOpen ? "" : " hidden")}>
           <ul className='sort-functions__list'>
             {renderSortFunctions()}
           </ul>

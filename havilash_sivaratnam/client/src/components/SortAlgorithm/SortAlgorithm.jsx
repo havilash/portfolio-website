@@ -14,7 +14,7 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   const [isRunning, setIsRunning] = useState(false)
   const [sortFunc, setSortFunc] = useState(() => (props.sortFunc || SORT_FUNCTIONS[Math.floor(Math.random()*SORT_FUNCTIONS.length)]))
   var bars = [];
-  const ctxRef = useRef(null);
+  var ctx;
 
   class Bar{
     constructor(h) {
@@ -30,8 +30,11 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
     }
   }
 
-  function reset() {
-    start(ctxRef.current)
+  function reset(sortFunc) {
+    var canvas = canvasRef.current;
+    ctx = canvas.getContext("2d")
+
+    start(ctx, sortFunc)
   }
 
   useEffect(() => {
@@ -39,10 +42,8 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   }, [props.sortFunc])
 
   useEffect(() => {
-    console.log(sortFunc.name)
-    if (!ctxRef.current)
-      return
-    reset()
+    console.log(sortFunc)
+    reset(sortFunc)
   }, [sortFunc])
 
   useEffect(() => {
@@ -81,17 +82,16 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
 
   useEffect(() => {
     var canvas = canvasRef.current;
-    ctxRef.current = canvas.getContext("2d")
-    var ctx = ctxRef.current;
+    ctx = canvas.getContext("2d")
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     window.addEventListener('resize', () => handleResize(ctx));
 
-    start(ctx)
+    start(ctx, sortFunc)
   }, []) 
 
-  async function start(ctx) {
+  async function start(ctx, sortFunc) {
     if (isRunning)
       return
 
@@ -99,10 +99,10 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
 
     bars = generateBars(true)
     draw(ctx)
-    sortFunc(bars, () => draw(ctx))
+    await sortFunc(bars, () => draw(ctx))
       .then(() => setIsRunning(false))
 
-    // setIsRunning(false)
+    setIsRunning(false)
   }
   
   function draw(ctx) {
