@@ -42,7 +42,6 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   }, [props.sortFunc])
 
   useEffect(() => {
-    console.log(sortFunc)
     reset(sortFunc)
   }, [sortFunc])
 
@@ -100,7 +99,6 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
     bars = generateBars(true)
     draw(ctx)
     await sortFunc(bars, () => draw(ctx))
-      .then(() => setIsRunning(false))
 
     setIsRunning(false)
   }

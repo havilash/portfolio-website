@@ -164,18 +164,18 @@ async function heapify(arr, N, i, draw)
  
 // Quick Sort
 export async function quickSort(arr, draw){
-    return await qSort(arr, 0, arr.length - 1, draw)
+    return await quickSortRec(arr, 0, arr.length - 1, draw)
 }
 
-async function qSort(arr, low, high, draw) {
+async function quickSortRec(arr, low, high, draw) {
     if (low < high) {
  
         let pi = partition(arr, low, high, draw);
         draw()
         await sleep(1)
  
-        qSort(arr, low, pi - 1, draw);
-        qSort(arr, pi + 1, high, draw);
+        quickSortRec(arr, low, pi - 1, draw);
+        quickSortRec(arr, pi + 1, high, draw);
     }
 
     return arr
@@ -305,4 +305,154 @@ function shuffle(array) {
   return array;
 }
 
+
+// Cycle Sort
+export async function cycleSort (list, draw) {
+    for (let cycleStart = 0; cycleStart < list.length; cycleStart++) {
+      let value = list[cycleStart]
+      let position = cycleStart
+  
+      // search position
+      for (let i = cycleStart + 1; i < list.length; i++) {
+        if (list[i] < value) {
+          position++
+        }
+      }
+      // if it is the same, continue
+      if (position === cycleStart) {
+        continue
+      }
+      while (value === list[position]) {
+        position++
+      }
+  
+      const oldValue = list[position]
+      list[position] = value
+      value = oldValue
+      draw()
+      await sleep(1)
+  
+      // rotate the rest
+      while (position !== cycleStart) {
+        position = cycleStart
+        for (let i = cycleStart + 1; i < list.length; i++) {
+          if (list[i] < value) {
+            position++
+          }
+        }
+        while (value === list[position]) {
+          position++
+        }
+        const oldValueCycle = list[position]
+        list[position] = value
+        value = oldValueCycle
+        draw()
+        await sleep(1)  
+      }
+    }
+    return list
+  }
+
+
+// Cocktail Shaker Sort
+export async function cocktailShakerSort(inputArr, draw) {
+
+    let n = inputArr.length;
+    let sorted = false;
+
+    while (!sorted) {
+        sorted = true;
+        for (let i = 0; i < n - 1; i++) {
+            if (inputArr[i] > inputArr[i + 1]){
+               let tmp = inputArr[i];
+               inputArr[i] = inputArr[i + 1];
+               inputArr[i+1] = tmp;
+               sorted = false;
+               draw()
+               await sleep(1)
+            }
+        }
+
+        if (sorted)
+            break;
+        sorted = true;
+
+        for (let j = n - 1; j > 0; j--) {
+            if (inputArr[j-1] > inputArr[j]) {
+                let tmp = inputArr[j];
+                inputArr[j] = inputArr[j-1];
+                inputArr[j-1] = tmp;
+                sorted = false;
+                draw()
+                await sleep(1)
+            }
+        }
+    }
+
+    return inputArr;
+}
+
+
+// Gnome Sort
+export async function gnomeSort(arr, draw) {
+    let n = arr.length;
+    let index = 0;
+
+    while (index < n) {
+        if (index == 0)
+            index++;
+        if (arr[index] >= arr[index - 1])
+            index++;
+        else {
+            let temp = 0;
+            temp = arr[index];
+            arr[index] = arr[index - 1];
+            arr[index - 1] = temp;
+            index--;
+            draw()
+            await sleep(1)
+        }
+    }
+    return;
+}
+
+
+// Bitonic Sort
+export async function bitonicSort(a, draw) {
+  bitonicSortRec(a, 0, a.length, 1, draw);
+  return a;
+}
+
+async function compAndSwap(a, i, j, d, draw) {
+    if (d==(a[i]>a[j]))
+    {
+        var temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+        draw()
+        await sleep(1)
+    }
+}
+
+async function bitonicMerge(a, beg, c, d, draw) {
+    if (c > 1) {
+        var k = Math.floor(c / 2);
+        for (var i = beg; i < beg + k; i++)
+            await compAndSwap(a, i, i + k, d, draw);
+        await bitonicMerge(a, beg, k, d, draw);
+        await bitonicMerge(a, beg + k, k, d, draw);
+    }
+}
+
+async function bitonicSortRec(a, beg, c, d, draw) {
+    if (c > 1) {
+        var k = Math.floor(c / 2);
+
+        await bitonicSortRec(a, beg, k, 1, draw);
+
+        await bitonicSortRec(a, beg + k, k, 0, draw);
+
+        await bitonicMerge(a, beg, c, d, draw);
+    }
+}
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import SortAlgorithm from '../../components/SortAlgorithm/SortAlgorithm'
 import { FaArrowDown } from 'react-icons/fa';
-import { bubbleSort, combSort, heapSort, insertionSort, mergeSort, quickSort, selectionSort, shellSort } from '../../components/SortAlgorithm/SortFunctions';
+import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapSort, insertionSort, mergeSort, quickSort, selectionSort, shellSort, gnomeSort, bitonicSort } from '../../components/SortAlgorithm/SortFunctions';
 
 import './Home.css'
 
@@ -14,6 +14,10 @@ const SORT_NAMES_FUNCTIONS = {
   "Bubble Sort": bubbleSort,
   "Comb Sort": combSort,
   "Heapsort": heapSort,
+  "Cocktail Shaker Sort": cocktailShakerSort,
+  "Cycle Sort": cycleSort,
+  "Gnome Sort": gnomeSort,
+  "Bitonic Sort": bitonicSort,
 }
 
 const SORT_FUNCTIONS = Object.values(SORT_NAMES_FUNCTIONS)
@@ -45,7 +49,7 @@ export default function Home() {
       let value = SORT_NAMES_FUNCTIONS[key];
 
       output.push(
-        <li key={`sf-${i}`} className={'sort-functions__item' + ((sortFunc == value) ? " active" : "")} 
+        <li key={`sort-function-${i}`} className={'sort-functions__item' + ((sortFunc == value) ? " active" : "")} 
           onClick={() => {
               sortResetRef.current(value)
               setSortFunc(() => value)
@@ -60,7 +64,8 @@ export default function Home() {
 
   return (
     <section className='section p-0 m-0'>
-      <div id='home' className='home flex items-center justify-center w-full h-screen relative m-0 left-0 top-0'>
+      <div id='home' 
+        className='home'>
         <SortAlgorithm className='absolute h-screen w-screen top-0 left-0 -z-50 overflow-hidden' 
           width={window.innerWidth} sortFunc={sortFunc} setIsRunning={setSortIsRunning} resetRef={sortResetRef}/>
         <button className='sort-button button' 

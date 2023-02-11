@@ -24,14 +24,14 @@ export default function Nav() {
 
   function renderNavItems(items){
     let output = []
-    Object.keys(items).forEach((name) => {
+    Object.keys(items).forEach((name, i) => {
       let url = items[name]
       output.push(
-        <li className={'nav__item ' + ((location.pathname === url) ? "active" : "")}>
-            <Link to={url} className="nav__link">
-              {name}
-            </Link>
-          </li>
+        <li key={`nav-item-${i}`} className={'nav__item ' + ((location.pathname === url) ? "active" : "")}>
+          <Link to={url} className="nav__link">
+            {name}
+          </Link>
+        </li>
       )
     })
 
@@ -41,7 +41,7 @@ export default function Nav() {
 
   return (
     <header ref={headerRef} 
-      className={'transition-all fixed header--home' + (location.pathname == "/") ? "" : ""}>
+      className={'transition-all fixed'}>
       <nav className='nav'>
 
         {/* nav bars, logo */}

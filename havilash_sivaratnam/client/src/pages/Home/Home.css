@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  .home {
+    @apply flex items-center justify-center w-full h-screen relative m-0 left-0 top-0;
+  }
+
   .sort-functions {
     @apply z-10 absolute overflow-scroll max-h-[40vh] w-auto bg-box-color-alt
     overflow-x-hidden right-1 bottom-[3.25rem] sm:bottom-10;
