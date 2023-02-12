@@ -419,44 +419,26 @@ export async function gnomeSort(arr, draw) {
 
 
 // Bitonic Sort
-export async function bitonicSort(a, draw) {
-  await bitonicSortRec(a, 0, a.length, 1, draw);
-  return a;
-}
-
-async function compAndSwap(a, i, j, d, draw) {
-    if (d==(a[i]>a[j]))
-    {
-        var temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-        draw()
-        await sleep(1)
+export async function bitonicSort(arr, draw){
+    const N = arr.length;
+    var i,j,k;
+    for (k=2;k<=N;k=2*k) {
+      for (j=k>>1;j>0;j=j>>1) {
+        for (i=0;i<N;i++) {
+          let ixj = i^j;
+          if ((ixj)>i) {
+            if ((i&k)==0 && arr[i]>arr[ixj]) swap(arr, i, ixj);
+            if ((i&k)!=0 && arr[i]<arr[ixj]) swap(arr, i, ixj);
+            draw()
+            await sleep(1)
+          }
+        }
+      }
     }
+
+    combSort(arr, draw);
+    return arr
 }
-
-async function bitonicMerge(a, low, c, d, draw) {
-    if (c > 1) {
-        var k = Math.floor(c / 2);
-        for (var i = low; i < low + k; i++)
-            await compAndSwap(a, i, i + k, d, draw);
-        await bitonicMerge(a, low, k, d, draw);
-        await bitonicMerge(a, low + k, k, d, draw);
-    }
-}
-
-async function bitonicSortRec(a, low, c, d, draw) {
-    if (c > 1) {
-        var k = Math.floor(c / 2);
-
-        await bitonicSortRec(a, low, k, 1, draw);
-
-        await bitonicSortRec(a, low + k, k, 0, draw);
-
-        await bitonicMerge(a, low, c, d, draw);
-    }
-}
-
 
 
 // Sleep Sort
