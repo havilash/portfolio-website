@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import SortAlgorithm from '../../components/SortAlgorithm/SortAlgorithm'
 import { FaArrowDown } from 'react-icons/fa';
-import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapSort, insertionSort, mergeSort, quickSort, selectionSort, shellSort, gnomeSort, bitonicSort } from '../../components/SortAlgorithm/SortFunctions';
+import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from '../../components/SortAlgorithm/SortFunctions';
 
 import './Home.css'
 
@@ -9,18 +9,21 @@ const SORT_NAMES_FUNCTIONS = {
   "Insertion Sort": insertionSort,
   "Selection Sort": selectionSort,
   "Merge Sort": mergeSort,
-  "Quicksort": quickSort,
-  "Shellsort": shellSort,
+  "Quicksort": quicksort,
+  "Shellsort": shellsort,
   "Bubble Sort": bubbleSort,
   "Comb Sort": combSort,
-  "Heapsort": heapSort,
+  "Heapsort": heapsort,
   "Cocktail Shaker Sort": cocktailShakerSort,
   "Cycle Sort": cycleSort,
   "Gnome Sort": gnomeSort,
   "Bitonic Sort": bitonicSort,
+  "Sleep Sort": sleepSort,
+  "Bogo Sort": bogoSort,
 }
 
 const SORT_FUNCTIONS = Object.values(SORT_NAMES_FUNCTIONS)
+// const SORT_FUNCTIONS = [insertionSort, selectionSort, mergeSort, quicksort, shellsort, bubbleSort, combSort, heapsort, cocktailShakerSort, cycleSort, gnomeSort, bitonicSort, sleepSort]
 
 function getKeyByValue(object, value) {
   return Object.keys(object).find(key => object[key] === value);

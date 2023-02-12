@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState, useAsyncTask, useAsyncRun } from 'react'
-import { bubbleSort, combSort, heapSort, insertionSort, mergeSort, quickSort, selectionSort, shellSort, bogoSort } from './SortFunctions'
+import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from './SortFunctions';
 
 import '../../index.css'
 
 const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2')
 const FPS = 12;
 const BAR_WIDTH = 10;
-const SORT_FUNCTIONS = [insertionSort, selectionSort, mergeSort, quickSort, shellSort, bubbleSort, combSort, heapSort]
-
+const SORT_FUNCTIONS = [insertionSort, selectionSort, mergeSort, quicksort, shellsort, bubbleSort, combSort, heapsort, cocktailShakerSort, cycleSort, gnomeSort, bitonicSort, sleepSort, bogoSort]
 
 export default function SortAlgorithm( props ) {  // { className, sortRef, sortFunc, setIsRunning, resetRef }
   const canvasRef = useRef(null);

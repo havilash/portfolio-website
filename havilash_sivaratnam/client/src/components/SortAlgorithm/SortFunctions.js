@@ -25,7 +25,6 @@ export async function insertionSort(bars, draw){
             j = j - 1
             
             draw()
-
             await sleep(1)
         }
     }
@@ -33,6 +32,8 @@ export async function insertionSort(bars, draw){
     return bars
 }
 
+
+// Selection Sort
 export async function selectionSort(bars, draw){
     let n = bars.length
     for (let i = 0; i < n-1; i++){
@@ -117,8 +118,8 @@ function merge(arr , l , m , r) {
 }
 
 
-// Heap Sort
-export async function heapSort(arr, draw)
+// Heapsort
+export async function heapsort(arr, draw)
 {
     var N = arr.length;
 
@@ -162,8 +163,8 @@ async function heapify(arr, N, i, draw)
 }
  
  
-// Quick Sort
-export async function quickSort(arr, draw){
+// Quicksort
+export async function quicksort(arr, draw){
     return await quickSortRec(arr, 0, arr.length - 1, draw)
 }
 
@@ -201,7 +202,7 @@ function partition(arr, low, high, draw) {
 
 
 // Shell Sort
-export async function shellSort(arr, draw)
+export async function shellsort(arr, draw)
 {
     let n = arr.length;
    
@@ -419,7 +420,7 @@ export async function gnomeSort(arr, draw) {
 
 // Bitonic Sort
 export async function bitonicSort(a, draw) {
-  bitonicSortRec(a, 0, a.length, 1, draw);
+  await bitonicSortRec(a, 0, a.length, 1, draw);
   return a;
 }
 
@@ -434,25 +435,45 @@ async function compAndSwap(a, i, j, d, draw) {
     }
 }
 
-async function bitonicMerge(a, beg, c, d, draw) {
+async function bitonicMerge(a, low, c, d, draw) {
     if (c > 1) {
         var k = Math.floor(c / 2);
-        for (var i = beg; i < beg + k; i++)
+        for (var i = low; i < low + k; i++)
             await compAndSwap(a, i, i + k, d, draw);
-        await bitonicMerge(a, beg, k, d, draw);
-        await bitonicMerge(a, beg + k, k, d, draw);
+        await bitonicMerge(a, low, k, d, draw);
+        await bitonicMerge(a, low + k, k, d, draw);
     }
 }
 
-async function bitonicSortRec(a, beg, c, d, draw) {
+async function bitonicSortRec(a, low, c, d, draw) {
     if (c > 1) {
         var k = Math.floor(c / 2);
 
-        await bitonicSortRec(a, beg, k, 1, draw);
+        await bitonicSortRec(a, low, k, 1, draw);
 
-        await bitonicSortRec(a, beg + k, k, 0, draw);
+        await bitonicSortRec(a, low + k, k, 0, draw);
 
-        await bitonicMerge(a, beg, c, d, draw);
+        await bitonicMerge(a, low, c, d, draw);
     }
 }
 
+
+
+// Sleep Sort
+export async function sleepSort(arr, draw){
+    let copy = [...arr]
+    let n = arr.length;
+    let max = Math.max(...arr);
+    while (arr.length){
+        arr.pop()
+        draw()
+        await sleep(1)
+    }
+	while (copy.length) {
+        const v = copy.pop()
+		setTimeout(() => {arr.push(v); draw()}, v / max * (10 * n))
+	}
+	return arr
+}
+
+// console.log(sleepSort([10, 2, 1, 2, 3, 4, 5, 6, 7, 3]))
