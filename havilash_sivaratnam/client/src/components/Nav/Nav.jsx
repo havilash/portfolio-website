@@ -8,20 +8,7 @@ import './Nav.css'
 export default function Nav() {
   const location = useLocation();
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const headerRef = useRef(null);
-  const navBarsRef = useRef(null);
-  const navListRef = useRef(null)
   
-
-  useEffect(() => {
-    const header = headerRef.current;
-    const navBars = navBarsRef.current;
-
-    header.classList.toggle("-left-full", !isNavOpen);
-    navBars.classList.toggle("left-8", !isNavOpen);
-    navBars.classList.toggle("left-[80vw]", isNavOpen);
-  }, [isNavOpen]);
-
   function renderNavItems(items){
     let output = []
     Object.keys(items).forEach((name, i) => {
@@ -40,13 +27,11 @@ export default function Nav() {
 
 
   return (
-    <header ref={headerRef} 
-      className={'transition-all fixed'}>
+    <header className={`${(!isNavOpen ? "-left-full" : "")}`}>
       <nav className='nav'>
 
         {/* nav bars, logo */}
-        <i ref={navBarsRef} className="fixed left-8 sm:relative sm:left-0 z-[51]
-        transition-all">
+        <i className={`fixed left-8 sm:relative sm:left-0 z-[51] transition-all ${isNavOpen ? "left-[80vw]" : "left-8"}`}>
           <FaBars
             onClick={() => setIsNavOpen(!isNavOpen)}
             className='nav__bars nav__link'
@@ -54,7 +39,7 @@ export default function Nav() {
         </i>
 
         {/* nav list */}
-        <ul ref={navListRef} className='nav__list'>
+        <ul className='nav__list'>
           {renderNavItems({
             "Home": "/",
             "Education": "/education",

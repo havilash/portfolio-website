@@ -71,15 +71,17 @@ export default function Home() {
         className='home'>
         <SortAlgorithm className='absolute h-screen w-screen top-0 left-0 -z-50 overflow-hidden' 
           width={window.innerWidth} sortFunc={sortFunc} setIsRunning={setSortIsRunning} resetRef={sortResetRef}/>
+
         <button className='sort-button button' 
           onClick={() => setIsSortFuncsElemOpen(!isSortFuncsElemOpen)}>
           {getKeyByValue(SORT_NAMES_FUNCTIONS, sortFunc)}
         </button>
-        <div ref={sortFuncsElemRef} className={'sort-functions' + (isSortFuncsElemOpen ? "" : " hidden")}>
+        <div ref={sortFuncsElemRef} className={'sort-functions transition-all' + (isSortFuncsElemOpen ? " " : " max-h-0")}>
           <ul className='sort-functions__list'>
             {renderSortFunctions()}
           </ul>
         </div>
+
         <div className={"typing-effect w-[12ch] overflow-hidden font-consolas text-5xl xs:text-6xl sm:text-7xl md:text-8xl" + (!titleIsVisible ? " hidden" : "")}>
           <p>Hello!</p>
           <p>I'm Havilash</p>

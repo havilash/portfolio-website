@@ -4,7 +4,7 @@
 
 @layer base {
   header {
-    @apply fixed top-0 z-50 sm:w-screen;
+    @apply transition-all fixed top-0 z-50 sm:w-screen left-0;
   }
 
   @media (min-width: 640px) {
