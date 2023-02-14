@@ -6,7 +6,6 @@
   .sort-algorithm {
     @apply absolute h-screen w-screen top-0 left-0 -z-50 overflow-hidden
     shadow-md;
-    box-shadow: 0 0 17px 3px var(--body-color-2);
   }
 
   .home {

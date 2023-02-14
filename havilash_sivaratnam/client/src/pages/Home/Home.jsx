@@ -92,8 +92,8 @@ export default function Home() {
           <FaArrowDown />
         </a>
       </div>
-      <div id='aboutme' className='aboutme flex items-center justify-center w-full h-[200vh] relative'>
-
+      <div id='aboutme' className='aboutme flex items-center justify-center w-full h-[20vh] relative'>
+        
       </div>
     </section>
   )

@@ -26,8 +26,7 @@
 @layer components {
   .nav__bars {
     @apply cursor-pointer
-    text-4xl 10xl:text-7xl
-    sm:fixed sm:top-4 sm:left-6;
+    text-4xl 10xl:text-7xl;
   }
 
   .nav__list {

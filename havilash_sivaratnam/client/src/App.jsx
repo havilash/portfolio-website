@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Footer from './components/Footer/Footer';
 
 import Nav from './components/Nav/Nav'
 import Error404 from './pages/errors/Error404';
@@ -20,6 +21,7 @@ function App() {
             <Route exact path="/" element={<Home/>} />
           </Routes>
         </div>
+        <Footer />
       </div>
    </BrowserRouter>
   );

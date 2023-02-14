@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaBars, FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
+import data from '../../data.json'
 
 import './Nav.css'
 
@@ -25,8 +26,23 @@ export default function Nav() {
     return output
   }
 
+  function renderNavSocialItems(items, icons){
+    let output = [];
+    Object.keys(items).forEach((name, i) => {
+      let link = items[name]
+      output.push(
+        <li key={`nav-social-item-${i}`} className='nav__social__item'>
+          <a target="_blank" className='nav__link' href={link}>
+            {icons[i]}
+          </a>
+        </li>
+      )
+    })
+    return output;
+  }
+
   return (
-    <header className={`${(!isNavOpen ? "-left-full" : "")} mix-blend-difference`}>
+    <header className={`${(!isNavOpen ? "-left-full" : "")} sm:mix-blend-difference`}>
       <nav className='nav'>
 
         {/* nav bars, logo */}
@@ -39,31 +55,15 @@ export default function Nav() {
 
         {/* nav list */}
         <ul className='nav__list'>
-          {renderNavItems({
-            "Home": "/",
-            "Education": "/education",
-            "Skills": "/skills",
-            "Projects": "/projects",
-            "Portfolio": "/portfolio",
-          })}
+          {renderNavItems(data.pages)}
         </ul>
 
         <ul className='nav__social sm:hidden'>
-          <li className='nav__social__item'>
-            <a target="_blank" className='nav__link' href='https://github.com/Havilash'>
-              <FaGithubSquare className='nav__social__icon'/>
-            </a>
-          </li>
-          <li className='nav__social__item'>
-            <a target="_blank" className='nav__link'>
-              <FaLinkedin className='nav__social__icon'/>
-            </a>
-          </li>
-          <li className='nav__social__item'>
-            <a target="_blank" className='nav__link'>
-              <FaFacebookSquare className='nav__social__icon'/>
-            </a>
-          </li>
+          {renderNavSocialItems(data.social, [
+            <FaGithubSquare className='nav__social__icon' />,
+            <FaLinkedin className='nav__social__icon' />,
+            <FaFacebookSquare className='nav__social__icon' />
+          ])}
         </ul>
 
       </nav>

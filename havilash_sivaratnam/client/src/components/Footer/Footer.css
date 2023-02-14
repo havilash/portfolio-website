@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+}
+
+@layer components {
+  .footer__content {
+    @apply bg-body-color-2 w-full h-auto px-4 pb-1;
+  }
+
+  .footer__content > div {
+    @apply mix-blend-difference;
+  }
+
+  .footer__content__text {
+    @apply flex flex-col sm:flex-row sm:justify-between px-8 py-12 items-center gap-12;
+  }
+
+  .footer__content__text > div {
+    @apply w-auto;
+  }
+
+  .footer__content__copyright {
+    @apply border-t-body-color-2 border-t-2;
+  }
+
+  .footer__social {
+    @apply flex flex-row justify-between w-24
+    items-center;
+  }
+
+  .footer__social__item {
+    @apply text-2xl;
+  }
+}

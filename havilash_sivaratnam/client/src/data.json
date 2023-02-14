@@ -1,0 +1,14 @@
+{
+    "pages": {
+        "Home": "/",
+        "Education": "/education",
+        "Skills": "/skills",
+        "Projects": "/projects",
+        "Portfolio": "/portfolio"
+    },
+    "social": {
+        "GitHub": "https://github.com/Havilash",
+        "Linkedin": "",
+        "Facebook": ""
+    }
+}

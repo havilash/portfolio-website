@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState, useAsyncTask, useAsyncRun } from 'react'
 import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from './SortFunctions';
+import { Bar, generateBars } from '../../javascript/utils';
 
 import '../../index.css'
 
 const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2')
 const FPS = 12;
-const BAR_WIDTH = 10;
 const SORT_FUNCTIONS = [insertionSort, selectionSort, mergeSort, quicksort, shellsort, bubbleSort, combSort, heapsort, cocktailShakerSort, cycleSort, gnomeSort, bitonicSort, sleepSort, bogoSort]
 
 export default function SortAlgorithm( props ) {  // { className, sortRef, sortFunc, setIsRunning, resetRef }
@@ -15,19 +15,6 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   var bars = [];
   var ctx;
 
-  class Bar{
-    constructor(h) {
-      this.h = h
-    }
-  
-    draw(ctx, i) {
-      ctx.fillRect(i * BAR_WIDTH, canvasRef.current.height - this.h, BAR_WIDTH, this.h)
-    }
-  
-    valueOf() {
-      return this.h
-    }
-  }
 
   function reset(sortFunc) {
     var canvas = canvasRef.current;
@@ -48,29 +35,11 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
     props.resetRef.current = reset;
   }, [props.resetRef])
 
-  function generateBars(isRandom) {
-    var genBars = []
-    var barHeights = []
-    var barAmt = canvasRef.current.width / BAR_WIDTH
-    var dh = canvasRef.current.height / barAmt  // height difference
-    for (let i = 1; i < barAmt+1; i++){
-      barHeights.push(i * dh)
-    }
-    for (let i = 0; i < barHeights.length; i++){
-      genBars.push(new Bar(barHeights[i]))
-    }
-
-    if (isRandom)
-      genBars = genBars.sort(() => Math.random() - 0.5);
-
-    return genBars
-  }
-
   function handleResize(ctx) {
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
 
-    bars = generateBars()
+    bars = generateBars(canvasRef.current)
     draw(ctx)
   }
 
@@ -87,6 +56,10 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
     window.addEventListener('resize', () => handleResize(ctx));
 
     start(ctx, sortFunc)
+
+    return () => {
+      window.removeEventListener('resize', () => handleResize(ctx));
+    }
   }, []) 
 
   async function start(ctx, sortFunc) {
@@ -95,7 +68,7 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
 
     setIsRunning(true)
 
-    bars = generateBars(true)
+    bars = generateBars(canvasRef.current, true)
     draw(ctx)
     await sortFunc(bars, () => draw(ctx))
 
@@ -107,7 +80,7 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
 
     ctx.fillStyle = BODY_COLOR_2;
     bars.forEach((bar, i) => {
-      bar.draw(ctx, i)
+      bar.draw(ctx, canvasRef.current, i)
     })
   }
 
