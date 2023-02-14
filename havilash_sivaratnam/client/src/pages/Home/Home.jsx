@@ -35,16 +35,15 @@ export default function Home() {
   const sortResetRef = useRef(null);
   const [sortFunc, setSortFunc] = useState(() => SORT_FUNCTIONS[Math.floor(Math.random()*SORT_FUNCTIONS.length)])
   const [isSortFuncsElemOpen, setIsSortFuncsElemOpen] = useState(false);  // sort-functions element visibility state
-  const sortFuncsElemRef = useRef(null)
 
   useEffect(() => {
     setTitleIsVisible(!sortIsRunning)
     setTimeout(() => {
       if (!sortIsRunning) return
       setTitleIsVisible(true)
-    }, 7000)
-
+    }, 7500)
   }, [sortIsRunning])
+
 
   function renderSortFunctions() {
     let output = [];
@@ -69,14 +68,14 @@ export default function Home() {
     <section className='section p-0 m-0'>
       <div id='home' 
         className='home'>
-        <SortAlgorithm className='absolute h-screen w-screen top-0 left-0 -z-50 overflow-hidden' 
+        <SortAlgorithm className='sort-algorithm' 
           width={window.innerWidth} sortFunc={sortFunc} setIsRunning={setSortIsRunning} resetRef={sortResetRef}/>
 
         <button className='sort-button button' 
           onClick={() => setIsSortFuncsElemOpen(!isSortFuncsElemOpen)}>
           {getKeyByValue(SORT_NAMES_FUNCTIONS, sortFunc)}
         </button>
-        <div ref={sortFuncsElemRef} className={'sort-functions transition-all' + (isSortFuncsElemOpen ? " " : " max-h-0")}>
+        <div className={'sort-functions transition-all' + (isSortFuncsElemOpen ? " " : " max-h-0")}>
           <ul className='sort-functions__list'>
             {renderSortFunctions()}
           </ul>
@@ -93,7 +92,7 @@ export default function Home() {
           <FaArrowDown />
         </a>
       </div>
-      <div id='aboutme' className='aboutme flex items-center justify-center w-full h-screen relative'>
+      <div id='aboutme' className='aboutme flex items-center justify-center w-full h-[200vh] relative'>
 
       </div>
     </section>

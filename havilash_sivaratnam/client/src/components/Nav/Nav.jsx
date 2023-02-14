@@ -8,7 +8,7 @@ import './Nav.css'
 export default function Nav() {
   const location = useLocation();
   const [isNavOpen, setIsNavOpen] = useState(false);
-  
+
   function renderNavItems(items){
     let output = []
     Object.keys(items).forEach((name, i) => {
@@ -25,9 +25,8 @@ export default function Nav() {
     return output
   }
 
-
   return (
-    <header className={`${(!isNavOpen ? "-left-full" : "")}`}>
+    <header className={`${(!isNavOpen ? "-left-full" : "")} mix-blend-difference`}>
       <nav className='nav'>
 
         {/* nav bars, logo */}
