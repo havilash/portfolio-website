@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useAsyncTask, useAsyncRun } from 'react'
-import { Bar, generateBars } from '../../javascript/utils';
+import React, { useEffect, useRef } from 'react'
+import { Bar, generateBars } from '../../javascript/Utils';
 import { FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
 import data from '../../data.json'
 

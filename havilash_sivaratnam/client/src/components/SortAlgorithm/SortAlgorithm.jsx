@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useAsyncTask, useAsyncRun } from 'react'
 import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from './SortFunctions';
-import { Bar, generateBars } from '../../javascript/utils';
+import { Bar, generateBars } from '../../javascript/Utils';
 
 import '../../index.css'
 

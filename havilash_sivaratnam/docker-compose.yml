@@ -1,0 +1,7 @@
+version: '1'
+
+services:
+  personal-portfolio-website:
+    build: .
+    ports:
+      - 3000:3000
