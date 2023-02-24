@@ -3,7 +3,6 @@ import { Bar, generateBars } from 'src/javascript/Utils';
 import { FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
 import data from 'src/data.json'
 
-
 import './Footer.css'
 
 const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2')

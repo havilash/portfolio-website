@@ -1,7 +1,13 @@
 version: '1'
 
 services:
-  personal-portfolio-website:
-    build: .
+  portfolio-development:
+    build: 
+      context: .
+      target: builder
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    command: sh -c "npm run start --port 3000"
     ports:
       - 3000:3000
