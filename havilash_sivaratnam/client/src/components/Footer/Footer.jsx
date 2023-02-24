@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import { Bar, generateBars } from '../../javascript/Utils';
+import { Bar, generateBars } from 'src/javascript/Utils';
 import { FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
-import data from '../../data.json'
+import data from 'src/data.json'
 
 
 import './Footer.css'

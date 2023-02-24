@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState, useAsyncTask, useAsyncRun } from 'react'
 import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from './SortFunctions';
-import { Bar, generateBars } from '../../javascript/Utils';
+import { Bar, generateBars } from 'src/javascript/Utils';
 
-import '../../index.css'
+import 'src/index.css'
 
 const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2')
 const FPS = 12;
