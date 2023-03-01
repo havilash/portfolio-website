@@ -1,0 +1,10 @@
+version: '1'
+
+services:
+  client:
+    image: portfolio:production
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.production
+    ports:
+      - 80:80

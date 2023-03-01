@@ -5,12 +5,8 @@ services:
     image: portfolio:development
     build: 
       context: .
-      target: dependencys
-    volumes:
-    - ./client:/app
-    environment:
-      - NODE_ENV=development
-      - PORT=3000
-    command: sh -c "npm run start --port 3000"
+      dockerfile: ./Dockerfile
     ports:
       - 3000:3000
+    volumes:  
+    - ./client:/app
