@@ -6,7 +6,6 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile
-    command: sh -c "npm run start --port 3000"
     ports:
       - 3000:3000
     volumes:  
