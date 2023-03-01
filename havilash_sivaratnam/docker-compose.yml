@@ -1,10 +1,13 @@
 version: '1'
 
 services:
-  portfolio-development:
+  client:
+    image: portfolio:development
     build: 
       context: .
       target: dependencys
+    volumes:
+    - ./client:/app
     environment:
       - NODE_ENV=development
       - PORT=3000

@@ -1,5 +1,3 @@
-.env
-
 # vscode
 .vscode/*
 !.vscode/settings.json
