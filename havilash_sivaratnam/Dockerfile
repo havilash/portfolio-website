@@ -1,8 +1,11 @@
-FROM node:16-alpine as builder
+FROM node:16-alpine as dependencys
 
 WORKDIR /app
 COPY ./client .
 RUN npm ci
+
+FROM dependencys as builder
+
 RUN npm run build
 
 

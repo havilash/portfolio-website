@@ -4,7 +4,7 @@ services:
   portfolio-development:
     build: 
       context: .
-      target: builder
+      target: dependencys
     environment:
       - NODE_ENV=development
       - PORT=3000
