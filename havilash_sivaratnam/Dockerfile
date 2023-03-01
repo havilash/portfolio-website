@@ -7,4 +7,4 @@ WORKDIR /app
 COPY ./client .
 RUN npm install
 
-# CMD npm run start --port 3000
+CMD npm run start --port 3000
