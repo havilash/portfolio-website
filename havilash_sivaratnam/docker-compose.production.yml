@@ -2,6 +2,7 @@ version: '1'
 
 services:
   client:
+    restart: unless-stopped
     image: portfolio:production
     build: 
       context: .
