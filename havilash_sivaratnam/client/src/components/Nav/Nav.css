@@ -1,10 +1,7 @@
-/* @tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
-@import url("src/index.css");
-
-@layer base {
+@layer components {
   header {
     @apply transition-all fixed top-0 z-50 sm:w-screen left-0;
   }
@@ -23,9 +20,7 @@
     font-consolas font-bold text-lg sm:left-0
     select-none;
   }
-}
 
-@layer components {
   .nav__bars {
     @apply cursor-pointer
     text-4xl 10xl:text-7xl;

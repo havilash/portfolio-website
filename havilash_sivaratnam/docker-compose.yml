@@ -2,8 +2,9 @@ version: '1'
 
 services:
   client:
+    restart: unless-stopped
     image: portfolio:development
-    build: 
+    build:
       context: .
       dockerfile: ./Dockerfile
     ports:

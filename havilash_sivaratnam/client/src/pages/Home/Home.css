@@ -1,4 +1,5 @@
 @tailwind components;
+@tailwind utilities;
 
 @layer components {
   .sort-algorithm {
@@ -11,7 +12,7 @@
   }
 
   .home__block {
-    @apply px-[10vw] md:px-[25vw] py-16 bg-box-color
+    @apply px-[8vw] lg:px-[25vw] py-28 bg-box-color shadow-xl w-screen items-center justify-center
     flex flex-col gap-2;
   }
 

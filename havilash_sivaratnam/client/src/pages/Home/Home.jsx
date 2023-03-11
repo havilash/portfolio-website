@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import SortAlgorithm from 'src/components/SortAlgorithm/SortAlgorithm'
 import { FaArrowDown } from 'react-icons/fa';
 import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from 'src/components/SortAlgorithm/SortFunctions';
+import Violin from 'src/assets/Violin.png'
 
 import './Home.css'
 
@@ -105,11 +106,11 @@ export default function Home() {
           <FaArrowDown />
         </a>
       </div>
-      <div id='aboutme' className='aboutme flex flex-col items-center justify-center w-full py-80 relative gap-80'>
+      <div id='aboutme' className='aboutme flex flex-col items-center justify-center w-full py-40 relative gap-60'>
         {/* 1 */}
         <div className='gap-12 md:gap-28 w-full
           flex flex-col md:flex-row justify-center items-center'>
-          <div className='bg-body-color-2 w-[300px] h-[400px]'></div>
+          <div className='bg-body-color-2 w-[250px] h-[300px]'></div>
           {/* <img src="https://picsum.photos/300/400" alt="Portrait" /> */}
           <div className='flex flex-col self-center items-center md:items-start'>
             <h1 className='font-extrabold text-[2rem] xs:text-4xl'>Havilash Sivaratnam</h1>
@@ -132,13 +133,20 @@ export default function Home() {
 
         {/* 2 */}
         <div className='home__block'>
-          <h1 className=' font-extrabold'>Who am I?</h1>
-          <p className='text-justify text-xl'>Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.</p>
+          <div className='max-w-5xl'>
+            <h1 className=''>Who am I?</h1>
+            <p className='text-justify text-xl font-semibold'>Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.</p>
+          </div>
         </div>
 
         {/* 3 */}
-        <div>
-
+        <div className='relative home__block flex flex-row min-h-[30rem] h-fit lg:px-[10vw] py-8 gap-16 items-center'>
+          <img src={Violin} alt="Violin" className='h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20
+          md:relative md:translate-x-0 md:opacity-100 md:left-0' />
+          <div className='z-20'>
+            <h1>Hobbys</h1>
+            <p className='text-justify text-xl font-semibold max-w-3xl'>Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.</p>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 
 // https://en.wikipedia.org/wiki/Sorting_algorithm#Popular_sorting_algorithms
 
-import { Bar } from "src/javascript/Utils";
+import { Bar } from "src/services/Utils";
 
 
 
