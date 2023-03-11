@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import { Bar, generateBars } from 'src/javascript/Utils';
+import { generateBars } from 'src/services/Utils';
 import { FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
 import data from 'src/data.json'
+import { ReactComponent as Logo } from 'src/assets/Logo.svg'
 
 import './Footer.css'
 
@@ -9,7 +10,6 @@ const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue
 
 export default function Footer(props) {
   const canvasRef = useRef(null);
-  var bars = [];
   var ctx;
 
   useEffect(() => {
@@ -29,11 +29,11 @@ export default function Footer(props) {
   }, [])
 
   async function run(ctx) {
-    bars = generateBars(canvasRef.current, true)
-    draw(ctx)
+    var bars = generateBars(canvasRef.current, true)
+    draw(ctx, bars)
   }
 
-  function draw(ctx) {
+  function draw(ctx, bars) {
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
     ctx.fillStyle = BODY_COLOR_2;
@@ -66,32 +66,30 @@ export default function Footer(props) {
 
   return (
     <div className={`footer relative h-auto w-screen ${props.className}`}>
-      <canvas ref={canvasRef} className='w-full h-36' />
+      <canvas ref={canvasRef} className='w-full h-32' />
       <div className='footer__content'>
         <div className='footer__content__text'>
           <div>
-            <img className='w-40'
-              src="https://www.goomlandscapes.co.nz/wp-content/uploads/2018/08/logo-placeholder.png"
-              alt="Logo" />
+            <Logo className='w-24 mix-blend-difference fill-body-color-2' />
           </div>
           <div className='flex flex-col gap-2'>
-            <h1 className='text-2xl text-text-color font-'>
+            <h1 className='text-2xl text-text-color font-medium opacity-80'>
               Contact
             </h1>
-            <ul className='footer__social'>
+            <ul className='footer__social opacity-80'>
               {renderFooterSocialItems(data.social, [
                 <FaGithubSquare className='footer__social__icon' />,
                 <FaLinkedin className='footer__social__icon' />,
                 <FaFacebookSquare className='footer__social__icon' />
               ])}
             </ul>
-            <p className='font-extralight'>
+            <p className='font-extralight opacity-80'>
               E-Mail: <a href='mailto:havilash.sivaratnam@protonmail.com'>havilash.sivaratnam@protonmail.com</a>
             </p>
           </div>
         </div>
 
-        <div className="footer__content__copyright">
+        <div className="footer__content__copyright opacity-75">
           Copyright © 2023 Havilash Sivaratnam
         </div>
       </div>

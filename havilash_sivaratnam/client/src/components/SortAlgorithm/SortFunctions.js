@@ -1,6 +1,8 @@
 
 // https://en.wikipedia.org/wiki/Sorting_algorithm#Popular_sorting_algorithms
 
+import { Bar } from "src/javascript/Utils";
+
 
 
 function sleep(ms) {
@@ -458,4 +460,3 @@ export async function sleepSort(arr, draw){
 	return arr
 }
 
-// console.log(sleepSort([10, 2, 1, 2, 3, 4, 5, 6, 7, 3]))

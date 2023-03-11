@@ -1,6 +1,4 @@
-@tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 @layer components {
   .sort-algorithm {
@@ -12,8 +10,13 @@
     @apply flex items-center justify-center w-full h-screen relative m-0 left-0 top-0;
   }
 
+  .home__block {
+    @apply px-[10vw] md:px-[25vw] py-16 bg-box-color
+    flex flex-col gap-2;
+  }
+
   .sort-functions {
-    @apply z-10 absolute overflow-scroll max-h-[40vh] w-auto bg-box-color-alt
+    @apply z-10 absolute overflow-scroll w-auto bg-box-color-alt
     overflow-x-hidden right-1 bottom-[3.25rem] sm:bottom-10;
   }
 

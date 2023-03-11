@@ -17,12 +17,11 @@
     --text-color: hsl(var(--hue-color), 0%, 95%);
 
     --box-color: hsl(var(--hue-color), 1%, 16%);
-    --body-color-1: hsl(var(--hue-color), 1%, 15%);
+    --box-color-alt: hsla(var(--hue-color), 1%, 12%, 0.95);
 
+    --body-color-1: hsl(var(--hue-color), 1%, 15%);
     --body-color-2: hsl(var(--hue-color), 0%, 95%);
     /* --body-color-2: hsl(var(--hue-color), 1%, 80%); */
-
-    --box-color-alt: hsla(var(--hue-color), 1%, 12%, 0.95);
 
     /* swiper */
     --swiper-theme-color: var(--main-color-500) !important;
@@ -56,17 +55,20 @@
   h4,
   h5,
   h6 {
-    @apply font-consolas text-primary-color font-bold text-base;
+    @apply text-4xl;
   }
 
   h1 {
-    @apply text-2xl text-primary-color;
+    @apply text-[2rem] xs:text-4xl text-primary-color font-consolas font-extrabold;
   }
   h2 {
-    @apply text-xl text-secondary-color;
+    @apply text-2xl text-secondary-color font-consolas font-bold;
   }
   h3 {
-    @apply text-lg text-secondary-color;
+    @apply text-xl text-secondary-color font-consolas font-bold;
+  }
+  h4 {
+    @apply text-lg text-secondary-color font-consolas font-bold;
   }
 
   p {

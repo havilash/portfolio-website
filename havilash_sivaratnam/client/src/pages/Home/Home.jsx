@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import SortAlgorithm from '../../components/SortAlgorithm/SortAlgorithm'
+import SortAlgorithm from 'src/components/SortAlgorithm/SortAlgorithm'
 import { FaArrowDown } from 'react-icons/fa';
-import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from '../../components/SortAlgorithm/SortFunctions';
+import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from 'src/components/SortAlgorithm/SortFunctions';
 
 import './Home.css'
+
 
 const SORT_NAMES_FUNCTIONS = {
   "Insertion Sort": insertionSort,
@@ -35,6 +36,7 @@ export default function Home() {
   const sortResetRef = useRef(null);
   const [sortFunc, setSortFunc] = useState(() => SORT_FUNCTIONS[Math.floor(Math.random()*SORT_FUNCTIONS.length)])
   const [isSortFuncsElemOpen, setIsSortFuncsElemOpen] = useState(false);  // sort-functions element visibility state
+  const [age, setAge] = useState(getAge("2005-06-25"));
 
   useEffect(() => {
     setTitleIsVisible(!sortIsRunning)
@@ -64,8 +66,19 @@ export default function Home() {
     return output;
   }
 
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+        age--;
+    return age;
+  }
+
   return (
     <section className='section p-0 m-0'>
+      {/* home */}
       <div id='home' 
         className='home'>
         <SortAlgorithm className='sort-algorithm' 
@@ -75,7 +88,7 @@ export default function Home() {
           onClick={() => setIsSortFuncsElemOpen(!isSortFuncsElemOpen)}>
           {getKeyByValue(SORT_NAMES_FUNCTIONS, sortFunc)}
         </button>
-        <div className={'sort-functions transition-all' + (isSortFuncsElemOpen ? " " : " max-h-0")}>
+        <div className={'sort-functions transition-all' + (isSortFuncsElemOpen ? " max-h-[40vh]" : " max-h-0")}>
           <ul className='sort-functions__list'>
             {renderSortFunctions()}
           </ul>
@@ -92,8 +105,41 @@ export default function Home() {
           <FaArrowDown />
         </a>
       </div>
-      <div id='aboutme' className='aboutme flex items-center justify-center w-full h-[20vh] relative'>
-        
+      <div id='aboutme' className='aboutme flex flex-col items-center justify-center w-full py-80 relative gap-80'>
+        {/* 1 */}
+        <div className='gap-12 md:gap-28 w-full
+          flex flex-col md:flex-row justify-center items-center'>
+          <div className='bg-body-color-2 w-[300px] h-[400px]'></div>
+          {/* <img src="https://picsum.photos/300/400" alt="Portrait" /> */}
+          <div className='flex flex-col self-center items-center md:items-start'>
+            <h1 className='font-extrabold text-[2rem] xs:text-4xl'>Havilash Sivaratnam</h1>
+            <table className='aboutme__data-table w-full md:w-[24rem] border-spacing-4 h-40 text-xl xs:text-2xl'>
+              <tr>
+                <td>Birthday:</td>
+                <td>25.06.2005</td>
+              </tr>
+              <tr>
+                <td>Age:</td>
+                <td>{age}</td>
+              </tr>
+              <tr>
+                <td>Nationality:</td>
+                <td>Sri Lanka, Swiss</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        {/* 2 */}
+        <div className='home__block'>
+          <h1 className=' font-extrabold'>Who am I?</h1>
+          <p className='text-justify text-xl'>Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.</p>
+        </div>
+
+        {/* 3 */}
+        <div>
+
+        </div>
       </div>
     </section>
   )
