@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Footer from './components/Footer/Footer';
 
 import data from 'src/data.json'
@@ -12,22 +12,25 @@ import Education from './pages/Education/Education';
 
 
 function App() {
+  const location = useLocation()
 
   return (
-    <BrowserRouter>
-      <div className="app relative h-auto w-full">
-        <Nav />
-        <SortAlgorithm sorted={true} className="rotate-180" />
-        <div className='content h-auto w-full flex justify-center items-center z-10'>
-          <Routes>
-            <Route exact path="/*" element={<Error404/>} />
-            <Route exact path={data.pages.Home} element={<Home/>} />
-            <Route exact path={data.pages.Education} element={<Education/>} />
-          </Routes>
-        </div>
-        <Footer />
+    <div className="app relative h-auto w-full">
+      <Nav />
+      { 
+        (location.pathname !== data.pages.Home) ? 
+        <SortAlgorithm sorted={true} className="rotate-180 absolute top-0 left-0 -z-50" /> : null
+      }
+      
+      <div className='content h-auto w-full flex justify-center items-center z-10'>
+        <Routes>
+          <Route exact path="/*" element={<Error404/>} />
+          <Route exact path={data.pages.Home} element={<Home/>} />
+          <Route exact path={data.pages.Education} element={<Education/>} />
+        </Routes>
       </div>
-   </BrowserRouter>
+      <Footer />
+    </div>
   );
 }
 

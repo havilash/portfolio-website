@@ -14,7 +14,6 @@ export default function Footer(props) {
 
   useEffect(() => {
     var canvas = canvasRef.current;
-    console.log(canvas)
     ctx = canvas.getContext("2d");
 
     canvas.width = window.innerWidth;

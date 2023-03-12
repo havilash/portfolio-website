@@ -106,7 +106,7 @@ export default function Home() {
           <FaArrowDown />
         </a>
       </div>
-      <div id='aboutme' className='aboutme flex flex-col items-center justify-center w-full py-40 relative gap-60'>
+      <div id='aboutme' className='aboutme flex flex-col items-center justify-center w-full py-[20rem] relative gap-60'>
         {/* 1 */}
         <div className='gap-12 md:gap-28 w-full
           flex flex-col md:flex-row justify-center items-center'>

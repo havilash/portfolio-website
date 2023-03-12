@@ -28,23 +28,25 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   }, [props.sortFunc])
 
   useEffect(() => {
-    reset(sortFunc)
+    // reset(sortFunc)
   }, [sortFunc])
 
   useEffect(() => {
-    props.resetRef.current = reset;
+    if (props.resetRef)
+      props.resetRef.current = reset;
   }, [props.resetRef])
 
   function handleResize(ctx) {
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
 
-    bars = generateBars(canvasRef.current, Boolean(props.sorted))
+    bars = generateBars(canvasRef.current, !Boolean(props.sorted))
     draw(ctx)
   }
 
   useEffect(() => {
-    props.setIsRunning(isRunning)
+    if (props.setIsRunning)
+      props.setIsRunning(isRunning)
   }, [isRunning])
 
   useEffect(() => {
@@ -55,8 +57,12 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
     canvas.height = window.innerHeight;
     window.addEventListener('resize', () => handleResize(ctx));
     
-    if (Boolean(props.sorted))
+    console.log(props.sorted)
+    if (!Boolean(props.sorted))
       start(ctx, sortFunc);
+    else
+      bars = generateBars(canvasRef.current, false)
+      draw(ctx)
 
     return () => {
       window.removeEventListener('resize', () => handleResize(ctx));

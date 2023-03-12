@@ -9,7 +9,7 @@ export default function () {
         <h1 className='text-center text-9xl text-red-500'>
             404
         </h1>
-        <h1 className='text-center text-4xl text-text-color'>
+        <h1 className='text-center text-text-color mix-blend-difference'>
             Page not found
         </h1>
         <p className='text-center text-lg mt-8'>
