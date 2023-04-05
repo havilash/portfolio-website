@@ -40,7 +40,7 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
 
-    bars = generateBars(canvasRef.current, !Boolean(props.sorted))
+    bars = generateBars(canvasRef.current)
     draw(ctx)
   }
 

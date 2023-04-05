@@ -34,7 +34,7 @@
   }
 
   .nav__item {
-    @apply px-2 text-start sm:text-center text-2xl sm:text-xl 10xl:text-4xl;
+    @apply relative px-2 text-start sm:text-center text-2xl sm:text-xl 10xl:text-4xl;
   }
 
   .nav__link {
@@ -42,7 +42,7 @@
   }
 
   .nav__item.active {
-    @apply border-l-4 sm:border-l-0 sm:border-t-4;
+    /* @apply border-l-4 sm:border-l-0 sm:border-t-4; */
   }
 
   .nav__social {
@@ -51,5 +51,14 @@
 
   .nav__social__icon {
     @apply text-4xl;
+  }
+
+  .nav__item > .line {
+    @apply absolute  left-1/2 transform -translate-x-1/2 -top-1 mx-auto 
+    w-0 h-1 bg-text-color overflow-visible transition-all;
+  }
+
+  .nav__item.active > .line {
+    @apply w-full;
   }
 }

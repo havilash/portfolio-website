@@ -16,6 +16,7 @@ export default function Nav() {
       let url = items[name]
       output.push(
         <li key={`nav-item-${i}`} className={'nav__item ' + ((location.pathname === url) ? "active" : "")}>
+          <div className='line'></div>
           <Link to={url} className="nav__link">
             {name}
           </Link>
