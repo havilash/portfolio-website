@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
-export default function () {
+export default function Error404() {
     const location = useLocation()
 
   return (

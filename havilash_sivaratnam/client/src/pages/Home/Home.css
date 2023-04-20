@@ -12,12 +12,12 @@
   }
 
   .home__block {
-    @apply px-[8vw] lg:px-[25vw] py-28 bg-box-color shadow-xl w-screen items-center justify-center
+    @apply px-[8vw] lg:px-[25vw] py-28 bg-block-color shadow-xl w-screen items-center justify-center
     flex flex-col gap-2;
   }
 
   .sort-functions {
-    @apply z-10 absolute overflow-scroll w-auto bg-box-color-alt
+    @apply z-10 absolute overflow-scroll w-auto bg-block-color-alt
     overflow-x-hidden right-1 bottom-[3.25rem] sm:bottom-10;
   }
 

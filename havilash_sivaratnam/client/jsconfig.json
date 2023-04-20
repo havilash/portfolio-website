@@ -3,4 +3,7 @@
         "baseUrl": "./"
     },
     "include": ["src"]
+    // "paths": {
+    //     "@src/*": ["src/*"],
+    // }
 }

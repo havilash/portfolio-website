@@ -16,8 +16,8 @@
 
     --text-color: hsl(var(--hue-color), 0%, 95%);
 
-    --box-color: hsl(var(--hue-color), 1%, 16%);
-    --box-color-alt: hsla(var(--hue-color), 1%, 12%, 0.95);
+    --block-color: hsl(var(--hue-color), 1%, 16%);
+    --block-color-alt: hsla(var(--hue-color), 1%, 12%, 0.95);
 
     --body-color-1: hsl(var(--hue-color), 1%, 15%);
     --body-color-2: hsl(var(--hue-color), 0%, 95%);
@@ -97,7 +97,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-box-color-alt;
+    @apply bg-block-color-alt;
     background-clip: content-box;
   }
 

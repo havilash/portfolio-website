@@ -6,9 +6,10 @@ import data from 'src/data.json'
 import Nav from './components/Nav/Nav'
 import SortAlgorithm from './components/SortAlgorithm/SortAlgorithm';
 // Pages
-import Error404 from './pages/Errors/Error404';
+import Error404 from 'src/pages/errors/Error404';
 import Home from './pages/Home/Home';
 import Education from './pages/Education/Education';
+import Skills from './pages/Skills/Skills';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/*" element={<Error404/>} />
           <Route exact path={data.pages.Home} element={<Home/>} />
           <Route exact path={data.pages.Education} element={<Education/>} />
+          <Route exact path={data.pages.Skills} element={<Skills/>} />
         </Routes>
       </div>
       <Footer />
