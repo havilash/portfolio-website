@@ -57,7 +57,6 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
     canvas.height = window.innerHeight;
     window.addEventListener('resize', () => handleResize(ctx));
     
-    console.log(props.sorted)
     if (!Boolean(props.sorted))
       start(ctx, sortFunc);
     else
