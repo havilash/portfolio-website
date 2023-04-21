@@ -1,5 +1,4 @@
 @tailwind components;
-@tailwind utilities;
 
 @layer components {
   .sort-algorithm {
@@ -14,6 +13,10 @@
   .home__block {
     @apply px-[8vw] lg:px-[25vw] py-28 bg-block-color shadow-xl w-screen items-center justify-center
     flex flex-col gap-2;
+  }
+
+  .home__block__hobbys {
+    @apply flex flex-row min-h-[30rem] h-fit lg:px-[10vw] py-8 gap-16 items-center;
   }
 
   .sort-functions {

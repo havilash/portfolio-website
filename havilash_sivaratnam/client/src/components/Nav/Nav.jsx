@@ -33,7 +33,7 @@ export default function Nav() {
       let link = items[name]
       output.push(
         <li key={`nav-social-item-${i}`} className='nav__social__item'>
-          <a target="_blank" className='nav__link' href={link}>
+          <a target="_blank" rel="noreferrer" className='nav__link' href={link}>
             {icons[i]}
           </a>
         </li>
@@ -59,7 +59,7 @@ export default function Nav() {
           {renderNavItems(data.pages)}
         </ul>
 
-        <ul className='nav__social sm:hidden'>
+        <ul className='nav__social'>
           {renderNavSocialItems(data.social, [
             <FaGithubSquare className='nav__social__icon' />,
             <FaLinkedin className='nav__social__icon' />,

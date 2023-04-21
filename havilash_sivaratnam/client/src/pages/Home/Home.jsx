@@ -135,17 +135,22 @@ export default function Home() {
         <div className='home__block'>
           <div className='max-w-5xl'>
             <h1 className=''>Who am I?</h1>
-            <p className='text-justify text-xl font-semibold'>Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.</p>
+            <p className='text-justify text-xl font-semibold'>
+              Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.
+            </p>
           </div>
         </div>
 
         {/* 3 */}
-        <div className='relative home__block flex flex-row min-h-[30rem] h-fit lg:px-[10vw] py-8 gap-16 items-center'>
-          <img src={Violin} alt="Violin" className='h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20
-          md:relative md:translate-x-0 md:opacity-100 md:left-0' />
+        <div className='relative home__block home__block__hobbys'>
+          <img src={Violin} alt="Violin" 
+            className='h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20
+            md:relative md:translate-x-0 md:opacity-100 md:left-0' />
           <div className='z-20'>
             <h1>Hobbys</h1>
-            <p className='text-justify text-xl font-semibold max-w-3xl'>Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.</p>
+            <p className='text-justify text-xl font-semibold max-w-3xl'>
+              Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.
+            </p>
           </div>
         </div>
       </div>

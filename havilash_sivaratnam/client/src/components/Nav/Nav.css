@@ -1,5 +1,4 @@
 @tailwind components;
-@tailwind utilities;
 
 @layer components {
   header {
@@ -46,7 +45,7 @@
   }
 
   .nav__social {
-    @apply flex flex-row justify-between max-w-[12rem];
+    @apply flex sm:hidden flex-row justify-between max-w-[12rem];
   }
 
   .nav__social__icon {
@@ -54,11 +53,11 @@
   }
 
   .nav__item > .line {
-    @apply absolute  left-1/2 transform -translate-x-1/2 -top-1 mx-auto 
-    w-0 h-1 bg-text-color overflow-visible transition-all;
+    @apply absolute -left-1 sm:left-1/2 transform sm:-translate-x-1/2 sm:-top-1 mx-auto 
+    w-1 h-0 sm:w-0 sm:h-1 bg-text-color overflow-visible transition-all;
   }
 
   .nav__item.active > .line {
-    @apply w-full;
+    @apply h-full w-1 sm:h-1 sm:w-full;
   }
 }
