@@ -1,15 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom'
-import Footer from './components/Footer/Footer';
+import Footer from 'src/components/Footer/Footer';
 
 import data from 'src/data.json'
-import Nav from './components/Nav/Nav'
-import SortAlgorithm from './components/SortAlgorithm/SortAlgorithm';
+import Nav from 'src/components/Nav/Nav'
+import SortAlgorithm from 'src/components/SortAlgorithm/SortAlgorithm';
 // Pages
 import Error404 from 'src/pages/errors/Error404';
-import Home from './pages/Home/Home';
-import Education from './pages/Education/Education';
-import Skills from './pages/Skills/Skills';
+import Home from 'src/pages/Home/Home';
+import Education from 'src/pages/Education/Education';
+import Skills from 'src/pages/Skills/Skills';
 
 
 function App() {
