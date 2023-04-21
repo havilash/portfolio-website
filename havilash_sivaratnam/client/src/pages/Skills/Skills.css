@@ -2,4 +2,7 @@
 @tailwind utilities;
 
 @layer components {
+    .skills__block {
+        @apply min-w-full sm:min-w-[24ch] text-xl xs:text-2xl sm:text-3xl;
+    }
 }

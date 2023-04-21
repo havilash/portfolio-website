@@ -22,7 +22,6 @@ module.exports = {
         'primary-color': 'var(--primary-color)',
         'secondary-color': 'var(--secondary-color)',
         'text-color': 'var(--text-color)',
-        'title-color': 'var(--title-color)',
         'block-color': 'var(--block-color)',
         'block-color-alt': 'var(--block-color-alt)',
         'body-color-1': 'var(--body-color-1)',

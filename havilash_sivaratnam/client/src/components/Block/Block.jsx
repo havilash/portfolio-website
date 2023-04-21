@@ -19,7 +19,7 @@ export default function Block({children, className, title, subtitle, open, onIsO
             <p className='absolute bottom-2 text-xs opacity-75'>{subtitle}</p>
             <FaAngleDown size="2.5rem" className={`transition-all delay-50 duration-200 cursor-pointer ${isOpen && 'rotate-180'}`}/>
         </div>
-        <div className={`overflow-y-scroll transition-all duration-200 ${!isOpen ? 'h-0' : 'h-[50vh]'}`}>
+        <div className={`overflow-y-scroll p-4 transition-all duration-200 ${isOpen ? 'h-[50vh]' : 'p-0 h-0'}`}>
             {children}
         </div>
     </div>
