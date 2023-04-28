@@ -10,6 +10,7 @@ import Error404 from 'src/pages/errors/Error404';
 import Home from 'src/pages/Home/Home';
 import Education from 'src/pages/Education/Education';
 import Skills from 'src/pages/Skills/Skills';
+import Projects from './pages/Projects/Projects';
 
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
     <div className="app relative h-auto w-full">
       <Nav />
       { 
-        (location.pathname !== data.pages.Home) ? 
-        <SortAlgorithm sorted={true} className="rotate-180 absolute top-0 left-0 -z-50" /> : null
+        (location.pathname !== data.pages.Home) &&
+        <SortAlgorithm sorted={true} className="rotate-180 absolute top-0 left-0 -z-50" />
       }
       
       <div className='content h-auto w-full flex justify-center items-center z-10'>
@@ -29,6 +30,7 @@ function App() {
           <Route exact path={data.pages.Home} element={<Home/>} />
           <Route exact path={data.pages.Education} element={<Education/>} />
           <Route exact path={data.pages.Skills} element={<Skills/>} />
+          <Route exact path={data.pages.Projects} element={<Projects/>} />
         </Routes>
       </div>
       <Footer />

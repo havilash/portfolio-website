@@ -24,7 +24,7 @@
     /* --body-color-2: hsl(var(--hue-color), 1%, 80%); */
 
     /* swiper */
-    --swiper-theme-color: var(--main-color-500) !important;
+    --swiper-theme-color: var(--primary-color) !important;
   }
 
   * {
