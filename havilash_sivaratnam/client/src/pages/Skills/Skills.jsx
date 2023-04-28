@@ -6,12 +6,13 @@ import './Skills.css'
 const skillsData = {
   programmingLanguage: [
     {title: 'Python', percent: 80},
-    {title: 'JavaScript', percent: 60},
+    {title: 'JavaScript', percent: 65},
     {title: 'HTML / CSS', percent: 85},
     {title: 'PHP', percent: 45},
     {title: 'C', percent: 35},
     {title: 'C#', percent: 45},
     {title: 'Java', percent: 45},
+    {title: 'Lua', percent: 55},
   ],
   technologies: [
     {title: 'Git', icon: <SiGit />},

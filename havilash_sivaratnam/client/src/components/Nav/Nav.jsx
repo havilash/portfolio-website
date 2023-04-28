@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { FaBars, FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import data from 'src/data.json'
@@ -12,7 +12,7 @@ export default function Nav() {
 
   function renderNavItems(items){
     return items.map((item, i) => (
-        <li key={`nav-item-${i}`} className={'nav__item ' + ((location.pathname === items.href) ? "active" : "")}>
+        <li key={`nav-item-${i}`} className={`nav__item ${location.pathname === item.href && "active"}`}>
           <div className='line'></div>
           <Link to={item.href} className="nav__link">
             {item.name}
@@ -34,7 +34,7 @@ export default function Nav() {
   }
 
   return (
-    <header className={`${(!isNavOpen ? "-left-full mix-blend-difference" : "")} sm:mix-blend-difference`}>
+    <header className={`${!isNavOpen && "-left-full mix-blend-difference"} sm:mix-blend-difference`}>
       <nav className='nav'>
         {/* nav bars, logo */}
         <i className={`fixed left-8 sm:relative sm:left-0 z-[51] transition-all ${isNavOpen ? "left-[60vw]" : "left-8"}`}>

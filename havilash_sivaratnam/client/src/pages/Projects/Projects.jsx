@@ -14,35 +14,47 @@ SwiperCore.use([Navigation, Pagination]);
 
 const projects = [
   {
-    title: 'Neural Network',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png',
-    description: 'Convolutional Neural Network from scratch',
-    tags: ['neural network', 'python', 'ai'],
+    "title": "Neural-Network",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+    "description": "A versatile neural network package for classification tasks, including image recognition.",
+    "tags": ["neural network", "classification", "deep learning", "image recognition", "python", "ai"],
+    "href":  "https://github.com/Havilash/Neural-Network"
   },
   {
-    title: 'Portfolio Website',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png',
-    description: 'A personal portfolio website to showcase your work and skills.',
-    tags: ['portfolio website', 'website', 'html', 'css', 'javascript'],
+    "title": "Portfolio Website v1",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+    "description": "A personal portfolio website to showcase your work and skills.",
+    "tags": ["portfolio website v1", "version 1", "website", "html", "css", "javascript"],
+    "href":  "https://github.com/Havilash/Portfolio-Website-v1"
   },
   {
-    title: 'Spring Simulation',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png',
-    description: 'A simulation of a spring-mass system using physics equations.',
-    tags: ['spring simulation', 'spring', 'simulation', 'physics'],
+    "title": "Softbody-Simulation",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+    "description": "A project that simulates soft deformable objects using soft-body dynamics.",
+    "tags": ["Python", "soft-body dynamics", "animation", "simulation", "python", "pygame", "physics"],
+    "href":  "https://github.com/Havilash/Softbody-Simulation"
   },
   {
-    title: 'Golf Game',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png',
-    description: 'A golf game with custom physics engine for realistic ball movement.',
-    tags: ['golf game', 'golf', 'game', 'physics'],
+    "title": "Golf Game",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+    "description": "A golf game with custom physics engine for realistic ball movement.",
+    "tags": ["golf game", "physics", "python", "ball", "pygame"],
+    "href":  "https://github.com/Havilash/Golf-Game"
   },
   {
-    title: 'Django Backend',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png',
-    description: 'A backend for a web application built using the Django framework.',
-    tags: ['django backend', 'django', 'backend', 'web development'],
+    "title": "Anmeldesystem",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+    "description": "A backend for a web application built using the Django framework.",
+    "tags": ["django backend", "anmeldesystem", "django", "backend", "web development", "python"],
+    "href":  "https://github.com/Havilash/Anmeldesystem"
   },
+  {
+    "title": "OneCalc",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+    "description": "A simple and easy-to-understand calculator application with a history that can be filtered by date and a graphing calculator build wit .NET MAUI",
+    "tags": ["calculator", "math", "history", "graphing calculator", "windows", "android", ".net maui", "c#"],
+    "href":  "https://github.com/Havilash/OneCalc"
+  }
 ];
 
 export default function Projects() {
@@ -70,55 +82,31 @@ export default function Projects() {
   }
 
   return (
-    <section className='section h-screen w-full flex flex-col justify-center'>
-      <input className='self-start mix-blend-difference bg-black' type="text" placeholder='Search' onChange={filterProjects} />
-      <div className='h-[65vh] w-full flex justify-center items-center'>
-        <Swiper
-          spaceBetween={40}
-          slidesPerView={1}
-          navigation={!isMobile && {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          }}
-          pagination={{ clickable: true }}
-          breakpoints={{
-            // when window width is >= 768px
-            768: {
-              slidesPerView: 2,
-            },
-            // when window width is >= 1024px
-            1024: {
-              slidesPerView: 3,
-            },
-            // when window width is >= 1280px
-            1280: {
-              slidesPerView: 4,
-            },
-          }}
-        >
-          {
-            filteredProjects.map((project) => (
-              <SwiperSlide key={project.title}>
-                <Project {...project} />
-              </SwiperSlide>
-            ))
-          }
-          {!isMobile && <div className='swiper-button-next'></div>}
-          {!isMobile && <div className='swiper-button-prev'></div>}
-        </Swiper>
+    <section className='section min-h-screen h-auto w-full flex flex-col py-24 md:px-8'>
+      <div className=' border-b-4 border-solid border-white mix-blend-difference justify-self-start'>
+        <input className='w-full bg-transparent border-none outline-none focus:outline-none' type="text" placeholder='Search' onChange={filterProjects} />
+      </div>
+      <div className='projects__grid py-8 md:px-8'>
+        {
+          filteredProjects.map((project) => (
+            <Project {...project} />
+          ))
+        }
       </div>
     </section>
   );
 }
 
-function Project({ title, image, description }) {
+function Project({ title, image, description, href }) {
   return (
-    <div className='bg-block-color w-full h-[60vh] rounded-lg'>
-      <img src={image} alt={title} className='w-full h-1/2 object-cover rounded-t-lg' />
-      <div className='p-4'>
-        <h2 className='text-primary mt-4'>{title}</h2>
-        <p>{description}</p>
-      </div>
+    <div className='bg-block-color w-[20rem] h-[26rem] rounded-lg'>
+      <a href={href}>
+        <img src={image} alt={title} className='w-full h-1/2 object-cover rounded-t-lg' />
+        <div className='p-4'>
+          <h2 className='text-primary mt-4'>{title}</h2>
+          <p>{description}</p>
+        </div>
+      </a>
     </div>
   );
 }
