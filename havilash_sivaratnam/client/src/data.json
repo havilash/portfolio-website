@@ -1,14 +1,14 @@
 {
-    "pages": {
-        "Home": "/",
-        "Education": "/education",
-        "Skills": "/skills",
-        "Projects": "/projects",
-        "Portfolio": "/portfolio"
-    },
-    "social": {
-        "GitHub": "https://github.com/Havilash",
-        "Linkedin": "",
-        "Facebook": ""
-    }
+    "pages": [
+        {"name": "Home", "href": "/"},
+        {"name": "Education", "href": "/Education"},
+        {"name": "Skills", "href": "/Skills"},
+        {"name": "Projects", "href": "/Projects"},
+        {"name": "Portfolio", "href": "/Portfolio"}
+    ],
+    "social": [
+        {"name": "GitHub", "href": "https://github.com/Havilash"},
+        {"name": "Linkedin", "href": ""},
+        {"name": "Facebook", "href": ""}
+    ]
 }

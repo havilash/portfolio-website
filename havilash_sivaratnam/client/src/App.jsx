@@ -20,17 +20,17 @@ function App() {
     <div className="app relative h-auto w-full">
       <Nav />
       { 
-        (location.pathname !== data.pages.Home) &&
+        (location.pathname !== "/") &&
         <SortAlgorithm sorted={true} className="rotate-180 absolute top-0 left-0 -z-50" />
       }
       
       <div className='content h-auto w-full flex justify-center items-center z-10'>
         <Routes>
           <Route exact path="/*" element={<Error404/>} />
-          <Route exact path={data.pages.Home} element={<Home/>} />
-          <Route exact path={data.pages.Education} element={<Education/>} />
-          <Route exact path={data.pages.Skills} element={<Skills/>} />
-          <Route exact path={data.pages.Projects} element={<Projects/>} />
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/education" element={<Education/>} />
+          <Route exact path="/skills" element={<Skills/>} />
+          <Route exact path="/projects" element={<Projects/>} />
         </Routes>
       </div>
       <Footer />

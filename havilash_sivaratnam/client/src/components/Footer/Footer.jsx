@@ -49,18 +49,13 @@ export default function Footer(props) {
   }
 
   function renderFooterSocialItems(items, icons) {
-    let output = [];
-    Object.keys(items).forEach((name, i) => {
-      let link = items[name]
-      output.push(
+    return items.map((item, i) => (
         <li key={`footer-social-item-${i}`} className='footer__social__item'>
-          <a target="_blank" className='footer__social__link' href={link}>
+          <a target="_blank" className='footer__social__link' href={item.href}>
             {icons[i]}
           </a>
         </li>
-      )
-    })
-    return output;
+    ))
   }
 
   return (

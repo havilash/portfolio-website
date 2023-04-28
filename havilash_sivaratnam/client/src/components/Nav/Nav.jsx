@@ -11,35 +11,26 @@ export default function Nav() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   function renderNavItems(items){
-    let output = []
-    Object.keys(items).forEach((name, i) => {
-      let url = items[name]
-      output.push(
-        <li key={`nav-item-${i}`} className={'nav__item ' + ((location.pathname === url) ? "active" : "")}>
+    return items.map((item, i) => (
+        <li key={`nav-item-${i}`} className={'nav__item ' + ((location.pathname === items.href) ? "active" : "")}>
           <div className='line'></div>
-          <Link to={url} className="nav__link">
-            {name}
+          <Link to={item.href} className="nav__link">
+            {item.name}
           </Link>
         </li>
       )
-    })
-
-    return output
+    )
   }
 
   function renderNavSocialItems(items, icons){
-    let output = [];
-    Object.keys(items).forEach((name, i) => {
-      let link = items[name]
-      output.push(
-        <li key={`nav-social-item-${i}`} className='nav__social__item'>
-          <a target="_blank" rel="noreferrer" className='nav__link' href={link}>
-            {icons[i]}
-          </a>
-        </li>
+    return items.map((item, i) => (
+      <li key={`nav-social-item-${i}`} className='nav__social__item'>
+        <a target="_blank" rel="noreferrer" className='nav__link' href={item.href}>
+          {icons[i]}
+        </a>
+      </li>
       )
-    })
-    return output;
+    )
   }
 
   return (
