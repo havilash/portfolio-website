@@ -1,61 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import data from 'src/data.js'
 
 import './Projects.css'
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
-// Install Swiper modules
-SwiperCore.use([Navigation, Pagination]);
-
-const projects = [
-  {
-    "title": "Neural-Network",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-    "description": "A versatile neural network package for classification tasks, including image recognition.",
-    "tags": ["neural network", "classification", "deep learning", "image recognition", "python", "ai"],
-    "href":  "https://github.com/Havilash/Neural-Network"
-  },
-  {
-    "title": "Portfolio Website v1",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-    "description": "A personal portfolio website to showcase your work and skills.",
-    "tags": ["portfolio website v1", "version 1", "website", "html", "css", "javascript"],
-    "href":  "https://github.com/Havilash/Portfolio-Website-v1"
-  },
-  {
-    "title": "Softbody-Simulation",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-    "description": "A project that simulates soft deformable objects using soft-body dynamics.",
-    "tags": ["Python", "soft-body dynamics", "animation", "simulation", "python", "pygame", "physics"],
-    "href":  "https://github.com/Havilash/Softbody-Simulation"
-  },
-  {
-    "title": "Golf Game",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-    "description": "A golf game with custom physics engine for realistic ball movement.",
-    "tags": ["golf game", "physics", "python", "ball", "pygame"],
-    "href":  "https://github.com/Havilash/Golf-Game"
-  },
-  {
-    "title": "Anmeldesystem",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-    "description": "A backend for a web application built using the Django framework.",
-    "tags": ["django backend", "anmeldesystem", "django", "backend", "web development", "python"],
-    "href":  "https://github.com/Havilash/Anmeldesystem"
-  },
-  {
-    "title": "OneCalc",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-    "description": "A simple and easy-to-understand calculator application with a history that can be filtered by date and a graphing calculator build wit .NET MAUI",
-    "tags": ["calculator", "math", "history", "graphing calculator", "windows", "android", ".net maui", "c#"],
-    "href":  "https://github.com/Havilash/OneCalc"
-  }
-];
+const projects = data.projects;
 
 export default function Projects() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -86,7 +34,7 @@ export default function Projects() {
       <div className=' border-b-4 border-solid border-white mix-blend-difference justify-self-start'>
         <input className='w-full bg-transparent border-none outline-none focus:outline-none' type="text" placeholder='Search' onChange={filterProjects} />
       </div>
-      <div className='projects__grid py-8 md:px-8'>
+      <div className='projects__grid py-8 md:px-8 transition-all'>
         {
           filteredProjects.map((project) => (
             <Project {...project} />

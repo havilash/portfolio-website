@@ -2,13 +2,12 @@ import React, { useState, useRef } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Footer from 'src/components/Footer/Footer';
 
-import data from 'src/data.json'
 import Nav from 'src/components/Nav/Nav'
 import SortAlgorithm from 'src/components/SortAlgorithm/SortAlgorithm';
 // Pages
 import Error404 from 'src/pages/errors/Error404';
 import Home from 'src/pages/Home/Home';
-import Education from 'src/pages/Education/Education';
+import Career from 'src/pages/Career/Career';
 import Skills from 'src/pages/Skills/Skills';
 import Projects from './pages/Projects/Projects';
 
@@ -28,7 +27,7 @@ function App() {
         <Routes>
           <Route exact path="/*" element={<Error404/>} />
           <Route exact path="/" element={<Home/>} />
-          <Route exact path="/education" element={<Education/>} />
+          <Route exact path="/career" element={<Career/>} />
           <Route exact path="/skills" element={<Skills/>} />
           <Route exact path="/projects" element={<Projects/>} />
         </Routes>

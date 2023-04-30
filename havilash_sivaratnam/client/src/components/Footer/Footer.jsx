@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { generateBars } from 'src/services/Utils';
 import { FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
-import data from 'src/data.json'
+import data from 'src/data.js'
 import { ReactComponent as Logo } from 'src/assets/Logo.svg'
 
 import './Footer.css'
@@ -48,16 +48,6 @@ export default function Footer(props) {
     run(ctx)
   }
 
-  function renderFooterSocialItems(items, icons) {
-    return items.map((item, i) => (
-        <li key={`footer-social-item-${i}`} className='footer__social__item'>
-          <a target="_blank" className='footer__social__link' href={item.href}>
-            {icons[i]}
-          </a>
-        </li>
-    ))
-  }
-
   return (
     <div className={`footer relative h-auto w-screen ${props.className}`}>
       <canvas ref={canvasRef} className='w-full h-32' />
@@ -71,11 +61,15 @@ export default function Footer(props) {
               Contact
             </h1>
             <ul className='footer__social opacity-80'>
-              {renderFooterSocialItems(data.social, [
-                <FaGithubSquare className='footer__social__icon' />,
-                <FaLinkedin className='footer__social__icon' />,
-                <FaFacebookSquare className='footer__social__icon' />
-              ])}
+              {   
+                data.social.map((item, i) => (
+                  <li key={`footer-social-item-${i}`} className='footer__social__item'>
+                    <a target="_blank" className='footer__social__link' href={item.href}>
+                      <item.icon className="footer__social__icon"/>
+                    </a>
+                  </li>
+                ))
+              }
             </ul>
             <p className='font-extralight opacity-80'>
               E-Mail: <a href='mailto:havilash.sivaratnam@protonmail.com'>havilash.sivaratnam@protonmail.com</a>
