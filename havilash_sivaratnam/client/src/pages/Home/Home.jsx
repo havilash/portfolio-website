@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import SortAlgorithm from 'src/components/SortAlgorithm/SortAlgorithm'
 import { FaArrowDown } from 'react-icons/fa';
 import { bubbleSort, cycleSort, cocktailShakerSort, combSort, heapsort, insertionSort, mergeSort, quicksort, selectionSort, shellsort, gnomeSort, bitonicSort, sleepSort, bogoSort } from 'src/components/SortAlgorithm/SortFunctions';
-import Violin from 'src/assets/Violin.png'
 
 import './Home.css'
 
@@ -37,7 +36,7 @@ export default function Home() {
   const sortResetRef = useRef(null);
   const [sortFunc, setSortFunc] = useState(() => SORT_FUNCTIONS[Math.floor(Math.random()*SORT_FUNCTIONS.length)])
   const [isSortFuncsElemOpen, setIsSortFuncsElemOpen] = useState(false);  // sort-functions element visibility state
-  const [age, setAge] = useState(getAge("2005-06-25"));
+  const age = getAge("2005-06-25");
 
   useEffect(() => {
     setTitleIsVisible(!sortIsRunning)
@@ -143,7 +142,7 @@ export default function Home() {
 
         {/* 3 */}
         <div className='relative home__block home__block__hobbys'>
-          <img src={Violin} alt="Violin" 
+          <img src='/assets/violin.png' alt="Violin" 
             className='h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20
             md:relative md:translate-x-0 md:opacity-100 md:left-0' />
           <div className='z-20'>

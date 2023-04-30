@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { generateBars } from 'src/services/Utils';
-import { FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
 import data from 'src/data.js'
-import { ReactComponent as Logo } from 'src/assets/Logo.svg'
 
 import './Footer.css'
 
@@ -54,7 +52,7 @@ export default function Footer(props) {
       <div className='footer__content'>
         <div className='footer__content__text'>
           <div>
-            <Logo className='w-24 mix-blend-difference fill-body-color-2' />
+            <img src='/assets/logo.svg' alt="Logo" className='w-24 mix-blend-difference' />
           </div>
           <div className='flex flex-col gap-2'>
             <h1 className='text-2xl text-text-color font-medium opacity-80'>

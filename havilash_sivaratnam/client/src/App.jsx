@@ -10,6 +10,7 @@ import Home from 'src/pages/Home/Home';
 import Career from 'src/pages/Career/Career';
 import Skills from 'src/pages/Skills/Skills';
 import Projects from './pages/Projects/Projects';
+import ProjectDocument from './pages/documents/ProjectDocument';
 
 
 function App() {
@@ -23,15 +24,17 @@ function App() {
         <SortAlgorithm sorted={true} className="rotate-180 absolute top-0 left-0 -z-50" />
       }
       
-      <div className='content h-auto w-full flex justify-center items-center z-10'>
+      <main className='content h-auto w-full flex justify-center items-center z-10'>
         <Routes>
           <Route exact path="/*" element={<Error404/>} />
+          <Route path="/projects/:project/document/" element={<ProjectDocument/>} />
+
           <Route exact path="/" element={<Home/>} />
           <Route exact path="/career" element={<Career/>} />
           <Route exact path="/skills" element={<Skills/>} />
           <Route exact path="/projects" element={<Projects/>} />
         </Routes>
-      </div>
+      </main>
       <Footer />
     </div>
   );

@@ -60,42 +60,48 @@ export default {
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A versatile neural network package for classification tasks, including image recognition.",
           tags: ["neural network", "classification", "deep learning", "image recognition", "python", "ai"],
-          href:  "https://github.com/Havilash/Neural-Network"
+          href:  "https://github.com/Havilash/Neural-Network",
+          document: "placeholder.pdf",
         },
         {
-          title: "Portfolio Website v1",
+          title: "Portfolio-Website-v1",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A personal portfolio website to showcase your work and skills.",
           tags: ["portfolio website v1", "version 1", "website", "html", "css", "javascript"],
-          href:  "https://github.com/Havilash/Portfolio-Website-v1"
+          href:  "https://github.com/Havilash/Portfolio-Website-v1",
+          document: "placeholder.pdf",
         },
         {
           title: "Softbody-Simulation",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A project that simulates soft deformable objects using soft-body dynamics.",
-          tags: ["Python", "soft-body dynamics", "animation", "simulation", "python", "pygame", "physics"],
-          href:  "https://github.com/Havilash/Softbody-Simulation"
+          tags: ["Python", "softbody dynamics", "animation", "simulation", "python", "pygame", "physics"],
+          href:  "https://github.com/Havilash/Softbody-Simulation",
+          document: "placeholder.pdf",
         },
         {
-          title: "Golf Game",
+          title: "Golf-Game",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A golf game with custom physics engine for realistic ball movement.",
           tags: ["golf game", "physics", "python", "ball", "pygame"],
-          href:  "https://github.com/Havilash/Golf-Game"
+          href:  "https://github.com/Havilash/Golf-Game",
+          document: "placeholder.pdf",
         },
         {
           title: "Anmeldesystem",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A backend for a web application built using the Django framework.",
           tags: ["django backend", "anmeldesystem", "django", "backend", "web development", "python"],
-          href:  "https://github.com/Havilash/Anmeldesystem"
+          href:  "",
+          document: "placeholder.pdf",
         },
         {
           title: "OneCalc",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A simple and easy-to-understand calculator application with a history that can be filtered by date and a graphing calculator build wit .NET MAUI",
           tags: ["calculator", "math", "history", "graphing calculator", "windows", "android", ".net maui", "c#"],
-          href:  "https://github.com/Havilash/OneCalc"
+          href:  "https://github.com/Havilash/OneCalc",
+          document: "placeholder.pdf",
         }
       ]
 }

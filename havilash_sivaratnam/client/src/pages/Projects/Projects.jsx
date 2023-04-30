@@ -45,10 +45,10 @@ export default function Projects() {
   );
 }
 
-function Project({ title, image, description, href }) {
+function Project({ title, image, description }) {
   return (
     <div className='bg-block-color w-[20rem] h-[26rem] rounded-lg'>
-      <a href={href}>
+      <a href={`/projects/${title}/document`}>
         <img src={image} alt={title} className='w-full h-1/2 object-cover rounded-t-lg' />
         <div className='p-4'>
           <h2 className='text-primary mt-4'>{title}</h2>
