@@ -56,6 +56,7 @@ export default {
       },
     projects: [
         {
+          repo_name: "Havilash/Neural-Network",
           title: "Neural-Network",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A versatile neural network package for classification tasks, including image recognition.",
@@ -63,13 +64,15 @@ export default {
           href:  "https://github.com/Havilash/Neural-Network"
         },
         {
-          title: "Portfolio Website v1",
+          repo_name: "Havilash/Portfolio-Website-v1",
+          title: "Portfolio-Website-v1",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A personal portfolio website to showcase your work and skills.",
           tags: ["portfolio website v1", "version 1", "website", "html", "css", "javascript"],
           href:  "https://github.com/Havilash/Portfolio-Website-v1"
         },
         {
+          repo_name: "Havilash/Softbody-Simulation",
           title: "Softbody-Simulation",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A project that simulates soft deformable objects using soft-body dynamics.",
@@ -77,6 +80,7 @@ export default {
           href:  "https://github.com/Havilash/Softbody-Simulation"
         },
         {
+          repo_name: "Havilash/Golf-Game",
           title: "Golf Game",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A golf game with custom physics engine for realistic ball movement.",
@@ -84,13 +88,15 @@ export default {
           href:  "https://github.com/Havilash/Golf-Game"
         },
         {
+          repo_name: "Havilash/Anmeldesystem",
           title: "Anmeldesystem",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A backend for a web application built using the Django framework.",
           tags: ["django backend", "anmeldesystem", "django", "backend", "web development", "python"],
-          href:  "https://github.com/Havilash/Anmeldesystem"
+          href:  ""
         },
         {
+          repo_name: "Havilash/OneCalc",
           title: "OneCalc",
           image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
           description: "A simple and easy-to-understand calculator application with a history that can be filtered by date and a graphing calculator build wit .NET MAUI",

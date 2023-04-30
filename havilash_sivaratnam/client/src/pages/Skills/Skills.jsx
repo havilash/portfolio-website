@@ -84,7 +84,6 @@ function SkillBar({title, percent}) {
 
 function SkillBox({title, icon}) {
   const Icon = icon;
-  console.log(icon)
   const fontSize = title.length > 8 ? '1rem' : '1.2rem';
   return (
     <div 
