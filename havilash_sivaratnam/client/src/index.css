@@ -126,6 +126,12 @@
   .button {
     @apply inline-block bg-primary-color hover:bg-secondary-color px-1 select-none;
   }
+
+  .details {
+    @apply bg-block-color-alt shadow-md min-w-[16rem] h-auto max-h-[40vh] max-w-[40vw] overflow-hidden
+    flex flex-col justify-center items-center gap-4 rounded-md transition-all duration-300
+    fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
 }
 
 @layer utilities {

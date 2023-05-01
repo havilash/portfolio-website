@@ -2,8 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { useNavigate, useParams } from 'react-router';
 import { MdOutlineFileDownload } from 'react-icons/md';
-import { BsPlay } from 'react-icons/bs';
+import { BsCodeSlash, BsPlay } from 'react-icons/bs';
+import { BiCodeAlt } from 'react-icons/bi';
 import data from 'src/data';
+
+import './ProjectDocument.css';
+import { Link } from 'react-router-dom';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -50,13 +54,23 @@ export default function ProjectDocument() {
   }
 
   return documentUrl && (
-    <section className="section p-48 min-h-screen">
-      <div className='flex flex-row items-center h-16 justify-between'>
+    <section className="section pt-16 sm:p-24 lg:p-48 min-h-screen">
+      <div className='document__data'>
         <div className='flex flex-row items-center gap-4'>
-          <a href={documentUrl} download><MdOutlineFileDownload className='text-primary-color hover:opacity-80' size='4rem'/></a>
-          <h2 className='text-white mix-blend-difference'>{project.document}</h2>
+          <a href={documentUrl} download><MdOutlineFileDownload className='document__data__download'/></a>
+          <h2 className='text-white mix-blend-difference text-[5vw] xs:text-2xl'>{project.document}</h2>
         </div>
-        <a href={project.href} target='_blank' rel='noreferrer'><BsPlay className='text-white bg-primary-color rounded-md hover:opacity-80' size='3rem' /></a>
+        <div className='flex flex-row items-center gap-4'>
+          <a href={project.href} target='_blank' rel='noreferrer'>
+            <BiCodeAlt className='document__data__button' />
+          </a>
+          {
+            project.demo_href &&
+            <a href={project.href} target='_blank' rel='noreferrer'>
+              <BsPlay className='document__data__button' />
+            </a>
+          }
+        </div>
       </div>
       <div ref={containerRef} className="document h-auto w-full flex items-center justify-center">
         {

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Footer from 'src/components/Footer/Footer';
 
@@ -9,19 +9,45 @@ import Error404 from 'src/pages/errors/Error404';
 import Home from 'src/pages/Home/Home';
 import Career from 'src/pages/Career/Career';
 import Skills from 'src/pages/Skills/Skills';
-import Projects from './pages/Projects/Projects';
-import ProjectDocument from './pages/documents/ProjectDocument';
+import Projects from 'src/pages/Projects/Projects';
+import ProjectDocument from 'src/pages/documents/ProjectDocuemt/ProjectDocument';
+import Portfolio from './pages/Portfolio/Portfolio';
 
 
 function App() {
   const location = useLocation()
+  const footerRef = useRef(null);
+  const [footerHeight, setFooterHeight] = useState(96);
+
+  function handleResize() {
+    if (footerRef.current) {
+      setFooterHeight(footerRef.current.offsetHeight);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+    handleResize();
+  }, [footerRef.current])
 
   return (
-    <div className="app relative h-auto w-full">
+    <div className="app relative h-auto w-full overflow-hidden">
       <Nav />
       { 
         (location.pathname !== "/") &&
-        <SortAlgorithm sorted={true} className="rotate-180 absolute top-0 left-0 -z-50" />
+        <SortAlgorithm 
+          sorted={true} 
+          className={`rotate-180 absolute top-0 left-0 -z-50 w-full h-[calc(100%_-_${footerHeight}px)]`} 
+          style={{height: `calc(100%_-_${footerHeight}px)`}} 
+        />
       }
       
       <main className='content h-auto w-full flex justify-center items-center z-10'>
@@ -33,9 +59,10 @@ function App() {
           <Route exact path="/career" element={<Career/>} />
           <Route exact path="/skills" element={<Skills/>} />
           <Route exact path="/projects" element={<Projects/>} />
+          <Route exact path="/portfolio" element={<Portfolio/>} />
         </Routes>
       </main>
-      <Footer />
+      <Footer divRef={footerRef} />
     </div>
   );
 }

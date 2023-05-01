@@ -47,7 +47,7 @@ export default function Footer(props) {
   }
 
   return (
-    <div className={`footer relative h-auto w-screen ${props.className}`}>
+    <div ref={props.divRef} className={`footer relative h-auto w-screen ${props.className}`}>
       <canvas ref={canvasRef} className='w-full h-32' />
       <div className='footer__content'>
         <div className='footer__content__text'>
