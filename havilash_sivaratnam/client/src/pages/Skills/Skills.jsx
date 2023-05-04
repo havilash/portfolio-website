@@ -12,6 +12,7 @@ export default function Skills() {
   const [isLargeDevice, setIsLargeDevice] = useState(!window.matchMedia("(min-width: 1024px)").matches);
   const [isOpen1, setIsOpen1] = useState(!isLargeDevice)
   const [isOpen2, setIsOpen2] = useState(!isLargeDevice)
+  const [cursorPos, setCursorPos] = useState({x: 0, y: 0});
 
   const [selectedSkill, setSelectedSkill] = useState(data.skills.programmingLanguage[0]);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -30,10 +31,20 @@ export default function Skills() {
     }
   };
 
+  const handleMouseMove = (e) => {
+    const pos = {
+      x: e.pageX,
+      y: e.pageY,
+    }
+    setCursorPos(pos)
+  }
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleMouseMove);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleMouseMove);
     };
   }, []);
 

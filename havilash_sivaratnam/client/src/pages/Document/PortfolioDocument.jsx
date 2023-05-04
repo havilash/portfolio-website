@@ -2,23 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { useNavigate, useParams } from 'react-router';
 import { MdOutlineFileDownload } from 'react-icons/md';
-import { BsCodeSlash, BsPlay } from 'react-icons/bs';
-import { BiCodeAlt } from 'react-icons/bi';
-import data from 'src/data';
 
-import './ProjectDocument.css';
-import { Link } from 'react-router-dom';
+import './Document.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-function getProjectByTitle(title) {
-  return data.projects.find((project) => project.title === title);
-}
-
-export default function ProjectDocument() {
+export default function PortfolioDocument() {
   const navigate = useNavigate();
-  const { ["project"]: projectTitle } = useParams();
-  const project = getProjectByTitle(projectTitle);
+  const { ["document"]: documentName } = useParams();
   const [documentUrl, setDocumentUrl] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [containerWidth, setContainerWidth] = useState(null);
@@ -31,10 +22,10 @@ export default function ProjectDocument() {
   }
 
   useEffect(() => {
-    if (project?.document) {
-      setDocumentUrl(`/assets/documents/${project.document}`);
+    if (documentName) {
+      setDocumentUrl(`/assets/documents/portfolio/${documentName}`);
     } else {
-      navigate('/projects')
+      navigate('/portfolio')
     }
 
     window.addEventListener('resize', handleResize);
@@ -58,18 +49,7 @@ export default function ProjectDocument() {
       <div className='document__data'>
         <div className='flex flex-row items-center gap-4'>
           <a href={documentUrl} download><MdOutlineFileDownload className='document__data__download'/></a>
-          <h2 className='text-white mix-blend-difference text-[5vw] xs:text-2xl'>{project.document}</h2>
-        </div>
-        <div className='flex flex-row items-center gap-4'>
-          <a href={project.href} target='_blank' rel='noreferrer'>
-            <BiCodeAlt className='document__data__button' />
-          </a>
-          {
-            project.demo_href &&
-            <a href={project.href} target='_blank' rel='noreferrer'>
-              <BsPlay className='document__data__button' />
-            </a>
-          }
+          <h2 className='text-white mix-blend-difference text-[5vw] xs:text-2xl'>{documentName}</h2>
         </div>
       </div>
       <div ref={containerRef} className="document h-auto w-full flex items-center justify-center">

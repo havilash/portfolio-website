@@ -166,7 +166,7 @@ export default {
       tags: ["neural network", "classification", "deep learning", "image recognition", "python", "ai"],
       href:  "https://github.com/Havilash/Neural-Network",
       document: "placeholder.pdf",
-      demo_href: "asdf"
+      demo: "asdf"
     },
     {
       title: "Portfolio-Website-v1",

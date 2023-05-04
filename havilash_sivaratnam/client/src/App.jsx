@@ -10,8 +10,9 @@ import Home from 'src/pages/Home/Home';
 import Career from 'src/pages/Career/Career';
 import Skills from 'src/pages/Skills/Skills';
 import Projects from 'src/pages/Projects/Projects';
-import ProjectDocument from 'src/pages/documents/ProjectDocuemt/ProjectDocument';
-import Portfolio from './pages/Portfolio/Portfolio';
+import Portfolio from 'src/pages/Portfolio/Portfolio';
+import PortfolioDocument from 'src/pages/Document/PortfolioDocument';
+import ProjectDocument from 'src/pages/Document/ProjectDocument';
 
 
 function App() {
@@ -53,7 +54,8 @@ function App() {
       <main className='content h-auto w-full flex justify-center items-center z-10'>
         <Routes>
           <Route exact path="/*" element={<Error404/>} />
-          <Route path="/projects/:project/document/" element={<ProjectDocument/>} />
+          <Route path="/projects/:project" element={<ProjectDocument/>} />
+          <Route path="/portfolio/:document" element={<PortfolioDocument/>} />
 
           <Route exact path="/" element={<Home/>} />
           <Route exact path="/career" element={<Career/>} />
