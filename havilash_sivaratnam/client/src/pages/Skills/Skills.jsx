@@ -4,6 +4,7 @@ import * as icons from 'react-icons/si';
 import data from 'src/data.js'
 
 import './Skills.css'
+import Modal from 'src/components/Modal/Modal';
 
 
 const skills = data.skills
@@ -12,41 +13,14 @@ export default function Skills() {
   const [isLargeDevice, setIsLargeDevice] = useState(!window.matchMedia("(min-width: 1024px)").matches);
   const [isOpen1, setIsOpen1] = useState(!isLargeDevice)
   const [isOpen2, setIsOpen2] = useState(!isLargeDevice)
-  const [cursorPos, setCursorPos] = useState({x: 0, y: 0});
 
   const [selectedSkill, setSelectedSkill] = useState(data.skills.programmingLanguage[0]);
-  const [detailOpen, setDetailOpen] = useState(false);
-  const detailsRef = useRef(null);
+  const [detailTrigger, setDetailTrigger] = useState();
 
   const handleSkillClick = (skill) => {
     setSelectedSkill(skill);
-    setDetailOpen(true)
+    setDetailTrigger(!detailTrigger);
   };
-
-  const handleClickOutside = (event) => {
-    if (detailsRef.current && !detailsRef.current.contains(event.target)) {
-      // setSelectedSkill(null);
-      setDetailOpen(false)
-      console.log(detailOpen)
-    }
-  };
-
-  const handleMouseMove = (e) => {
-    const pos = {
-      x: e.pageX,
-      y: e.pageY,
-    }
-    setCursorPos(pos)
-  }
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('mousedown', handleMouseMove);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('mousedown', handleMouseMove);
-    };
-  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -110,16 +84,16 @@ export default function Skills() {
         </div>
       </Block>
       {selectedSkill && (
-        <>
-          <div ref={detailsRef} className={`details ${!detailOpen && 'max-w-0 max-h-0 min-h-0 min-w-0'}`}>
-            <h2 className='text-white text-xl mt-8 mx-8'>{selectedSkill.title}</h2>
-            <ul className='mb-8 mx-8 bullet list-disc'>
+        <Modal trigger={detailTrigger}>
+          <div className='details flex flex-col gap-4 p-8'>
+            <h2 className='text-white text-xl'>{selectedSkill.title}</h2>
+            <ul className='bullet list-disc'>
               {selectedSkill.details.map((detail, index) => (
                 <li key={`detail-${index}`}>{detail}</li>
               ))}
             </ul>
           </div>
-        </>
+        </Modal>
       )}
     </section>
   )

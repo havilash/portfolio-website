@@ -2,12 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { useNavigate, useParams } from 'react-router';
 import { MdOutlineFileDownload } from 'react-icons/md';
-import { BsCodeSlash, BsPlay } from 'react-icons/bs';
+import { BsPlay } from 'react-icons/bs';
 import { BiCodeAlt } from 'react-icons/bi';
 import data from 'src/data';
 
 import './Document.css';
 import { Link } from 'react-router-dom';
+import SkeletonFile from 'src/components/skeletons/SkeletonFile/SkeletonFile';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -23,6 +24,7 @@ export default function ProjectDocument() {
   const [numPages, setNumPages] = useState(null);
   const [containerWidth, setContainerWidth] = useState(null);
   const containerRef = useRef();
+  const [isLoading, setIsLoading] = useState(true);
 
   function handleResize() {
     if (containerRef.current) {
@@ -51,6 +53,7 @@ export default function ProjectDocument() {
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
+    setIsLoading(false);
   }
 
   return documentUrl && (
@@ -72,9 +75,10 @@ export default function ProjectDocument() {
           }
         </div>
       </div>
-      <div ref={containerRef} className="document h-auto w-full flex items-center justify-center">
+      <div ref={containerRef} className='document' >
+        {isLoading && <SkeletonFile />}
         {
-          <Document file={documentUrl} onLoadSuccess={onDocumentLoadSuccess}>
+          <Document file={documentUrl} onLoadSuccess={onDocumentLoadSuccess} loading="">
             {Array.from(new Array(numPages), (el, index) => (
               <Page
                 className='shadow-lg'
@@ -82,7 +86,9 @@ export default function ProjectDocument() {
                 pageNumber={index + 1}
                 width={containerWidth}
                 renderAnnotationLayer={false}
-                renderTextLayer={false} />
+                renderTextLayer={false}
+                loading=""
+              />
             ))}
           </Document>
         }

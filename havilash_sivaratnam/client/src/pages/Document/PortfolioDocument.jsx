@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { MdOutlineFileDownload } from 'react-icons/md';
 
 import './Document.css';
+import SkeletonFile from 'src/components/skeletons/SkeletonFile/SkeletonFile';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -14,6 +15,7 @@ export default function PortfolioDocument() {
   const [numPages, setNumPages] = useState(null);
   const [containerWidth, setContainerWidth] = useState(null);
   const containerRef = useRef();
+  const [isLoading, setIsLoading] = useState(true);
 
   function handleResize() {
     if (containerRef.current) {
@@ -42,31 +44,39 @@ export default function PortfolioDocument() {
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
+    setIsLoading(false);
   }
 
-  return documentUrl && (
+  return (
     <section className="section pt-16 sm:p-24 lg:p-48 min-h-screen">
-      <div className='document__data'>
-        <div className='flex flex-row items-center gap-4'>
-          <a href={documentUrl} download><MdOutlineFileDownload className='document__data__download'/></a>
-          <h2 className='text-white mix-blend-difference text-[5vw] xs:text-2xl'>{documentName}</h2>
+      <div className="document__data">
+        <div className="flex flex-row items-center gap-4">
+          <a href={documentUrl} download>
+            <MdOutlineFileDownload className="document__data__download" />
+          </a>
+          <h2 className="text-white mix-blend-difference text-[5vw] xs:text-2xl">
+            {documentName}
+          </h2>
         </div>
       </div>
-      <div ref={containerRef} className="document h-auto w-full flex items-center justify-center">
-        {
-          <Document file={documentUrl} onLoadSuccess={onDocumentLoadSuccess}>
-            {Array.from(new Array(numPages), (el, index) => (
-              <Page 
-                className='shadow-lg'
-                key={`page_${index + 1}`} 
-                pageNumber={index +  1}
-                width={containerWidth}
-                renderAnnotationLayer={false}
-                renderTextLayer={false} />
-            ))}
-          </Document>
-        }
-      </div>
+        <div ref={containerRef} className='document relative' >
+          {isLoading && <SkeletonFile />}
+          {
+            <Document file={documentUrl} onLoadSuccess={onDocumentLoadSuccess} loading="">
+              {Array.from(new Array(numPages), (el, index) => (
+                <Page
+                  className='shadow-lg'
+                  key={`page_${index + 1}`}
+                  pageNumber={index + 1}
+                  width={containerWidth}
+                  renderAnnotationLayer={false}
+                  renderTextLayer={false}
+                  loading=""
+                />
+              ))}
+            </Document>
+          }
+        </div>
     </section>
   );
 }

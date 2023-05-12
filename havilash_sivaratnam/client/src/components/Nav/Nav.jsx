@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { FaBars, FaFacebookSquare, FaGithubSquare, FaLinkedin, } from 'react-icons/fa';
+import React, { useEffect, useRef, useState } from 'react'
+import { FaBars } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import data from 'src/data.js'
 
@@ -9,9 +9,23 @@ import './Nav.css'
 export default function Nav() {
   const location = useLocation();
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const headerRef = useRef();
+
+  const handleClick = (event) => {
+    if (headerRef.current && !headerRef.current.contains(event.target)) {
+      setIsNavOpen(false)
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, []);
 
   return (
-    <header className={`${!isNavOpen && "-left-full mix-blend-difference"} sm:mix-blend-difference`}>
+    <header ref={headerRef} className={`${!isNavOpen && "-left-full mix-blend-difference"} sm:mix-blend-difference`}>
       <nav className='nav'>
         {/* nav bars, logo */}
         <i className={`fixed left-8 sm:relative sm:left-0 z-[51] transition-all ${isNavOpen ? "left-[60vw]" : "left-8"}`}>

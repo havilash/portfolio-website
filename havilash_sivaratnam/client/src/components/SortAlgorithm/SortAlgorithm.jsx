@@ -91,6 +91,6 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   }
 
   return (
-    <canvas ref={canvasRef} className={props.className}></canvas>
+    <canvas ref={canvasRef} className={props.className} style={props.style}></canvas>
   )
 }

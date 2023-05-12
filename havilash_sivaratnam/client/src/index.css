@@ -127,10 +127,25 @@
     @apply inline-block bg-primary-color hover:bg-secondary-color px-1 select-none;
   }
 
-  .details {
-    @apply bg-block-color-alt shadow-md min-w-[16rem] h-auto max-h-[40vh] max-w-[40vw] overflow-hidden
-    flex flex-col justify-center items-center gap-4 rounded-md transition-all duration-300
-    fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  .select {
+    @apply font-extrabold text-body-color-1 h-full text-center py-2 px-3 m-0 rounded-md cursor-pointer;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    text-align-last: center;
+  }
+
+  .select::-ms-expand {
+    @apply hidden;
+  }
+
+  .select:focus {
+    @apply outline-none;
+  }
+
+  .select option {
+    @apply font-normal text-left;
+    text-align: left;
   }
 }
 

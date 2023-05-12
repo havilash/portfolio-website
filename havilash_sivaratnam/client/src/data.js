@@ -37,6 +37,14 @@ export default {
       "date": "August 2021 - Juli 2022",
       "description": "1. Schuljahr Informatikmittelschule (BWD, Gibb, BBC)"
     },
+    {
+      "date": "August 2018 - Juli 2021",
+      "description": "7-9. Schuljahr Sek, Dennigkofen Ostermundigen"
+    },
+    {
+      "date": "August 2012 - Juli 2018",
+      "description": "1-6. Schuljahr, Dennigkofen Ostermundigen"
+    },
   ],
   // skills
   skills: {
@@ -160,23 +168,26 @@ export default {
   // projects
   projects: [
     {
+      repo: "Neural-Network",
       title: "Neural-Network",
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-      description: "A versatile neural network package for classification tasks, including image recognition.",
+      // description: "A versatile neural network package for classification tasks, including image recognition.",
       tags: ["neural network", "classification", "deep learning", "image recognition", "python", "ai"],
       href:  "https://github.com/Havilash/Neural-Network",
       document: "placeholder.pdf",
       demo: "asdf"
     },
     {
+      repo: "Portfolio-Website-v1",
       title: "Portfolio-Website-v1",
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-      description: "A personal portfolio website to showcase your work and skills.",
+      // description: "A personal portfolio website to showcase your work and skills.",
       tags: ["portfolio website v1", "version 1", "website", "html", "css", "javascript"],
       href:  "https://github.com/Havilash/Portfolio-Website-v1",
       document: "placeholder.pdf",
     },
     {
+      repo: "Softbody-Simulation",
       title: "Softbody-Simulation",
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
       description: "A project that simulates soft deformable objects using soft-body dynamics.",
@@ -185,6 +196,7 @@ export default {
       document: "placeholder.pdf",
     },
     {
+      repo: "Golf-Game",
       title: "Golf-Game",
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
       description: "A golf game with custom physics engine for realistic ball movement.",
@@ -201,6 +213,7 @@ export default {
       document: "placeholder.pdf",
     },
     {
+      repo: "OneCalc",
       title: "OneCalc",
       image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
       description: "A simple and easy-to-understand calculator application with a history that can be filtered by date and a graphing calculator build wit .NET MAUI",
@@ -212,18 +225,27 @@ export default {
   // portfolio
   portfolio: {
     documents: [
-        { 
-            document: 'cv.pdf', 
-            title: 'Lebenslauf'
-        },
-        {
-            document: 'report_card.pdf',
-            title: 'Zeugnisse'
-        },
-        {
-            document: 'certificate.pdf',
-            title: 'Zertifikate'
-        },
+      {
+        title: "Lebenslauf",
+        documents: [
+          { title: "Klassisch", document: "cv_classic.pdf" },
+          { title: "Modern", document: "cv_modern.pdf" },
+        ]
+      },
+      {
+        title: "Zeugnis",
+        documents: [
+          { title: "IMS 1", document: "report_card_ims_1.pdf" },
+          { title: "IMS 2", document: "report_card_ims_2.pdf" },
+        ]
+      },
+      {
+        title: "Zertifikat",
+        documents: [
+          { title: "Abacus", document: "certificate_abacus.pdf" },
+          { title: "EFZ", document: "certificate_efz.pdf" },
+        ]
+      },      
     ]
   }
 }

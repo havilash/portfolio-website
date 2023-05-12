@@ -13,6 +13,7 @@ import Projects from 'src/pages/Projects/Projects';
 import Portfolio from 'src/pages/Portfolio/Portfolio';
 import PortfolioDocument from 'src/pages/Document/PortfolioDocument';
 import ProjectDocument from 'src/pages/Document/ProjectDocument';
+import Login from 'src/pages/Login/Login';
 
 
 function App() {
@@ -46,11 +47,10 @@ function App() {
         (location.pathname !== "/") &&
         <SortAlgorithm 
           sorted={true} 
-          className={`rotate-180 absolute top-0 left-0 -z-50 w-full h-[calc(100%_-_${footerHeight}px)]`} 
-          style={{height: `calc(100%_-_${footerHeight}px)`}} 
+          className='rotate-180 absolute top-0 left-0 -z-50 w-full' 
+          style={{height: `calc(100% - ${footerHeight}px - 1rem)`}} 
         />
       }
-      
       <main className='content h-auto w-full flex justify-center items-center z-10'>
         <Routes>
           <Route exact path="/*" element={<Error404/>} />
@@ -62,6 +62,7 @@ function App() {
           <Route exact path="/skills" element={<Skills/>} />
           <Route exact path="/projects" element={<Projects/>} />
           <Route exact path="/portfolio" element={<Portfolio/>} />
+          <Route exact path="/login" element={<Login/>} />
         </Routes>
       </main>
       <Footer divRef={footerRef} />

@@ -1,0 +1,27 @@
+@tailwind components;
+
+@layer components {
+  .login__form {
+    @apply flex flex-col gap-5 p-8 bg-block-color
+    w-80 md:w-96 max-w-full rounded-md shadow-lg;
+  }
+
+  .login__form fieldset {
+    @apply flex flex-col gap-2 w-full;
+  }
+
+  .login__form fieldset label {
+    @apply w-full px-2;
+  }
+
+  .login__form fieldset input {
+    @apply text-white w-full bg-transparent border-primary-color border py-1 px-2 rounded-md;
+  }
+  .login__form fieldset input::-ms-reveal {
+    @apply invert;
+  }
+
+  .login__form .submit {
+    @apply w-28 px-2 py-1 rounded-md;
+  }
+}

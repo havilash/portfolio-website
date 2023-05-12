@@ -1,12 +1,16 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { generateBars } from 'src/services/Utils';
 import data from 'src/data.js'
 
 import './Footer.css'
+import Impressum from '../Impressum/Impressum';
+import Modal from '../Modal/Modal';
 
 const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2')
 
 export default function Footer(props) {
+  const [impressumTrigger, setImpressumTrigger] = useState();
+
   const canvasRef = useRef(null);
   var ctx;
 
@@ -47,7 +51,10 @@ export default function Footer(props) {
   }
 
   return (
-    <div ref={props.divRef} className={`footer relative h-auto w-screen ${props.className}`}>
+    <footer ref={props.divRef} className={`footer relative h-auto w-screen ${props.className}`}>
+      <Modal trigger={impressumTrigger}>
+        <Impressum/>
+      </Modal>
       <canvas ref={canvasRef} className='w-full h-32' />
       <div className='footer__content'>
         <div className='footer__content__text'>
@@ -72,6 +79,11 @@ export default function Footer(props) {
             <p className='font-extralight opacity-80'>
               E-Mail: <a href='mailto:havilash.sivaratnam@protonmail.com'>havilash.sivaratnam@protonmail.com</a>
             </p>
+            <button 
+              className='self-start mt-2'
+              onClick={() => setImpressumTrigger(!impressumTrigger)}>
+              Impressum
+            </button>
           </div>
         </div>
 
@@ -79,6 +91,6 @@ export default function Footer(props) {
           Copyright © 2023 Havilash Sivaratnam
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
