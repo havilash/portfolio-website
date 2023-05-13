@@ -5,7 +5,7 @@ ENV PORT 3000
 
 
 WORKDIR /app
-COPY ./client .
+COPY ./frontend .
 RUN npm ci
 
 CMD npm run start --port 3000

@@ -1,7 +1,7 @@
 version: '1'
 
 services:
-  client:
+  frontend:
     restart: unless-stopped
     image: portfolio:development
     build:
@@ -10,4 +10,4 @@ services:
     ports:
       - 3000:3000
     # volumes:  
-    # - ./client:/app
+    # - ./frontend:/app
