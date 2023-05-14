@@ -16,6 +16,7 @@ import ProjectDocument from 'src/pages/Document/ProjectDocument';
 import Login from 'src/pages/Login/Login';
 import useSession from 'src/hooks/useSession';
 import Registration from 'src/pages/Registration/Registration';
+import Admin from 'src/pages/Admin/Admin';
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
           <Route exact path="/portfolio" element={<Portfolio session={session} />} />
           <Route exact path="/login" element={<Login session={session} />} />
           <Route exact path="/registration" element={<Registration session={session} />} />
+          <Route exact path="/admin" element={<Admin session={session} />} />
         </Routes>
       </main>
       <Footer divRef={footerRef} />

@@ -37,6 +37,7 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   }, [props.resetRef])
 
   function handleResize(ctx) {
+    if (!canvasRef.current) return;
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
 

@@ -67,15 +67,27 @@ export default function Nav({ session }) {
 
         {/* nav list */}
         <ul className="nav__list">
-          {navItems.map((item) => (
-            <li key={item.path} className={`nav__item ${location.pathname === item.path && "active"}`}>
-              <div className="line" />
-              <Link to={item.path} className={`nav__link ${item.disabled && "disabled"}`}>
-                {item.label}
-              </Link>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            const isActive =
+              (item.path === "/" && location.pathname === "/") ||
+              (item.path !== "/" && location.pathname.startsWith(item.path));
+            return (
+              <li
+                key={item.path}
+                className={`nav__item ${isActive && "active"}`}
+              >
+                <div className="line" />
+                <Link
+                  to={item.path}
+                  className={`nav__link ${item.disabled && "disabled"}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
+
 
 
         <ul className='nav__social'>
