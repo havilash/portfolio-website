@@ -5,11 +5,12 @@ import data from 'src/data.js'
 import './Footer.css'
 import Impressum from '../Impressum/Impressum';
 import Modal from '../Modal/Modal';
+import useTrigger from 'src/hooks/useTrigger';
 
 const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2')
 
 export default function Footer(props) {
-  const [impressumTrigger, setImpressumTrigger] = useState();
+  const [impressumTrigger, impressumTriggerFunc] = useTrigger();
 
   const canvasRef = useRef(null);
   var ctx;
@@ -59,7 +60,7 @@ export default function Footer(props) {
       <div className='footer__content'>
         <div className='footer__content__text'>
           <div>
-            <img src='/assets/logo.svg' alt="Logo" className='w-24 mix-blend-difference' />
+            <img src='/assets/logo.svg' alt="Logo" className='w-16 mix-blend-difference' />
           </div>
           <div className='flex flex-col gap-2'>
             <h1 className='text-2xl text-text-color font-medium opacity-80'>
@@ -81,7 +82,7 @@ export default function Footer(props) {
             </p>
             <button 
               className='self-start mt-2'
-              onClick={() => setImpressumTrigger(!impressumTrigger)}>
+              onClick={impressumTriggerFunc}>
               Impressum
             </button>
           </div>

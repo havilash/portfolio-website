@@ -1,5 +1,5 @@
-const BASE_URL = 'http://127.0.0.1:8000'
-const AUTH_URL = `${BASE_URL}/api/auth`
+const BASE_URL = 'http://127.0.0.1:8000/api'
+const AUTH_URL = `${BASE_URL}/auth`
 
 const GITHUB_NAME = 'Havilash'
 const GITHUB_BASE_URL = 'https://api.github.com' 
@@ -76,18 +76,21 @@ export async function login({ email, password }) {
     return data
 }
 
-export async function register({ name, email, password, password_confirmation, comment }) {
+export async function register({ name, email, password, password_confirmation, comment, key }) {
+    const body = { name, email, password, password_confirmation, comment };
+    if (key) {
+      body.key = key;
+    }
     const response = await fetch(`${AUTH_URL}/register`, {
         method: "POST",
         headers: {
         "content-type": "application/json",
         },
-        body: JSON.stringify({ name, email, password, password_confirmation, comment })
+        body: JSON.stringify(body)
     })
 
     if (!response.ok) {
         const errorResponse = await response.json();
-        console.log(errorResponse, response)
         return Promise.reject({
           status: response.status,
           statusText: response.statusText,
@@ -131,4 +134,20 @@ export async function logout({ token }) {
 
     const data = await response.json()
     return data
+}
+
+export async function getFile({ token, path }) {
+    const response = await fetch(`${BASE_URL}/file/${path}`, {
+        method: "GET",
+        headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+        },
+    })
+
+    if (!response.ok) {
+        return Promise.reject(response)
+    }
+
+    return response
 }

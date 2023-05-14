@@ -36,14 +36,6 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
     ];
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
     
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -60,5 +52,5 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
-    }    
+    }
 }

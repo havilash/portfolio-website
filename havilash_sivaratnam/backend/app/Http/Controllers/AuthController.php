@@ -3,7 +3,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Key;
+use Carbon\Carbon;
 use Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -15,6 +18,7 @@ class AuthController extends Controller
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
+
     /**
      * Get a JWT via given credentials.
      *
@@ -33,12 +37,14 @@ class AuthController extends Controller
         }
         return $this->createNewToken($token);
     }
+
     /**
      * Register a User.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request) {
+        // Validate the request data
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
@@ -48,10 +54,30 @@ class AuthController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors(), 400);
         }
+    
+        // Check if a valid key was provided
+        Key::where('expires_at', '<', Carbon::now())->delete();
+        $accessValue = User::ACCESS_NORMAL;
+        if ($request->has('key')) {
+            $key = Key::where('key', $request->key)->first();
+            if ($key) {
+                $accessValue = User::ACCESS_VERIFIED;
+                $key->delete();
+            } else {
+                return response()->json(['error' => 'Invalid key provided'], 400);
+            }
+        }
+    
+        // Create the user
         $user = User::create(array_merge(
                     $validator->validated(),
-                    ['password' => bcrypt($request->password)]
+                    [
+                        'password' => bcrypt($request->password),
+                        'access' => $accessValue,
+                    ]
                 ));
+    
+        // Return the response
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
@@ -98,4 +124,15 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    public function createKey(Request $request)
+    {
+        $key = new Key;
+        $key->key = Str::random(Key::KEY_LENGTH);
+        $expiresAt = $request->input('expires_at');
+        $key->expires_at = $expiresAt ? Carbon::parse($expiresAt) : now()->addMonth();
+        $key->save();
+    
+        return response()->json(['key' => $key->key], 201);
+    }    
 }

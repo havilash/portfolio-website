@@ -155,7 +155,8 @@
   }
 
   .error,
-  .success {
+  .success,
+  .loading {
     @apply flex flex-row items-center gap-4 
     px-6 py-3 rounded-md;
   }
@@ -166,6 +167,10 @@
 
   .success {
     @apply bg-green-600 text-white;
+  }
+
+  .loading {
+    @apply bg-yellow-600 text-white;
   }
 
   /* form */
@@ -196,8 +201,20 @@
     @apply resize-none leading-5;
   }
 
-  .form .submit {
-    @apply w-28 px-2 py-1 rounded-md;
+  .form button.submit {
+    @apply w-28 px-2 py-1 rounded-md disabled:opacity-50;
+  }
+
+  .form fieldset.submit {
+    @apply flex-row justify-between items-center;
+  }
+
+  .form .loader {
+    @apply w-6 opacity-100 transition-all;
+  }
+
+  .form .loader.disabled {
+    @apply opacity-0;
   }
 }
 

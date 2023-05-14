@@ -210,7 +210,7 @@ export default {
       description: "A backend for a web application built using the Django framework.",
       tags: ["django backend", "anmeldesystem", "django", "backend", "web development", "python"],
       href:  "",
-      document: "placeholder.pdf",
+      document: "test.pdf",
     },
     {
       repo: "OneCalc",

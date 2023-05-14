@@ -30,7 +30,7 @@ export default function useSession() {
         const now = new Date();
         setSession(now >= expirationDate ? defaultModel : value);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     }
     setReady(true);
@@ -73,11 +73,13 @@ export default function useSession() {
   };
 }
 
-export function useRedirectToLogin(session) {
+export function useRedirectToLogin(session, access) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (session.ready && !session.user) navigate('/login');
+    console.log(session);
+    // console.log(session.ready && (!session.user || session.user.access < access), session.ready, !session.user, session.user.access < access)
+    if (session.ready && (!session.user || session.user.access < access)) navigate('/login');
   }, [session, navigate]);
 }
 

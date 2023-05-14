@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,5 +21,9 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user', [AuthController::class, 'user']);    
+    Route::get('/user', [AuthController::class, 'user']);
+    Route::post('/create-key', [AuthController::class, 'createKey'])->middleware('access:ACCESS_ADMIN');  
 });
+
+
+Route::get('/file/{file}', [FileController::class, 'file']);

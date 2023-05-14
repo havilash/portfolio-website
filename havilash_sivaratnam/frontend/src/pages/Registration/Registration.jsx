@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 import './Registration.css';
 import { readForm } from 'src/services/Utils';
-import { register } from 'src/lib/api';
+import { login, register } from 'src/lib/api';
+import Modal from 'src/components/Modal/Modal';
+import useTrigger from 'src/hooks/useTrigger';
 
 export default function Registration({ session }) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [modalTrigger, modalTriggerFunc] = useTrigger();
   const navigate = useNavigate();
 
   function validate(data) {
@@ -51,26 +56,42 @@ export default function Registration({ session }) {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const data = readForm(e.target);
+    setIsLoading(true)
+    setStatus('loading')
+    setErrors({});
+    const data = {
+      ...readForm(e.target),
+      key: searchParams.get('key'),
+    };
+    console.log(data)
     const validationErrors = validate(data);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setStatus('failed')
+      setIsLoading(false)
       return;
     }
 
     try {
-      const resp = await register(data);
+      console.log(data)
+      await register(data);
+      const resp = await login(data);
+      session.login({ user: resp.user, accessToken: resp.access_token });
       setStatus('success');
-      setErrors({});
     } catch (error) {
       if (error.response) {
-        console.log(error.response)
         setErrors(error.response);
-        setStatus('failed');
       }
+      setStatus('failed');
     }
+    setIsLoading(false)
   }
+
+  useEffect(() => {
+    if (status == 'success') {
+      modalTriggerFunc()
+    }
+  }, [status])
 
   return (
     <section className='registration flex justify-center items-center min-h-screen'>
@@ -83,6 +104,12 @@ export default function Registration({ session }) {
         {status === 'failed' && (
           <div className='error'>
             <FaTimesCircle /> Registration Failed
+          </div>
+        )}
+        {status === 'loading' && (
+          <div className='loading'>
+            <img src="/assets/loader.svg" className={`loader ${!isLoading && 'disabled'}`}/>
+            Loading
           </div>
         )}
         <fieldset>
@@ -107,13 +134,25 @@ export default function Registration({ session }) {
         </fieldset>
         <fieldset>
           <label name='comment'>Comment <span className='opacity-50'>(Optional)</span></label>
-          <textarea name='comment' type='text' placeholder='Comment' rows='4'/>
+          <textarea name='comment' type='text' placeholder='Why should we grant you access?' rows='4'/>
           {errors.comment && <p className='error-text'>{errors.comment[0]}</p>}
         </fieldset>
-        <button type='submit' className='submit button'>
-          Log In
-        </button>
+        <fieldset className='submit'>
+          <button type='submit' className='submit button' disabled={isLoading}>
+            Register
+          </button>
+          <Link to='/login'>Log In</Link>
+        </fieldset>
       </form>
+      <Modal trigger={modalTrigger}>
+        <div>
+          {
+            searchParams.get('key') ?
+            <p>Congratulations! You have successfully used your key and gained access to the secure space. You have now access to the portfolio.</p> :
+            <p>Thank you for your request. Please note that it may take a few days to process your request. You will receive an email with information about whether you have been granted access to the secure space.</p>
+          }
+        </div>
+      </Modal>
     </section>
   );
 }

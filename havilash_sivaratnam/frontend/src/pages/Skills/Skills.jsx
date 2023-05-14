@@ -5,6 +5,7 @@ import data from 'src/data.js'
 
 import './Skills.css'
 import Modal from 'src/components/Modal/Modal';
+import useTrigger from 'src/hooks/useTrigger';
 
 
 const skills = data.skills
@@ -15,11 +16,11 @@ export default function Skills() {
   const [isOpen2, setIsOpen2] = useState(!isLargeDevice)
 
   const [selectedSkill, setSelectedSkill] = useState(data.skills.programmingLanguage[0]);
-  const [detailTrigger, setDetailTrigger] = useState();
+  const [detailTrigger, detailTriggerFunc] = useTrigger();
 
   const handleSkillClick = (skill) => {
     setSelectedSkill(skill);
-    setDetailTrigger(!detailTrigger);
+    detailTriggerFunc();
   };
 
   useEffect(() => {

@@ -114,18 +114,20 @@ export default function Home() {
           <div className='flex flex-col self-center items-center md:items-start'>
             <h1 className='font-extrabold text-[2rem] xs:text-4xl'>Havilash Sivaratnam</h1>
             <table className='aboutme__data-table w-full md:w-[24rem] border-spacing-4 h-40 text-xl xs:text-2xl'>
-              <tr>
-                <td>Birthday:</td>
-                <td>25.06.2005</td>
-              </tr>
-              <tr>
-                <td>Age:</td>
-                <td>{age}</td>
-              </tr>
-              <tr>
-                <td>Nationality:</td>
-                <td>Sri Lanka, Swiss</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>Birthday:</td>
+                  <td>25.06.2005</td>
+                </tr>
+                <tr>
+                  <td>Age:</td>
+                  <td>{age}</td>
+                </tr>
+                <tr>
+                  <td>Nationality:</td>
+                  <td>Sri Lanka, Swiss</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>

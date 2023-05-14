@@ -50,6 +50,7 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   }, [isRunning])
 
   useEffect(() => {
+    if (!canvasRef.current) return;
     var canvas = canvasRef.current;
     ctx = canvas.getContext("2d")
 
@@ -82,6 +83,7 @@ export default function SortAlgorithm( props ) {  // { className, sortRef, sortF
   }
   
   function draw(ctx) {
+    if (!canvasRef.current) return;
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
     ctx.fillStyle = BODY_COLOR_2;

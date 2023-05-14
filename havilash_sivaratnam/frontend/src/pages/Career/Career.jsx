@@ -23,7 +23,7 @@ export default function Career() {
 
   return (
     <section className='section'>
-      <div className='relative min-h-screen h-auto mix-blend-difference mt-48 flex justify-center'>
+      <div className='relative min-h-screen h-auto mix-blend-difference mt-28 sm:mt-40 flex justify-center'>
         <table className='relative mt-5 text-left w-full'>
           <tbody>
             {renderTimelineItems(data.career)}

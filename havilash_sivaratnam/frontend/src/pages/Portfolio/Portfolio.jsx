@@ -6,13 +6,16 @@ import './Portfolio.css'
 import { Link } from 'react-router-dom'
 import data from 'src/data'
 import Modal from 'src/components/Modal/Modal'
+import useTrigger from 'src/hooks/useTrigger'
+import { useRedirectToHome, useRedirectToLogin } from 'src/hooks/useSession'
 
-export default function Portfolio() {
+export default function Portfolio({session}) {
+    useRedirectToLogin(session, 1)
     const [document, setDocument] = useState();
-    const [trigger, setTrigger] = useState();
+    const [trigger, triggerFunc] = useTrigger();
 
     function onButtonClick(item) {
-        setTrigger(!trigger);
+        triggerFunc();
         setDocument(item);
     }
 
