@@ -20,6 +20,78 @@ class AuthController extends Controller
     }
 
     /**
+     * Update a user's information.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateUser(Request $request, $id)
+    {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'name' => 'sometimes|string|between:2,100',
+            'comment' => 'sometimes|nullable|string|max:500',
+            'access' => 'sometimes|integer|in:0,1,2',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        // Find the user
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Update the user's information
+        $data = $validator->validated();
+        $user->fill($data);
+        $user->save();
+
+        // Return the response
+        return response()->json([
+            'message' => 'User updated successfully',
+            'user' => $user,
+        ], 200);
+    }
+
+    /**
+     * Delete a user.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteUser($id)
+    {
+        // Find the user
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Delete the user
+        $user->delete();
+
+        // Return the response
+        return response()->json([
+            'message' => 'User deleted successfully',
+        ], 200);
+    }
+
+    /**
+     * Get all users.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsers()
+    {
+        $users = User::all();
+
+        return response()->json($users, 200);
+    }
+
+    /**
      * Get a JWT via given credentials.
      *
      * @return \Illuminate\Http\JsonResponse
@@ -93,6 +165,7 @@ class AuthController extends Controller
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
+
     /**
      * Refresh a token.
      *
@@ -101,14 +174,16 @@ class AuthController extends Controller
     public function refresh() {
         return $this->createNewToken(auth()->refresh());
     }
+
     /**
      * Get the authenticated User.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function user() {
+    public function getUser() {
         return response()->json(auth()->user());
     }
+
     /**
      * Get the token array structure.
      *
@@ -134,5 +209,5 @@ class AuthController extends Controller
         $key->save();
     
         return response()->json(['key' => $key->key], 201);
-    }    
+    }
 }

@@ -73,14 +73,14 @@ export default function Registration({ session }) {
     }
 
     try {
-      console.log(data)
       await register(data);
       const resp = await login(data);
-      session.login({ user: resp.user, accessToken: resp.access_token });
+      session.login({ user: resp.user, token: resp.access_token });
       setStatus('success');
     } catch (error) {
-      if (error.response) {
-        setErrors(error.response);
+      const resp = error.json()
+      if (resp) {
+        setErrors(resp);
       }
       setStatus('failed');
     }

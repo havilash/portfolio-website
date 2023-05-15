@@ -1,5 +1,6 @@
 const BASE_URL = 'http://127.0.0.1:8000/api'
 const AUTH_URL = `${BASE_URL}/auth`
+const DATA_URL = `${BASE_URL}/data`
 
 const GITHUB_NAME = 'Havilash'
 const GITHUB_BASE_URL = 'https://api.github.com' 
@@ -54,6 +55,59 @@ export async function getUser({ token }) {
     return data
 }
 
+export async function getUsers({ token }) {
+    const response = await fetch(`${AUTH_URL}/users`, {
+        method: "GET",
+        headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+        },
+    })
+
+    if (!response.ok) {
+        return Promise.reject(response)
+    }
+
+    const data = await response.json()
+    return data
+}
+
+export async function updateUser({ token }, {id, name, comment, access }) {
+    const response = await fetch(`${AUTH_URL}/user/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ name, comment, access })
+    });
+  
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+  
+    const data = await response.json();
+    return data;
+}
+
+export async function deleteUser({ token }, {id}) {
+    const response = await fetch(`${AUTH_URL}/user/${id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`
+        },
+      });
+    
+      if (!response.ok) {
+        return Promise.reject(response);
+      }
+    
+      const data = await response.json();
+      return data;
+}
+  
+
 export async function login({ email, password }) {
     const response = await fetch(`${AUTH_URL}/login`, {
         method: "POST",
@@ -64,12 +118,7 @@ export async function login({ email, password }) {
     })
 
     if (!response.ok) {
-        const errorResponse = await response.json();
-        return Promise.reject({
-          status: response.status,
-          statusText: response.statusText,
-          response: errorResponse
-        });
+        return Promise.reject(response);
     }
 
     const data = await response.json()
@@ -90,12 +139,7 @@ export async function register({ name, email, password, password_confirmation, c
     })
 
     if (!response.ok) {
-        const errorResponse = await response.json();
-        return Promise.reject({
-          status: response.status,
-          statusText: response.statusText,
-          response: errorResponse
-        });
+        return Promise.reject(response);
     }
 
     const data = await response.json()
@@ -136,8 +180,8 @@ export async function logout({ token }) {
     return data
 }
 
-export async function getFile({ token, path }) {
-    const response = await fetch(`${BASE_URL}/file/${path}`, {
+export async function getFile({ token }, path) {
+    const response = await fetch(`${DATA_URL}/file/${path}`, {
         method: "GET",
         headers: {
         "content-type": "application/json",

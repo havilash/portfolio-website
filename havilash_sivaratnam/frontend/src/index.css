@@ -129,7 +129,7 @@
 
   /* select */
   .select {
-    @apply font-extrabold text-body-color-1 h-full text-center py-2 px-3 m-0 rounded-md cursor-pointer;
+    @apply font-extrabold text-black h-full text-center py-2 px-3 m-0 rounded-md cursor-pointer;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;

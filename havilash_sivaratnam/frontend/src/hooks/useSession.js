@@ -5,7 +5,7 @@ import { refresh } from 'src/lib/api';
 
 const STORAGE_KEY = 'session';
 const BUFFER_TIME = 60 * 1000; // 1 min
-const defaultModel = { user: null, accessToken: null };
+const defaultModel = { user: null, token: null };
 
 export default function useSession() {
   const [session, setSession] = useState(defaultModel);
@@ -24,7 +24,7 @@ export default function useSession() {
     if (savedSession) {
       try {
         const value = JSON.parse(savedSession);
-        const { exp } = jwtDecode(value.accessToken);
+        const { exp } = jwtDecode(value.token);
         const expirationDate = new Date(0);
         expirationDate.setUTCSeconds(exp);
         const now = new Date();
@@ -46,16 +46,16 @@ export default function useSession() {
 
   const refreshToken = async () => {
     try {
-      const response = await refresh({token: session.accessToken})
-      login({ user: session.user, accessToken: response.access_token });
+      const response = await refresh(session)
+      login({ user: session.user, token: response.access_token });
     } catch (e) {
       logout();
     }
   };
 
   useEffect(() => {
-    if (session.accessToken) {
-      const { exp } = jwtDecode(session.accessToken);
+    if (session.token) {
+      const { exp } = jwtDecode(session.token);
       const expirationDate = new Date(0);
       expirationDate.setUTCSeconds(exp);
       const now = new Date();
@@ -63,7 +63,7 @@ export default function useSession() {
       const timeoutId = setTimeout(refreshToken, refreshInterval);
       return () => clearTimeout(timeoutId);
     }
-  }, [session.accessToken]);
+  }, [session.token]);
 
   return {
     ...session,

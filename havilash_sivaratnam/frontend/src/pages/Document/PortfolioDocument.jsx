@@ -30,12 +30,12 @@ export default function PortfolioDocument({session}) {
     async function loadDocument() {
       if (!session.user) return;
       try {
-        const response = await getFile({token: session.accessToken, path: `${documentName}`})
+        const response = await getFile(session, `${documentName}`)
         const blob = await response.blob();
         setDocument(URL.createObjectURL(blob));
       } catch (error) {
         console.log(error)
-        navigate('/portfolio')
+        // navigate('/portfolio')
       }
     } 
 

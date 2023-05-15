@@ -15,8 +15,8 @@ export default function Login({ session }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!session.accessToken || !session.ready) return;
-    logout({token: session.accessToken})
+    if (!session.token || !session.ready) return;
+    logout(session)
     session.logout()
   }, [])
 
@@ -43,26 +43,32 @@ export default function Login({ session }) {
 
   async function onSubmit(e) {
     e.preventDefault();
-    setIsLoading(true)
-    setStatus('loading')
-    session.logout()
+    setIsLoading(true);
+    setStatus('loading');
+    session.logout();
     const data = readForm(e.target);
     const validationErrors = validate(data);
     if (Object.keys(validationErrors).length > 0) {
-      setStatus('failed')
-      setIsLoading(false)
+      setStatus('failed');
+      setIsLoading(false);
       return;
     }
-
+   
     try {
       const resp = await login(data);
-      session.login({ user: resp.user, accessToken: resp.access_token });
+      session.login({ user: resp.user, token: resp.access_token });
       setStatus('success');
     } catch (error) {
-      setStatus('failed');
+      console.log(error)
+      if (error.status === 429) {
+        setStatus('tooManyAttempts');
+      } else {
+        setStatus('failed');
+      }
     }
-    setIsLoading(false)
+    setIsLoading(false);
   }
+   
 
   useEffect(() => {
     if (status == 'success') {
@@ -81,6 +87,11 @@ export default function Login({ session }) {
         {status === 'failed' && (
           <div className='error'>
             <FaTimesCircle /> Login Failed
+          </div>
+        )}
+        {status === 'tooManyAttempts' && (
+          <div className='error'>
+          <FaTimesCircle /> Too Many Attempts
           </div>
         )}
         {status === 'loading' && (
