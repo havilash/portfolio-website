@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Impressum() {
+export default function Imprint() {
   return (
     <div 
-      className='impressum 
+      className='imprint 
         flex flex-col p-8 gap-4'>
       <h1>Impressum</h1>
       <h2>Angaben gemäss § TMG</h2>

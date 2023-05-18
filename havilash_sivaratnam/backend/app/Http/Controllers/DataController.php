@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use Illuminate\Http\Request;
 
-class FileController extends Controller
+class DataController extends Controller
 {
     /**
-     * Create a new FileController instance.
+     * Create a new DataController instance.
      *
      * @return void
      */
@@ -58,20 +58,41 @@ class FileController extends Controller
      */
     public function updateFile(Request $request, $name)
     {
+        // Find the file
         $file = File::where('name', $name)->first();
 
         if (!$file) {
-            $file = new File;
-            $file->name = $name;
-            $file->file = $request->input('file');
+            return response()->json(['error' => 'File not found'], 404);
         }
 
-        $file->update([
-            'file' => $request->input('file'),
-        ]);
+        // Update the file's information
+        $data = $request->all();
+        $file->fill($data);
+        $file->save();
 
+        // Return the response
         return response()->json(['success' => 'File updated successfully'], 200);
     }
+
+    /**
+     * Create a file by its name.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param string $name
+     * @return \Illuminate\Http\Response
+     */
+    public function createFile(Request $request)
+    {
+        // Create the file
+        $file = new File;
+        $data = $request->all();
+        $file->fill($data);
+        $file->save();
+
+        // Return the response
+        return response()->json(['success' => 'File created successfully'], 201);
+    }
+
 
     /**
      * Delete a file by its name.

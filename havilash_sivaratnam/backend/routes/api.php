@@ -2,7 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\FileController;
+use App\Http\Controllers\DataController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,7 +25,11 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::post('/create-key', [AuthController::class, 'createKey'])->middleware('access:ACCESS_ADMIN');  
+
+    Route::post('/key', [AuthController::class, 'createKey'])->middleware('access:ACCESS_ADMIN');  
+    Route::get('/keys', [AuthController::class, 'getKeys'])->middleware('access:ACCESS_ADMIN');  
+    Route::patch('/key/{id}', [AuthController::class, 'updateKey'])->middleware('access:ACCESS_ADMIN');  
+    Route::delete('/key/{id}', [AuthController::class, 'deleteKey'])->middleware('access:ACCESS_ADMIN');  
 });
 
 Route::group([
@@ -33,9 +37,9 @@ Route::group([
     'prefix' => 'data',
 ], 
 function ($router) {
-    Route::get('/files', [FileController::class, 'getFiles'])->middleware('access:ACCESS_VERIFIED');
-    Route::get('/file/{name}', [FileController::class, 'getFile'])->middleware('access:ACCESS_VERIFIED');
-    Route::patch('/file/{name}', [FileController::class, 'updateFile'])->middleware('access:ACCESS_ADMIN');
-    Route::delete('/file/{name}', [FileController::class, 'deleteFile'])->middleware('access:ACCESS_ADMIN');
+    Route::get('/files', [DataController::class, 'getFiles'])->middleware('access:ACCESS_VERIFIED');
+    Route::get('/file/{name}', [DataController::class, 'getFile'])->middleware('access:ACCESS_VERIFIED');
+    Route::patch('/file/{name}', [DataController::class, 'updateFile'])->middleware('access:ACCESS_ADMIN');
+    Route::delete('/file/{name}', [DataController::class, 'deleteFile'])->middleware('access:ACCESS_ADMIN');
 });
 

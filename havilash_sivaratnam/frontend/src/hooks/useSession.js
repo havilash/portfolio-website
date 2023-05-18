@@ -77,8 +77,6 @@ export function useRedirectToLogin(session, access) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(session);
-    // console.log(session.ready && (!session.user || session.user.access < access), session.ready, !session.user, session.user.access < access)
     if (session.ready && (!session.user || session.user.access < access)) navigate('/login');
   }, [session, navigate]);
 }

@@ -27,6 +27,7 @@ class User extends Authenticatable implements JWTSubject
         'comment',
         'access',
     ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -45,6 +46,7 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTIdentifier() {
         return $this->getKey();
     }
+    
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *
@@ -52,5 +54,15 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
+    }
+
+    public function accessName() {
+        $accessNames = [
+            self::ACCESS_NORMAL => 'Normal',
+            self::ACCESS_VERIFIED => 'Verified',
+            self::ACCESS_ADMIN => 'Admin',
+        ];
+
+        return $accessNames[$this->access] ?? 'Unknown';
     }
 }

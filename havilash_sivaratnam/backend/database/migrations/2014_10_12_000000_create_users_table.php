@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('comment')->nullable();
+            $table->string('comment', 500)->nullable();
             $table->integer('access')->default(User::ACCESS_NORMAL);
         });
     }

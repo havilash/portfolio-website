@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:8000/api'
+const BASE_URL = process.env.REACT_APP_BACKEND_URL
 const AUTH_URL = `${BASE_URL}/auth`
 const DATA_URL = `${BASE_URL}/data`
 
@@ -194,4 +194,84 @@ export async function getFile({ token }, path) {
     }
 
     return response
+}
+
+export async function createKey({ token }, { expires_at }) {
+    let body = {}
+    if (expires_at) {
+        body.expires_at = expires_at
+    }
+
+    const response = await fetch(`${AUTH_URL}/key`, {
+        method: "POST",
+        headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    })
+
+    if (!response.ok) {
+        return Promise.reject(response)
+    }
+
+    const data = await response.json()
+    return data
+}
+
+export async function getKeys({ token }) {
+    const response = await fetch(`${AUTH_URL}/keys`, {
+        method: "GET",
+        headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+        },
+    })
+
+    if (!response.ok) {
+        return Promise.reject(response)
+    }
+
+    const data = await response.json()
+    return data
+}
+
+export async function updateKey({ token }, { id, new_key, expires_at }) {
+    const body = {};
+    if (new_key) body.new_key = new_key;
+    if (expires_at) body.expires_at = expires_at;
+  
+    const response = await fetch(`${AUTH_URL}/key/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(body)
+    });
+  
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+  
+    const data = await response.json();
+    return data;
+}
+  
+
+export async function deleteKey({ token }, {id}) {
+    const response = await fetch(`${AUTH_URL}/key/${id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`
+        },
+      });
+    
+      if (!response.ok) {
+        return Promise.reject(response);
+      }
+    
+      const data = await response.json();
+      return data;
 }

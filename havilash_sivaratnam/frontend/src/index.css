@@ -144,6 +144,8 @@
     @apply outline-none;
   }
 
+  /* input */
+
   /* errors */
   .select option {
     @apply font-normal text-left;
@@ -202,7 +204,7 @@
   }
 
   .form button.submit {
-    @apply w-28 px-2 py-1 rounded-md disabled:opacity-50;
+    @apply flex flex-row gap-2 items-center justify-center min-w-[7rem] px-4 py-1 rounded-md disabled:opacity-50;
   }
 
   .form fieldset.submit {
@@ -215,6 +217,14 @@
 
   .form .loader.disabled {
     @apply opacity-0;
+  }
+
+  .date-icon::-webkit-calendar-picker-indicator {
+    @apply bg-white rounded-[0.2rem] p-1 hover:opacity-75 cursor-pointer;
+  }
+
+  .copy-button {
+    @apply bg-white text-black hover:opacity-75 hover:bg-white rounded-md z-40;
   }
 }
 

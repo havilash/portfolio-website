@@ -3,30 +3,27 @@ import { generateBars } from 'src/services/Utils';
 import data from 'src/data.js'
 
 import './Footer.css'
-import Impressum from '../Impressum/Impressum';
-import Modal from '../Modal/Modal';
-import useTrigger from 'src/hooks/useTrigger';
-
-const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2')
+import Imprint from '../Imprint/Imprint';
+import Modal from '../modals/Modal/Modal';
 
 export default function Footer(props) {
-  const [impressumTrigger, impressumTriggerFunc] = useTrigger();
-
+  const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2');
+  const [imprintOpen, setImprintOpen] = useState(false);
   const canvasRef = useRef(null);
   var ctx;
 
   useEffect(() => {
-    var canvas = canvasRef.current;
+    const canvas = canvasRef.current;
     ctx = canvas.getContext("2d");
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => handleResize(ctx));
+    window.addEventListener('resize', handleResize);
 
     run(ctx)
 
     return () => {
-      window.removeEventListener('resize', () => handleResize(ctx));
+      window.removeEventListener('resize', handleResize);
     }
   }, [])
 
@@ -44,7 +41,7 @@ export default function Footer(props) {
     })
   }
 
-  function handleResize(ctx) {
+  const handleResize = () => {
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
 
@@ -53,8 +50,8 @@ export default function Footer(props) {
 
   return (
     <footer ref={props.divRef} className={`footer relative h-auto w-screen ${props.className}`}>
-      <Modal trigger={impressumTrigger}>
-        <Impressum/>
+      <Modal open={imprintOpen} onClose={() => setImprintOpen(false)}>
+        <Imprint />
       </Modal>
       <canvas ref={canvasRef} className='w-full h-32' />
       <div className='footer__content'>
@@ -67,11 +64,11 @@ export default function Footer(props) {
               Contact
             </h1>
             <ul className='footer__social opacity-80'>
-              {   
+              {
                 data.social.map((item, i) => (
                   <li key={`footer-social-item-${i}`} className='footer__social__item'>
                     <a target="_blank" className='footer__social__link' href={item.href}>
-                      <item.icon className="footer__social__icon"/>
+                      <item.icon className="footer__social__icon" />
                     </a>
                   </li>
                 ))
@@ -80,9 +77,9 @@ export default function Footer(props) {
             <p className='font-extralight opacity-80'>
               E-Mail: <a href='mailto:havilash.sivaratnam@protonmail.com'>havilash.sivaratnam@protonmail.com</a>
             </p>
-            <button 
+            <button
               className='self-start mt-2'
-              onClick={impressumTriggerFunc}>
+              onClick={() => setImprintOpen(true)}>
               Impressum
             </button>
           </div>

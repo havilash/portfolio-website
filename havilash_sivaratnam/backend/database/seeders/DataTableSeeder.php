@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\File;
 use Illuminate\Database\Seeder;
 
-class FileTableSeeder extends Seeder
+class DataTableSeeder extends Seeder
 {
     /**
      * The names of the files to seed.

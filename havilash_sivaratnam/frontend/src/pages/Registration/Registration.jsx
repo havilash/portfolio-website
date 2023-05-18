@@ -1,58 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { Link, useSearchParams } from 'react-router-dom';
+import { FaCheckCircle, FaTimesCircle, FaKey } from 'react-icons/fa';
 
 import './Registration.css';
 import { readForm } from 'src/services/Utils';
 import { login, register } from 'src/lib/api';
-import Modal from 'src/components/Modal/Modal';
-import useTrigger from 'src/hooks/useTrigger';
+import Modal from 'src/components/modals/Modal/Modal';
+
+function validate(data) {
+  const errors = {};
+
+  // Validate name
+  if (!data.name) {
+    errors.name = ['Name is required'];
+  }
+
+  // Validate email
+  if (!data.email) {
+    errors.email = ['Email is required'];
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) {
+    errors.email = ['Email is invalid'];
+  }
+
+  // Validate password
+  if (!data.password) {
+    errors.password = ['Password is required'];
+  } else if (data.password.length < 8) {
+    errors.password = ['Password must be at least 8 characters long'];
+  }
+
+  // Validate password confirmation
+  if (!data.password_confirmation) {
+    errors.password_confirmation = ['Password confirmation is required'];
+  } else if (data.password !== data.password_confirmation) {
+    errors.password_confirmation = ['Passwords do not match'];
+  }
+
+  // Validate comment
+  if (data.comment && data.comment.length > 500) {
+    errors.comment = ['Comment must be less than 500 characters'];
+  }
+
+  return errors;
+}
 
 export default function Registration({ session }) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [modalTrigger, modalTriggerFunc] = useTrigger();
-  const navigate = useNavigate();
-
-  function validate(data) {
-    const errors = {};
-  
-    // Validate name
-    if (!data.name) {
-      errors.name = ['Name is required'];
-    }
-  
-    // Validate email
-    if (!data.email) {
-      errors.email = ['Email is required'];
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email)) {
-      errors.email = ['Email is invalid'];
-    }
-  
-    // Validate password
-    if (!data.password) {
-      errors.password = ['Password is required'];
-    } else if (data.password.length < 8) {
-      errors.password = ['Password must be at least 8 characters long'];
-    }
-  
-    // Validate password confirmation
-    if (!data.password_confirmation) {
-      errors.password_confirmation = ['Password confirmation is required'];
-    } else if (data.password !== data.password_confirmation) {
-      errors.password_confirmation = ['Passwords do not match'];
-    }
-
-    // Validate comment
-    if (data.comment && data.comment.length > 500) {
-      errors.comment = ['Comment must be less than 500 characters'];
-    }
-  
-    return errors;
-  }
-  
+  const [modalOpen, setModalOpen] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -63,7 +60,6 @@ export default function Registration({ session }) {
       ...readForm(e.target),
       key: searchParams.get('key'),
     };
-    console.log(data)
     const validationErrors = validate(data);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
@@ -78,9 +74,14 @@ export default function Registration({ session }) {
       session.login({ user: resp.user, token: resp.access_token });
       setStatus('success');
     } catch (error) {
-      const resp = error.json()
+      const resp = await error.json()
       if (resp) {
         setErrors(resp);
+      }
+      if (resp.error === "Invalid key provided") {
+        setStatus('invalidKey');
+        setIsLoading(false)
+        return
       }
       setStatus('failed');
     }
@@ -89,29 +90,32 @@ export default function Registration({ session }) {
 
   useEffect(() => {
     if (status == 'success') {
-      modalTriggerFunc()
+      setModalOpen(true)
     }
   }, [status])
+
+  let statusMessage;
+  switch (status) {
+    case 'success':
+      statusMessage = <div className='success'><FaCheckCircle /> Registration Successful</div>;
+      break;
+    case 'failed':
+      statusMessage = <div className='error'><FaTimesCircle /> Registration Failed</div>;
+      break;
+    case 'invalidKey':
+      statusMessage = <div className='error'><FaTimesCircle /> Invalid Key</div>;
+      break;
+    case 'loading':
+      statusMessage = <div className='loading'><img src="/assets/loader.svg" className={`loader ${!isLoading && 'disabled'}`} />Loading</div>;
+      break;
+    default:
+      statusMessage = null;
+  }
 
   return (
     <section className='registration flex justify-center items-center min-h-screen'>
       <form onSubmit={onSubmit} className='form'>
-        {status === 'success' && (
-          <div className='success'>
-            <FaCheckCircle /> Registration Successful
-          </div>
-        )}
-        {status === 'failed' && (
-          <div className='error'>
-            <FaTimesCircle /> Registration Failed
-          </div>
-        )}
-        {status === 'loading' && (
-          <div className='loading'>
-            <img src="/assets/loader.svg" className={`loader ${!isLoading && 'disabled'}`}/>
-            Loading
-          </div>
-        )}
+        {statusMessage}
         <fieldset>
           <label name='name'>Name</label>
           <input name='name' type='text' placeholder='Name' />
@@ -134,22 +138,23 @@ export default function Registration({ session }) {
         </fieldset>
         <fieldset>
           <label name='comment'>Comment <span className='opacity-50'>(Optional)</span></label>
-          <textarea name='comment' type='text' placeholder='Why should we grant you access?' rows='4'/>
+          <textarea name='comment' type='text' placeholder='Why should we grant you access?' rows='4' maxLength='500' />
           {errors.comment && <p className='error-text'>{errors.comment[0]}</p>}
         </fieldset>
         <fieldset className='submit'>
           <button type='submit' className='submit button' disabled={isLoading}>
             Register
+            {searchParams.get('key') && <FaKey />}
           </button>
           <Link to='/login'>Log In</Link>
         </fieldset>
       </form>
-      <Modal trigger={modalTrigger}>
-        <div>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <div className='max-w-[24rem]'>
           {
             searchParams.get('key') ?
-            <p>Congratulations! You have successfully used your key and gained access to the secure space. You have now access to the portfolio.</p> :
-            <p>Thank you for your request. Please note that it may take a few days to process your request. You will receive an email with information about whether you have been granted access to the secure space.</p>
+              <p>Congratulations! You have successfully used your key and gained access to the secure space. You have now access to the portfolio.</p> :
+              <p>Thank you for your request. Please note that it may take a few days to process your request. You will receive an email with information about whether you have been granted access to the secure space.</p>
           }
         </div>
       </Modal>

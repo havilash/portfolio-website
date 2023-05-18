@@ -34,8 +34,8 @@ export default function PortfolioDocument({session}) {
         const blob = await response.blob();
         setDocument(URL.createObjectURL(blob));
       } catch (error) {
-        console.log(error)
-        // navigate('/portfolio')
+        console.error(error)
+        navigate('/portfolio')
       }
     } 
 
