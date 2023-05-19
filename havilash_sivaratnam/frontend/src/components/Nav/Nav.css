@@ -29,7 +29,7 @@
     @apply flex flex-col justify-between
     sm:flex-row sm:items-center
     w-[70vw] lg:w-[50vw] md:w-[55vw] max-w-6xl h-[38vh] sm:h-auto
-    pt-8 sm:p-0;
+    pt-16 sm:p-0;
   }
 
   .nav__item {

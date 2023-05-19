@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { FaBars, FaUser } from 'react-icons/fa';
-import { Link, useLocation } from 'react-router-dom';
-import data from 'src/data.js'
+import React, { useEffect, useRef, useState } from "react";
+import { FaBars, FaUser } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+import data from "src/data.js";
 
-import './Nav.css'
-
+import "./Nav.css";
 
 export default function Nav({ session }) {
   const location = useLocation();
@@ -16,7 +15,9 @@ export default function Nav({ session }) {
     const items = data.pages.map((page) => ({
       path: page.href,
       label: page.name,
-      disabled: page.name === "Portfolio" && (!session.user || session.user?.access < 1),
+      disabled:
+        page.name === "Portfolio" &&
+        (!session.user || session.user?.access < 1),
     }));
 
     if (session.user && session.user.access >= 2) {
@@ -28,42 +29,56 @@ export default function Nav({ session }) {
 
   const handleClick = (event) => {
     if (headerRef.current && !headerRef.current.contains(event.target)) {
-      setIsNavOpen(false)
+      setIsNavOpen(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClick);
+    document.addEventListener("mousedown", handleClick);
     return () => {
-      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener("mousedown", handleClick);
     };
   }, []);
 
   function renderUser() {
-    return session.user ? 
-      <Link to='/login' className='not-italic text-black text-4xl bg-white px-3 py-0 rounded-md nav__link'>
+    return session.user ? (
+      <Link
+        to="/login"
+        className={`not-italic text-black text-4xl bg-white 
+        px-3 py-0 rounded-md nav__link ${
+          session.user.access >= 2 && "outline-none outline-white"
+        }`}
+      >
         {session.user.name.charAt(0).toUpperCase()}
-      </Link> : 
-      <Link to='/login' className='nav__link'>
-        <FaUser className='text-black text-5xl bg-white px-3 py-0 rounded-md' />
       </Link>
+    ) : (
+      <Link to="/login" className="nav__link">
+        <FaUser className="text-black text-5xl bg-white px-3 py-0 rounded-md" />
+      </Link>
+    );
   }
 
   return (
-    <header ref={headerRef} className={`${!isNavOpen && "-left-full mix-blend-difference"} sm:mix-blend-difference`}>
-      <nav className='nav'>
+    <header
+      ref={headerRef}
+      className={`${
+        !isNavOpen && "-left-full mix-blend-difference"
+      } sm:mix-blend-difference`}
+    >
+      <nav className="nav">
         {/* nav bars, logo */}
-        <i className={`fixed left-8 sm:relative sm:left-0 z-[51] transition-all ${isNavOpen ? "left-[60vw]" : "left-8"}`}>
+        <i
+          className={`fixed left-8 sm:relative sm:left-0 z-[51] transition-all ${
+            isNavOpen ? "left-[60vw]" : "left-8"
+          }`}
+        >
           <FaBars
             onClick={() => setIsNavOpen(!isNavOpen)}
-            className='nav__bars nav__link sm:hidden'
+            className="nav__bars nav__link sm:hidden"
           />
-          <i className='hidden sm:block'>
-
-            {renderUser()}
-          </i>
+          <i className="hidden sm:block">{renderUser()}</i>
         </i>
-
+        <i className="absolute sm:hidden">{renderUser()}</i>
 
         {/* nav list */}
         <ul className="nav__list">
@@ -88,21 +103,21 @@ export default function Nav({ session }) {
           })}
         </ul>
 
-
-
-        <ul className='nav__social'>
-          {
-            data.social.map((item, i) => (
-              <li key={`nav-social-item-${i}`} className='nav__social__item'>
-                <a target="_blank" rel="noreferrer" className='nav__link' href={item.href}>
-                  <item.icon className="nav__social__icon"/>
-                </a>
-              </li>
-            ))
-          }
+        <ul className="nav__social">
+          {data.social.map((item, i) => (
+            <li key={`nav-social-item-${i}`} className="nav__social__item">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                className="nav__link"
+                href={item.href}
+              >
+                <item.icon className="nav__social__icon" />
+              </a>
+            </li>
+          ))}
         </ul>
-
       </nav>
     </header>
-  )
+  );
 }

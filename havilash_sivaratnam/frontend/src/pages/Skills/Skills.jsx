@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import Block from 'src/components/Block/Block'
-import * as icons from 'react-icons/si';
-import data from 'src/data.js'
+import React, { useEffect, useState } from "react";
+import Block from "src/components/Block/Block";
+import * as icons from "react-icons/si";
+import data from "src/data.js";
 
-import './Skills.css'
-import Modal from 'src/components/modals/Modal/Modal';
+import "./Skills.css";
+import Modal from "src/components/modals/Modal/Modal";
 
-const skills = data.skills
+const skills = data.skills;
 
 export default function Skills() {
-  const [isLargeDevice, setIsLargeDevice] = useState(!window.matchMedia("(min-width: 1024px)").matches);
-  const [isOpen1, setIsOpen1] = useState(!isLargeDevice)
-  const [isOpen2, setIsOpen2] = useState(!isLargeDevice)
+  const [isLargeDevice, setIsLargeDevice] = useState(
+    !window.matchMedia("(min-width: 1024px)").matches
+  );
+  const [isOpen1, setIsOpen1] = useState(!isLargeDevice);
+  const [isOpen2, setIsOpen2] = useState(!isLargeDevice);
 
-  const [selectedSkill, setSelectedSkill] = useState(data.skills.programmingLanguage[0]);
+  const [selectedSkill, setSelectedSkill] = useState(
+    data.skills.programmingLanguage[0]
+  );
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleSkillClick = (skill) => {
@@ -27,51 +31,50 @@ export default function Skills() {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-
   return (
     <section
-      className='section h-screen w-full 
+      className="section h-screen w-full 
  flex flex-col lg:flex-row justify-center 
- items-center gap-[1rem] lg:gap-[10vw]'>
+ items-center gap-[1rem] lg:gap-[10vw]"
+    >
       <Block
-        className='skills__block'
+        className="skills__block"
         title="Programming Languages"
         open={isOpen1}
         onIsOpenChange={(o) => {
-          if (isLargeDevice) return
-          setIsOpen1(o)
-          o && setIsOpen2(false)
-        }}>
-        {
-          skills.programmingLanguage
-            .map((item, index) => (
-              <SkillBar
-                key={`SkillBar-${index}`}
-                title={item.title}
-                percent={item.percent}
-                onClick={() => handleSkillClick(item)}
-              />
-            ))
-        }
+          if (isLargeDevice) return;
+          setIsOpen1(o);
+          o && setIsOpen2(false);
+        }}
+      >
+        {skills.programmingLanguage.map((item, index) => (
+          <SkillBar
+            key={`SkillBar-${index}`}
+            title={item.title}
+            percent={item.percent}
+            onClick={() => handleSkillClick(item)}
+          />
+        ))}
       </Block>
       <Block
-        className='skills__block'
+        className="skills__block"
         title="Technologies"
         subtitle="Sorted by experience"
         open={isOpen2}
         onIsOpenChange={(o) => {
-          if (isLargeDevice) return
-          setIsOpen2(o)
-          o && setIsOpen1(false)
-        }}>
-        <div className='skills__technologies'>
+          if (isLargeDevice) return;
+          setIsOpen2(o);
+          o && setIsOpen1(false);
+        }}
+      >
+        <div className="skills__technologies">
           {skills.technologies.map((item, index) => (
             <SkillBox
               key={`SkillBox-${index}`}
@@ -84,9 +87,9 @@ export default function Skills() {
       </Block>
       {selectedSkill && (
         <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-          <div className='details flex flex-col gap-4 p-8'>
-            <h2 className='text-white text-xl'>{selectedSkill.title}</h2>
-            <ul className='bullet list-disc'>
+          <div className="details flex flex-col gap-4 p-8">
+            <h2 className="text-white text-xl">{selectedSkill.title}</h2>
+            <ul className="bullet list-disc">
               {selectedSkill.details.map((detail, index) => (
                 <li key={`detail-${index}`}>{detail}</li>
               ))}
@@ -95,32 +98,40 @@ export default function Skills() {
         </Modal>
       )}
     </section>
-  )
+  );
 }
-
 
 function SkillBar({ title, percent, onClick }) {
   return (
-    <div onClick={onClick} className='mt-6 w-full flex flex-col gap-4 cursor-pointer'>
-      <h2 className='text-white text-xl'>{title}</h2>
-      <div className='w-full bg-body-color-2 h-2'>
-        <div className='h-full bg-primary-color' style={{ width: `${percent}%` }} />
+    <div
+      onClick={onClick}
+      className="mt-6 w-full flex flex-col gap-4 cursor-pointer"
+    >
+      <h2 className="text-white text-xl">{title}</h2>
+      <div className="w-full bg-body-color-2 h-2">
+        <div
+          className="h-full bg-primary-color"
+          style={{ width: `${percent}%` }}
+        />
       </div>
     </div>
-  )
+  );
 }
 
 function SkillBox({ title, icon, onClick }) {
   const Icon = icon;
-  const fontSize = title.length > 8 ? '1rem' : '1.2rem';
+  const fontSize = title.length > 8 ? "1rem" : "1.2rem";
   return (
     <div
       onClick={onClick}
-      className='w-28 h-28 border-4 border-primary-color rounded-2xl 
- flex flex-col justify-evenly items-center cursor-pointer'>
+      className="w-28 h-28 border-4 border-primary-color rounded-2xl 
+ flex flex-col justify-evenly items-center cursor-pointer"
+    >
       {/* {icon} */}
-      <Icon className='text-5xl' />
-      <h2 className='text-white text-xl' style={{ fontSize }}>{title}</h2>
+      <Icon className="text-5xl" />
+      <h2 className="text-white text-xl" style={{ fontSize }}>
+        {title}
+      </h2>
     </div>
-  )
+  );
 }

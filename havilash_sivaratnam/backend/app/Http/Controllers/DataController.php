@@ -103,22 +103,31 @@ class DataController extends Controller
      * @param string $name
      * @return \Illuminate\Http\Response
      */
-    public function createFile(Request $request)
-    {
+    public function createFile(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100|unique:files',
             'file' => 'sometimes|string|nullable',
         ]);
+    
         if($validator->fails()){
             return response()->json($validator->errors(), 400);
         }
+    
         // Create the file
         $file = new File($validator->validated());
+    
+        // Decode the Base64-encoded string
+        $content = base64_decode(preg_replace('#^data:application/\w+;base64,#i', '', $request->input('file')));
+    
+        // Update the file's content
+        $file->file = $content;
+    
         $file->save();
-
+    
         // Return the response
         return response()->json(['success' => 'File created successfully'], 201);
     }
+    
 
 
     /**

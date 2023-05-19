@@ -2,15 +2,67 @@ import React, { useState, useEffect, useCallback } from "react";
 import { createFile, updateFile, deleteFile, getFiles } from "src/lib/api";
 import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
 import { IoReloadCircleSharp } from "react-icons/io5";
-import { toBase64 } from "src/services/Utils";
+import { base64toObjectUrl, toBase64 } from "src/services/Utils";
 import { MdCheck, MdClose } from "react-icons/md";
+import { RxFile } from "react-icons/rx";
 
 const fileHeader = ["name", "file", "delete"];
 
 export default function Files({ session }) {
+  const [newFile, setNewFile] = useState();
+
+  const handleCreateFile = async (event) => {
+    event.preventDefault();
+    try {
+      if (newFile.file && newFile.file.type !== "application/pdf") {
+        setNewFile({ ...newFile, file: null });
+        return;
+      }
+      await createFile(session, {
+        name: newFile.name,
+        file: newFile.file ? await toBase64(newFile.file) : null,
+      });
+    } catch (error) {
+      console.error(error);
+      // TODO: display error message to user
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-8">
+      <div>
+        <form onSubmit={handleCreateFile}>
+          <input
+            className="p-1 border-2 rounded-md bg-transparent border-white mix-blend-difference 
+          placeholder:text-white placeholder:text-opacity-50 outline-none"
+            type="text"
+            name="name"
+            placeholder="File name"
+            onChange={(event) =>
+              setNewFile({ ...newFile, name: event.target.value })
+            }
+          />
+          <input
+            type="file"
+            name="file"
+            value={setNewFile.file}
+            onChange={(event) =>
+              setNewFile({ ...newFile, file: event.target.files[0] })
+            }
+            className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white mt-2 outline-none"
+          />
+          <button className="button px-4 py-2 bg-white text-black mix-blend-difference hover:bg-white hover:opacity-75 mt-2">
+            Create File
+          </button>
+        </form>
+      </div>
+      <FilesTable session={session} />
+    </div>
+  );
+}
+
+function FilesTable({ session }) {
   const [files, setFiles] = useState([]);
-  const [newFileName, setNewFileName] = useState("");
-  const [newFileContent, setNewFileContent] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -30,33 +82,16 @@ export default function Files({ session }) {
     loadFiles();
   }, [loadFiles]);
 
-  const handleCreateFile = async (event) => {
-    event.preventDefault();
-    try {
-      const formElements = event.target.elements;
-      const name = formElements.namedItem("name").value;
-      const file = formElements.namedItem("file").files[0];
-      if (file && file.type !== "application/pdf") {
-        return;
-      }
-      await createFile(session, {
-        name,
-        file: file ? await toBase64(file) : null,
-      });
-      loadFiles();
-    } catch (error) {
-      console.error(error);
-      // TODO: display error message to user
-    }
-  };
-
-  const handleUpdateFile = async (name, file) => {
+  const handleUpdateFile = async (name, file, event) => {
     try {
       if (file.type !== "application/pdf") {
-        // Reset the input if the selected file is not a PDF
+        event.target.value = null;
         return;
       }
-      await updateFile(session, { name, file: await toBase64(file) });
+      await updateFile(session, {
+        name,
+        file: await toBase64(file),
+      });
       loadFiles();
     } catch (error) {
       console.error(error);
@@ -75,29 +110,7 @@ export default function Files({ session }) {
   };
 
   return (
-    <div className="overflow-x-auto pb-4 flex flex-col gap-8">
-      <div>
-        <form onSubmit={handleCreateFile}>
-          <input
-            className="p-1 border-2 rounded-md bg-transparent border-white mix-blend-difference 
-          placeholder:text-white placeholder:text-opacity-50 outline-none"
-            type="text"
-            name="name"
-            placeholder="File name"
-            value={newFileName}
-            onChange={(event) => setNewFileName(event.target.value)}
-          />
-          <input
-            type="file"
-            name="file"
-            onChange={(event) => setNewFileContent(event.target.files[0])}
-            className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white mt-2"
-          />
-          <button className="button px-4 py-2 bg-white text-black mix-blend-difference hover:bg-white hover:opacity-75 mt-2">
-            Create File
-          </button>
-        </form>
-      </div>
+    <div className="overflow-x-auto pb-4">
       <div className="w-fit min-w-full relative">
         <button
           className="absolute top-0 right-0 z-10 bg-transparent hover:opacity-75 text-primary-color m-1"
@@ -125,15 +138,25 @@ export default function Files({ session }) {
                 <tr key={`file-${file.name}`}>
                   <td className="table__col">{file.name}</td>
                   <td className="table__col flex flex-row gap-4 items-center">
-                    {file.file ? (
-                      <MdCheck size="1.2rem" />
-                    ) : (
-                      <MdClose size="1.2rem" />
-                    )}
+                    <div className="w-4">
+                      {file.file && (
+                        <a
+                          href={base64toObjectUrl(file.file)}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <RxFile size="1.25rem" />
+                        </a>
+                      )}
+                    </div>
                     <input
                       type="file"
                       onChange={(event) =>
-                        handleUpdateFile(file.name, event.target.files[0])
+                        handleUpdateFile(
+                          file.name,
+                          event.target.files[0],
+                          event
+                        )
                       }
                     />
                   </td>
@@ -153,19 +176,19 @@ export default function Files({ session }) {
               ))}
           </tbody>
         </table>
-      </div>
 
-      {modalOpen && (
-        <ConfirmationModal
-          open={modalOpen}
-          text={`Are you sure you want to delete the file ${selectedFile}?`}
-          onConfirm={handleConfirmDeleteFile}
-          onCancel={() => {
-            setModalOpen(false);
-            setSelectedFile(null);
-          }}
-        />
-      )}
+        {modalOpen && modalType === "delete" && (
+          <ConfirmationModal
+            open={modalOpen}
+            text={`Are you sure you want to delete the file ${selectedFile.name}?`}
+            onConfirm={handleConfirmDeleteFile}
+            onCancel={() => {
+              setModalOpen(false);
+              setSelectedFile(null);
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }

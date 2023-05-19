@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 
 export default function Imprint() {
   return (
-    <div 
-      className='imprint 
-        flex flex-col p-8 gap-4'>
+    <div
+      className="imprint 
+        flex flex-col p-8 gap-4"
+    >
       <h1>Impressum</h1>
       <h2>Angaben gemäss § TMG</h2>
       <ul>
@@ -18,5 +19,5 @@ export default function Imprint() {
         <li>E-Mail: havilash.sivaratnam@protonmail.com</li>
       </ul>
     </div>
-  )
+  );
 }

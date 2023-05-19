@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './Skeleton.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./Skeleton.css";
 
 export default function Skeleton({ width, height, className }) {
   const [skeletonWidth, setSkeletonWidth] = useState(0);
@@ -17,7 +17,7 @@ export default function Skeleton({ width, height, className }) {
         ref={skeletonRef}
         className={`skeleton ${className}`}
         style={{
-          width: width || '100%',
+          width: width || "100%",
           height: height,
         }}
       >

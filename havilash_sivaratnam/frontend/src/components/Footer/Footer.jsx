@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { generateBars } from 'src/services/Utils';
-import data from 'src/data.js'
+import React, { useEffect, useRef, useState } from "react";
+import { generateBars } from "src/services/Utils";
+import data from "src/data.js";
 
-import './Footer.css'
-import Imprint from '../Imprint/Imprint';
-import Modal from '../modals/Modal/Modal';
+import "./Footer.css";
+import Imprint from "../Imprint/Imprint";
+import Modal from "../modals/Modal/Modal";
 
 export default function Footer(props) {
-  const BODY_COLOR_2 = getComputedStyle(document.documentElement).getPropertyValue('--body-color-2');
+  const BODY_COLOR_2 = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--body-color-2");
   const [imprintOpen, setImprintOpen] = useState(false);
   const canvasRef = useRef(null);
   var ctx;
@@ -18,18 +20,18 @@ export default function Footer(props) {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    run(ctx)
+    run(ctx);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    }
-  }, [])
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   async function run(ctx) {
-    var bars = generateBars(canvasRef.current, true)
-    draw(ctx, bars)
+    var bars = generateBars(canvasRef.current, true);
+    draw(ctx, bars);
   }
 
   function draw(ctx, bars) {
@@ -37,49 +39,65 @@ export default function Footer(props) {
 
     ctx.fillStyle = BODY_COLOR_2;
     bars.forEach((bar, i) => {
-      bar.draw(ctx, canvasRef.current, i)
-    })
+      bar.draw(ctx, canvasRef.current, i);
+    });
   }
 
   const handleResize = () => {
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
 
-    run(ctx)
-  }
+    run(ctx);
+  };
 
   return (
-    <footer ref={props.divRef} className={`footer relative h-auto w-screen ${props.className}`}>
+    <footer
+      ref={props.divRef}
+      className={`footer relative h-auto w-screen ${props.className}`}
+    >
       <Modal open={imprintOpen} onClose={() => setImprintOpen(false)}>
         <Imprint />
       </Modal>
-      <canvas ref={canvasRef} className='w-full h-32' />
-      <div className='footer__content'>
-        <div className='footer__content__text'>
+      <canvas ref={canvasRef} className="w-full h-32" />
+      <div className="footer__content">
+        <div className="footer__content__text">
           <div>
-            <img src='/assets/logo.svg' alt="Logo" className='w-16 mix-blend-difference' />
+            <img
+              src="/assets/logo.svg"
+              alt="Logo"
+              className="w-16 mix-blend-difference"
+            />
           </div>
-          <div className='flex flex-col gap-2'>
-            <h1 className='text-2xl text-text-color font-medium opacity-80'>
+          <div className="flex flex-col gap-2">
+            <h1 className="text-2xl text-text-color font-medium opacity-80">
               Contact
             </h1>
-            <ul className='footer__social opacity-80'>
-              {
-                data.social.map((item, i) => (
-                  <li key={`footer-social-item-${i}`} className='footer__social__item'>
-                    <a target="_blank" className='footer__social__link' href={item.href}>
-                      <item.icon className="footer__social__icon" />
-                    </a>
-                  </li>
-                ))
-              }
+            <ul className="footer__social opacity-80">
+              {data.social.map((item, i) => (
+                <li
+                  key={`footer-social-item-${i}`}
+                  className="footer__social__item"
+                >
+                  <a
+                    target="_blank"
+                    className="footer__social__link"
+                    href={item.href}
+                  >
+                    <item.icon className="footer__social__icon" />
+                  </a>
+                </li>
+              ))}
             </ul>
-            <p className='font-extralight opacity-80'>
-              E-Mail: <a href='mailto:havilash.sivaratnam@protonmail.com'>havilash.sivaratnam@protonmail.com</a>
+            <p className="font-extralight opacity-80">
+              E-Mail:{" "}
+              <a href="mailto:havilash.sivaratnam@protonmail.com">
+                havilash.sivaratnam@protonmail.com
+              </a>
             </p>
             <button
-              className='self-start mt-2'
-              onClick={() => setImprintOpen(true)}>
+              className="self-start mt-2"
+              onClick={() => setImprintOpen(true)}
+            >
               Impressum
             </button>
           </div>
@@ -90,5 +108,5 @@ export default function Footer(props) {
         </div>
       </div>
     </footer>
-  )
+  );
 }

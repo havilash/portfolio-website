@@ -4,7 +4,14 @@ import Modal from "src/components/modals/Modal/Modal";
 import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
 import { IoReloadCircleSharp } from "react-icons/io5";
 
-const userHeader = ["name", "email", "comment", "created_at", "access", "delete"];
+const userHeader = [
+  "name",
+  "email",
+  "comment",
+  "created_at",
+  "access",
+  "delete",
+];
 
 export default function Users({ session }) {
   const [users, setUsers] = useState([]);
@@ -27,14 +34,11 @@ export default function Users({ session }) {
     loadUsers();
   }, [loadUsers]);
 
-  const handleAccessChange = useCallback(
-    (event, user) => {
-      setSelectedUser({ ...user, access: event.target.value });
-      setModalOpen(true);
-      setModalType("access");
-    },
-    []
-  );
+  const handleAccessChange = useCallback((event, user) => {
+    setSelectedUser({ ...user, access: event.target.value });
+    setModalOpen(true);
+    setModalType("access");
+  }, []);
 
   const handleConfirmAccessChange = useCallback(async () => {
     try {
@@ -94,9 +98,7 @@ export default function Users({ session }) {
           </thead>
           <tbody>
             {users
-              .sort(
-                (a, b) => new Date(b.created_at) - new Date(a.created_at)
-              )
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
               .map((user, index) => (
                 <tr key={index} className="">
                   <td className="table__col">{user.name}</td>
@@ -119,9 +121,7 @@ export default function Users({ session }) {
                       <select
                         className="select py-1 px-2 rounded-none"
                         value={user.access}
-                        onChange={(event) =>
-                          handleAccessChange(event, user)
-                        }
+                        onChange={(event) => handleAccessChange(event, user)}
                       >
                         <option value={0}>Normal</option>
                         <option value={1}>Verified</option>
@@ -169,7 +169,11 @@ export default function Users({ session }) {
           />
         )}
         {modalOpen && modalType === "comment" && (
-          <Modal open={modalOpen} onClose={() => setModalOpen(false)} className='max-w-xl'>
+          <Modal
+            open={modalOpen}
+            onClose={() => setModalOpen(false)}
+            className="max-w-xl"
+          >
             <p>{selectedUser.comment}</p>
           </Modal>
         )}
