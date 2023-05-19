@@ -44,3 +44,26 @@ export function readForm(form) {
 
   return obj;
 }
+
+export const toBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+          resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+          reject(error);
+      };
+  });
+};
+
+export function toUint8Array(binaryString) {
+  const byteArray = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+      byteArray[i] = binaryString.charCodeAt(i);
+  }
+  return byteArray;
+}

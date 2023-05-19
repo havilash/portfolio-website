@@ -6,7 +6,7 @@
     <body>
         <h1>Your Access Rights Have Changed</h1>
         <p>Dear {{ $user->name }},</p>
-        <p>Your access rights on Havilash Sivaratnam's personal portfolio website have been updated. You now have the following access level: <strong>{{ $user->accessName() }}</strong>.</p>
+        <p>Your access rights on Havilash Sivaratnam's portfolio website have been updated. You now have the following access level: <strong>{{ $user->accessName() }}</strong>.</p>
 
         @switch($user->access)
             @case(App\Models\User::ACCESS_NORMAL)

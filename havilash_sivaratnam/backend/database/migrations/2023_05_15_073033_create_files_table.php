@@ -11,9 +11,10 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->binary('file')->nullable();
+            // $table->binary('file')->nullable();
             $table->timestamps();
         });
+        DB::statement("ALTER TABLE files ADD file LONGBLOB NULL");
     }
 
     public function down()

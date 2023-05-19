@@ -1,16 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import { useNavigate, useParams } from 'react-router';
-import { MdOutlineFileDownload } from 'react-icons/md';
+import React, { useState, useRef, useEffect } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+import { useNavigate, useParams } from "react-router";
+import { MdOutlineFileDownload } from "react-icons/md";
 
-import './Document.css';
-import SkeletonFile from 'src/components/skeletons/SkeletonFile/SkeletonFile';
-import { useRedirectToLogin } from 'src/hooks/useSession';
-import { getFile } from 'src/lib/api';
+import "./Document.css";
+import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
+import { useRedirectToLogin } from "src/hooks/useSession";
+import { getFile } from "src/lib/api";
+import { toUint8Array } from "src/services/Utils";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function PortfolioDocument({session}) {
+export default function PortfolioDocument({ session }) {
   useRedirectToLogin(session, 1);
   const navigate = useNavigate();
   const { ["document"]: documentName } = useParams();
@@ -30,32 +31,35 @@ export default function PortfolioDocument({session}) {
     async function loadDocument() {
       if (!session.user) return;
       try {
-        const response = await getFile(session, `${documentName}`)
-        const blob = await response.blob();
+        const data = await getFile(session, { name: documentName });
+        const fileContent = data.file;
+        const binaryData = atob(fileContent); // to binary
+        const byteArray = toUint8Array(binaryData);
+        const blob = new Blob([byteArray], { type: "application/pdf" });
         setDocument(URL.createObjectURL(blob));
       } catch (error) {
-        console.error(error)
-        navigate('/portfolio')
+        console.error(error);
+        navigate("/portfolio");
       }
-    } 
+    }
 
     if (documentName) {
       loadDocument();
     } else {
-      navigate('/portfolio')
+      navigate("/portfolio");
     }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [session.ready]);
 
   useEffect(() => {
     if (!containerRef.current) return;
     handleResize();
-  }, [containerRef.current])
+  }, [containerRef.current]);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -74,24 +78,28 @@ export default function PortfolioDocument({session}) {
           </h2>
         </div>
       </div>
-        <div ref={containerRef} className='document relative' >
-          {isLoading && <SkeletonFile />}
-          {
-            <Document file={document} onLoadSuccess={onDocumentLoadSuccess} loading="">
-              {Array.from(new Array(numPages), (el, index) => (
-                <Page
-                  className='shadow-lg'
-                  key={`page_${index + 1}`}
-                  pageNumber={index + 1}
-                  width={containerWidth}
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  loading=""
-                />
-              ))}
-            </Document>
-          }
-        </div>
+      <div ref={containerRef} className="document relative">
+        {isLoading && <SkeletonFile />}
+        {
+          <Document
+            file={document}
+            onLoadSuccess={onDocumentLoadSuccess}
+            loading=""
+          >
+            {Array.from(new Array(numPages), (el, index) => (
+              <Page
+                className="shadow-lg"
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                width={containerWidth}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+                loading=""
+              />
+            ))}
+          </Document>
+        }
+      </div>
     </section>
   );
 }

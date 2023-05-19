@@ -7,6 +7,8 @@ const GITHUB_BASE_URL = 'https://api.github.com'
 const GITHUB_REPO_URL = `${GITHUB_BASE_URL}/repos`
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN
 
+
+// Github
 export async function getRepo(repoName) {
     const response = await fetch(`${GITHUB_REPO_URL}/${GITHUB_NAME}/${repoName}`, {
         headers: {
@@ -38,6 +40,7 @@ export async function getRepoCollaborators(repoName) {
 }
 
 
+// Auth
 export async function getUser({ token }) {
     const response = await fetch(`${AUTH_URL}/user`, {
         method: "GET",
@@ -167,33 +170,17 @@ export async function logout({ token }) {
     const response = await fetch(`${AUTH_URL}/logout`, {
         method: "POST",
         headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`
+            "content-type": "application/json",
+            "authorization": `Bearer ${token}`
         },
     })
-
+    
     if (!response.ok) {
         return Promise.reject(response)
     }
-
+    
     const data = await response.json()
     return data
-}
-
-export async function getFile({ token }, path) {
-    const response = await fetch(`${DATA_URL}/file/${path}`, {
-        method: "GET",
-        headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`
-        },
-    })
-
-    if (!response.ok) {
-        return Promise.reject(response)
-    }
-
-    return response
 }
 
 export async function createKey({ token }, { expires_at }) {
@@ -274,4 +261,94 @@ export async function deleteKey({ token }, {id}) {
     
       const data = await response.json();
       return data;
+}
+
+
+// Data
+export async function getFile({ token }, { name }) {
+    const response = await fetch(`${DATA_URL}/file/${name}`, {
+        method: "GET",
+        headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+        },
+    })
+
+    if (!response.ok) {
+        return Promise.reject(response)
+    }
+
+    const data = await response.json();
+    return data;
+}
+
+export async function getFiles({ token }) {
+    const response = await fetch(`${DATA_URL}/files`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+      }
+    });
+  
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+  
+    const data = await response.json();
+    return data;
+  }
+  
+
+export async function createFile({ token }, { name, file }) {
+    const response = await fetch(`${DATA_URL}/file`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ name, file })
+    });
+  
+    if (!response.ok) {
+      return Promise.reject(response);
+    }
+  
+    const data = await response.json();
+    return data;
+}
+
+export async function updateFile({ token }, { name, file }) {
+    const response = await fetch(`${DATA_URL}/file/${name}`, {
+        method: "PATCH",
+        headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ file })
+    });
+
+    if (!response.ok) {
+        return Promise.reject(response);
+    }
+
+    const data = await response.json();
+    return data;
+}
+
+export async function deleteFile({ token }, { name }) {
+    const response = await fetch(`${DATA_URL}/file/${name}`, {
+        method: "DELETE",
+        headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok) {
+        return Promise.reject(response);
+    }
+
+    const data = await response.json();
+    return data;
 }

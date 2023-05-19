@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { FiCopy } from 'react-icons/fi';
-import { createKey, deleteKey, getKeys, updateKey } from 'src/lib/api';
-import { IoReloadCircleSharp } from "react-icons/io5"
+import React, { useEffect, useState } from "react";
+import { FiCopy } from "react-icons/fi";
+import { createKey, deleteKey, getKeys, updateKey } from "src/lib/api";
+import { IoReloadCircleSharp } from "react-icons/io5";
 import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
 
 function getDateAfterDays(days) {
@@ -12,8 +12,8 @@ function getDateAfterDays(days) {
 
 function formatDate(date) {
   const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
@@ -30,24 +30,28 @@ export default function Keys({ session }) {
     }
   }
 
+  function getKeyUrl(key) {
+    return `${window.location.origin}/registration?key=${key}`;
+  }
+
   return (
     <div className="flex flex-col gap-8">
       <div>
         <div className="relative">
           <input
             type="text"
-            value={`${window.location.origin}/registration?key=${key}`}
+            value={getKeyUrl(key)}
             readOnly
             className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white"
           />
           <button
-            onClick={() => navigator.clipboard.writeText(key)}
+            onClick={() => navigator.clipboard.writeText(getKeyUrl(key))}
             className="absolute button right-2 top-1/2 transform -translate-y-1/2 p-2 copy-button"
           >
             <FiCopy />
           </button>
         </div>
-        <div className='flex flex-row gap-8 mt-2'>
+        <div className="flex flex-row gap-8 mt-2">
           <button
             onClick={generateKey}
             className="button px-4 py-2 bg-white text-black mix-blend-difference hover:bg-white hover:opacity-75"
@@ -55,8 +59,8 @@ export default function Keys({ session }) {
             Generate Key
           </button>
           <input
-            className='text-white bg-transparent date-icon cursor-pointer
- mix-blend-difference flex px-4 py-2 outline-none w-40'
+            className="text-white bg-transparent date-icon cursor-pointer
+            mix-blend-difference flex px-4 py-2 outline-none w-40"
             type="date"
             id="expiresAtInput"
             value={formatDate(expiresAt)}
@@ -69,7 +73,6 @@ export default function Keys({ session }) {
     </div>
   );
 }
-
 
 const keyHeader = ["key", "expires_at", "delete"];
 
@@ -115,7 +118,7 @@ function KeysTable({ session }) {
 
   return (
     <div className="overflow-x-auto pb-4">
-      <div className='w-fit min-w-full relative'>
+      <div className="w-fit min-w-full relative">
         <button
           className="absolute top-0 right-0 z-10 bg-transparent hover:opacity-75 text-primary-color m-1"
           onClick={loadData}
@@ -151,14 +154,17 @@ function KeysTable({ session }) {
                   </td>
                   <td className="table__col">
                     <input
-                      className='text-white bg-transparent date-icon cursor-pointer
-                      mix-blend-difference flex px-4 py-2 outline-none w-40'
-                      type='date'
+                      className="text-white bg-transparent date-icon cursor-pointer
+                      mix-blend-difference flex px-4 py-2 outline-none w-40"
+                      type="date"
                       value={formatDate(new Date(key.expires_at))}
                       onChange={(event) => {
-                        setSelectedKey({ ...key, expires_at: event.target.value });
+                        setSelectedKey({
+                          ...key,
+                          expires_at: event.target.value,
+                        });
                         setModalOpen(true);
-                        setModalType("update");                  
+                        setModalType("update");
                       }}
                     />
                   </td>
@@ -168,7 +174,7 @@ function KeysTable({ session }) {
                       onClick={() => {
                         setSelectedKey(key);
                         setModalOpen(true);
-                        setModalType("delete");                  
+                        setModalType("delete");
                       }}
                     >
                       Delete

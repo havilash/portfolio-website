@@ -3,6 +3,7 @@ import Users from 'src/components/Users/Users';
 import './Admin.css';
 import { useRedirectToLogin } from 'src/hooks/useSession';
 import Keys from 'src/components/Keys/Keys';
+import Files from 'src/components/Files/Files';
 
 export default function Admin({ session }) {
   useRedirectToLogin(session, 2);
@@ -22,7 +23,7 @@ export default function Admin({ session }) {
       </div>
       <div className='data w-full'>
         <h1 className='mb-4'>Data</h1>
-        {/* TODO */}
+        <Files session={session} />
       </div>
     </section>
   );

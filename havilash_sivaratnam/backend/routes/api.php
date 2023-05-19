@@ -39,6 +39,7 @@ Route::group([
 function ($router) {
     Route::get('/files', [DataController::class, 'getFiles'])->middleware('access:ACCESS_VERIFIED');
     Route::get('/file/{name}', [DataController::class, 'getFile'])->middleware('access:ACCESS_VERIFIED');
+    Route::post('/file', [DataController::class, 'createFile'])->middleware('access:ACCESS_ADMIN');
     Route::patch('/file/{name}', [DataController::class, 'updateFile'])->middleware('access:ACCESS_ADMIN');
     Route::delete('/file/{name}', [DataController::class, 'deleteFile'])->middleware('access:ACCESS_ADMIN');
 });
