@@ -3,11 +3,39 @@ version: '1'
 services:
   frontend:
     restart: unless-stopped
-    image: portfolio:development
+    image: portfolio-frontend:development
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - 3000:3000
-    # volumes:  
-    # - ./frontend:/app
+  backend:
+    restart: unless-stopped
+    image: portfolio-backend:development
+    build: 
+      context: ./backend
+      dockerfile:  Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - mysql
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: db_havilash_sivaratnam
+      DB_USERNAME: user
+      DB_PASSWORD: user
+  mysql:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: db_havilash_sivaratnam
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:

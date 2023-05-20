@@ -70,7 +70,7 @@ export default function PortfolioDocument({ session }) {
     <section className="section pt-16 sm:p-24 lg:p-48 min-h-screen">
       <div className="document__data">
         <div className="flex flex-row items-center gap-4">
-          <a href={document} download>
+          <a href={document} download={documentName}>
             <MdOutlineFileDownload className="document__data__download" />
           </a>
           <h2 className="text-white mix-blend-difference text-[5vw] xs:text-2xl">
@@ -88,7 +88,7 @@ export default function PortfolioDocument({ session }) {
           >
             {Array.from(new Array(numPages), (el, index) => (
               <Page
-                className="shadow-lg"
+                className="shadow-lg mb-4"
                 key={`page_${index + 1}`}
                 pageNumber={index + 1}
                 width={containerWidth}

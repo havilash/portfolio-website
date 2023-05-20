@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { RxFile } from "react-icons/rx";
 
@@ -7,11 +7,29 @@ import { Link } from "react-router-dom";
 import data from "src/data";
 import Modal from "src/components/modals/Modal/Modal";
 import { useRedirectToHome, useRedirectToLogin } from "src/hooks/useSession";
+import { getFilesZip } from "src/lib/api";
+import { base64toObjectUrl } from "src/services/Utils";
 
 export default function Portfolio({ session }) {
   useRedirectToLogin(session, 1);
   const [document, setDocument] = useState();
   const [modalOpen, setModalOpen] = useState(false);
+  const [filesZip, setFilesZip] = useState();
+
+  async function loadFilesZip() {
+    try {
+      const newFilesZip = await getFilesZip(session);
+      console.log(newFilesZip);
+      setFilesZip(newFilesZip.zip);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    if (!session.token) return;
+    loadFilesZip();
+  }, [session.token]);
 
   function onButtonClick(item) {
     setModalOpen(true);
@@ -23,9 +41,9 @@ export default function Portfolio({ session }) {
       <ul className="w-80 flex flex-col gap-4">
         <li className="self-center mb-2">
           <a
-            href="assets/documents/Portfolio.zip"
+            href={filesZip ? base64toObjectUrl(filesZip) : ""}
             className="portfolio__button"
-            download
+            download="portfolio.zip"
           >
             <MdOutlineFileDownload className="portfolio__button__icon" />
           </a>

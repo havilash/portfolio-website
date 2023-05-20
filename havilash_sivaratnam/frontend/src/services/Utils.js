@@ -66,6 +66,7 @@ export function toUint8Array(binaryString) {
 }
 
 export function base64toObjectUrl(file) {
+  console.log(file);
   const binaryData = atob(file); // to binary
   const byteArray = toUint8Array(binaryData);
   const blob = new Blob([byteArray], { type: "application/pdf" });
