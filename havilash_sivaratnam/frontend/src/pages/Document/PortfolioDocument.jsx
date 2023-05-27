@@ -33,6 +33,7 @@ export default function PortfolioDocument({ session }) {
       try {
         const data = await getFile(session, { name: documentName });
         const fileContent = data.file;
+        if (!fileContent) return navigate("/portfolio");
         const binaryData = atob(fileContent); // to binary
         const byteArray = toUint8Array(binaryData);
         const blob = new Blob([byteArray], { type: "application/pdf" });
@@ -67,7 +68,7 @@ export default function PortfolioDocument({ session }) {
   }
 
   return (
-    <section className="section pt-16 sm:p-24 lg:p-48 min-h-screen">
+    <section className="section pt-16 sm:p-24 lg:p-48 2xl:px-80 min-h-screen">
       <div className="document__data">
         <div className="flex flex-row items-center gap-4">
           <a href={document} download={documentName}>

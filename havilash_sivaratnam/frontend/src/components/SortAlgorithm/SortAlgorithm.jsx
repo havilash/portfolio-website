@@ -1,140 +1,102 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useAsyncTask,
-  useAsyncRun,
-} from "react";
-import {
-  bubbleSort,
-  cycleSort,
-  cocktailShakerSort,
-  combSort,
-  heapsort,
-  insertionSort,
-  mergeSort,
-  quicksort,
-  selectionSort,
-  shellsort,
-  gnomeSort,
-  bitonicSort,
-  sleepSort,
-  bogoSort,
-} from "./SortFunctions";
+import React, { useEffect, useRef, useState } from "react";
+import * as SortFunctions from "./SortFunctions";
 import { generateBars } from "src/services/Utils";
-
 import "src/index.css";
 
 const BODY_COLOR_2 = getComputedStyle(
   document.documentElement
 ).getPropertyValue("--body-color-2");
-const FPS = 12;
-const SORT_FUNCTIONS = [
-  insertionSort,
-  selectionSort,
-  mergeSort,
-  quicksort,
-  shellsort,
-  bubbleSort,
-  combSort,
-  heapsort,
-  cocktailShakerSort,
-  cycleSort,
-  gnomeSort,
-  bitonicSort,
-  sleepSort,
-  bogoSort,
-];
+const SORT_FUNCTIONS = Object.values(SortFunctions);
 
-export default function SortAlgorithm(props) {
-  // { className, sortRef, sortFunc, setIsRunning, resetRef, sorted }
+export default function SortAlgorithm({
+  className,
+  style,
+  setIsRunning: setParentIsRunning,
+  resetRef,
+  sorted,
+  sortFunc: parentSortFunc,
+}) {
   const canvasRef = useRef(null);
   const [isRunning, setIsRunning] = useState(false);
   const [sortFunc, setSortFunc] = useState(
     () =>
-      props.sortFunc ||
+      parentSortFunc ||
       SORT_FUNCTIONS[Math.floor(Math.random() * SORT_FUNCTIONS.length)]
   );
-  var bars = [];
-  var ctx;
+  let bars = [];
+  let ctx;
+  let animationFrameId;
 
-  function reset(sortFunc) {
-    var canvas = canvasRef.current;
+  // Initialize the canvas and add event listeners
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
     ctx = canvas.getContext("2d");
-
-    start(ctx, sortFunc);
-  }
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    window.addEventListener("resize", () => handleResize(ctx));
+    if (!Boolean(sorted)) start(ctx, sortFunc);
+    else bars = generateBars(canvasRef.current, false);
+    draw(ctx);
+    return () => {
+      window.removeEventListener("resize", () => handleResize(ctx));
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   useEffect(() => {
-    setSortFunc(() => props.sortFunc);
-  }, [props.sortFunc]);
+    setSortFunc(() => parentSortFunc);
+  }, [parentSortFunc]);
 
   useEffect(() => {
-    // reset(sortFunc)
-  }, [sortFunc]);
+    if (resetRef) resetRef.current = reset;
+  }, [resetRef]);
 
   useEffect(() => {
-    if (props.resetRef) props.resetRef.current = reset;
-  }, [props.resetRef]);
+    if (setParentIsRunning) setParentIsRunning(isRunning);
+  }, [isRunning]);
 
+  // Handle window resize event
   function handleResize(ctx) {
     if (!canvasRef.current) return;
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
-
     bars = generateBars(canvasRef.current);
     draw(ctx);
   }
 
-  useEffect(() => {
-    if (props.setIsRunning) props.setIsRunning(isRunning);
-  }, [isRunning]);
-
-  useEffect(() => {
-    if (!canvasRef.current) return;
-    var canvas = canvasRef.current;
+  // Reset the canvas and start sorting with the given sort function
+  function reset(sortFunc) {
+    const canvas = canvasRef.current;
     ctx = canvas.getContext("2d");
+    start(ctx, sortFunc);
+  }
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    window.addEventListener("resize", () => handleResize(ctx));
-
-    if (!Boolean(props.sorted)) start(ctx, sortFunc);
-    else bars = generateBars(canvasRef.current, false);
-    draw(ctx);
-
-    return () => {
-      window.removeEventListener("resize", () => handleResize(ctx));
-    };
-  }, []);
-
+  // Start sorting with the given sort function
   async function start(ctx, sortFunc) {
     if (isRunning) return;
-
     setIsRunning(true);
-
     bars = generateBars(canvasRef.current, true);
     draw(ctx);
-    await sortFunc(bars, () => draw(ctx));
-
+    await sortFunc(bars, () => requestDraw(ctx));
     setIsRunning(false);
   }
 
+  // Request an animation frame to draw on the canvas
+  function requestDraw(ctx) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = requestAnimationFrame(() => draw(ctx));
+  }
+
+  // Draw the bars on the canvas
   function draw(ctx) {
     if (!canvasRef.current) return;
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-
     ctx.fillStyle = BODY_COLOR_2;
     bars.forEach((bar, i) => {
       bar.draw(ctx, canvasRef.current, i);
     });
   }
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className={props.className}
-      style={props.style}
-    ></canvas>
-  );
+  return <canvas ref={canvasRef} className={className} style={style}></canvas>;
 }

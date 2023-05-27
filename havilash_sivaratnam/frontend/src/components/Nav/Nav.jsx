@@ -44,12 +44,12 @@ export default function Nav({ session }) {
     return session.user ? (
       <Link
         to="/login"
-        className={`not-italic text-black text-4xl bg-white 
-        px-3 py-0 rounded-md nav__link ${
-          session.user.access >= 2 && "outline-none outline-white"
-        }`}
+        className={`bg-white px-2 py-0 lg:px-3 lg:py-1 rounded-md nav__link flex justify-center items-center 
+        ${session.user.access >= 2 && "outline-none outline-white"}`}
       >
-        {session.user.name.charAt(0).toUpperCase()}
+        <p className="text-center font-aldrich not-italic text-4xl text-white">
+          {session.user.name.charAt(0).toUpperCase()}
+        </p>
       </Link>
     ) : (
       <Link to="/login" className="nav__link">

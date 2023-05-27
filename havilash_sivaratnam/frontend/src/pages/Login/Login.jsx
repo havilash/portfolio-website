@@ -6,6 +6,7 @@ import "./Login.css";
 import { readForm } from "src/services/Utils";
 import { login, logout } from "src/lib/api";
 import Modal from "src/components/modals/Modal/Modal";
+import { ReactComponent as Loader } from "src/assets/loader.svg";
 
 function validate(data) {
   const errors = {};
@@ -97,10 +98,7 @@ export default function Login({ session }) {
     case "loading":
       statusMessage = (
         <div className="loading">
-          <img
-            src="/assets/loader.svg"
-            className={`loader ${!isLoading && "disabled"}`}
-          />
+          <Loader className={`loader ${!isLoading && "disabled"}`} />
           Loading
         </div>
       );

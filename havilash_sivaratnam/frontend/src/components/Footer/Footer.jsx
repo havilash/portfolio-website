@@ -1,42 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
 import { generateBars } from "src/services/Utils";
 import data from "src/data.js";
-
 import "./Footer.css";
 import Imprint from "../Imprint/Imprint";
 import Modal from "../modals/Modal/Modal";
+import { ReactComponent as Logo } from "src/assets/logo.svg";
 
-export default function Footer(props) {
+export default function Footer({ className, divRef }) {
   const BODY_COLOR_2 = getComputedStyle(
     document.documentElement
   ).getPropertyValue("--body-color-2");
   const [imprintOpen, setImprintOpen] = useState(false);
   const canvasRef = useRef(null);
-  var ctx;
+  let ctx;
 
   useEffect(() => {
     const canvas = canvasRef.current;
     ctx = canvas.getContext("2d");
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     window.addEventListener("resize", handleResize);
-
     run(ctx);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   async function run(ctx) {
-    var bars = generateBars(canvasRef.current, true);
+    const bars = generateBars(canvasRef.current, true);
     draw(ctx, bars);
   }
 
   function draw(ctx, bars) {
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-
     ctx.fillStyle = BODY_COLOR_2;
     bars.forEach((bar, i) => {
       bar.draw(ctx, canvasRef.current, i);
@@ -46,14 +42,13 @@ export default function Footer(props) {
   const handleResize = () => {
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
-
     run(ctx);
   };
 
   return (
     <footer
-      ref={props.divRef}
-      className={`footer relative h-auto w-screen ${props.className}`}
+      ref={divRef}
+      className={`footer relative h-auto w-screen ${className}`}
     >
       <Modal open={imprintOpen} onClose={() => setImprintOpen(false)}>
         <Imprint />
@@ -62,11 +57,7 @@ export default function Footer(props) {
       <div className="footer__content">
         <div className="footer__content__text">
           <div>
-            <img
-              src="/assets/logo.svg"
-              alt="Logo"
-              className="w-16 mix-blend-difference"
-            />
+            <Logo className="w-24 mix-blend-difference" />
           </div>
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl text-text-color font-medium opacity-80">

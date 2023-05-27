@@ -6,6 +6,7 @@ module.exports = {
     fontFamily: {
       poppins: ["Poppins"],
       consolas: ["Consolas"],
+      aldrich: ["Aldrich"],
     },
     extend: {
       screens: {

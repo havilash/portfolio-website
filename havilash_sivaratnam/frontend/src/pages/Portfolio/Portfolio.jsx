@@ -19,7 +19,6 @@ export default function Portfolio({ session }) {
   async function loadFilesZip() {
     try {
       const newFilesZip = await getFilesZip(session);
-      console.log(newFilesZip);
       setFilesZip(newFilesZip.zip);
     } catch (error) {
       console.error(error);

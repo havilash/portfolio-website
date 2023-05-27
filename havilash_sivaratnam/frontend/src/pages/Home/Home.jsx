@@ -1,44 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import SortAlgorithm from "src/components/SortAlgorithm/SortAlgorithm";
 import { FaArrowDown } from "react-icons/fa";
-import {
-  bubbleSort,
-  cycleSort,
-  cocktailShakerSort,
-  combSort,
-  heapsort,
-  insertionSort,
-  mergeSort,
-  quicksort,
-  selectionSort,
-  shellsort,
-  gnomeSort,
-  bitonicSort,
-  sleepSort,
-  bogoSort,
-} from "src/components/SortAlgorithm/SortFunctions";
+import * as sortFunctions from "src/components/SortAlgorithm/SortFunctions";
+import violinImg from "src/assets/violin.png";
 
 import "./Home.css";
 
 const SORT_NAMES_FUNCTIONS = {
-  "Insertion Sort": insertionSort,
-  "Selection Sort": selectionSort,
-  "Merge Sort": mergeSort,
-  Quicksort: quicksort,
-  Shellsort: shellsort,
-  "Bubble Sort": bubbleSort,
-  "Comb Sort": combSort,
-  Heapsort: heapsort,
-  "Cocktail Shaker Sort": cocktailShakerSort,
-  "Cycle Sort": cycleSort,
-  "Gnome Sort": gnomeSort,
-  "Bitonic Sort": bitonicSort,
-  "Sleep Sort": sleepSort,
-  "Bogo Sort": bogoSort,
+  "Insertion Sort": sortFunctions.insertionSort,
+  "Selection Sort": sortFunctions.selectionSort,
+  "Merge Sort": sortFunctions.mergeSort,
+  Quicksort: sortFunctions.quicksort,
+  Shellsort: sortFunctions.shellsort,
+  "Bubble Sort": sortFunctions.bubbleSort,
+  "Comb Sort": sortFunctions.combSort,
+  Heapsort: sortFunctions.heapsort,
+  "Cocktail Shaker Sort": sortFunctions.cocktailShakerSort,
+  "Cycle Sort": sortFunctions.cycleSort,
+  "Gnome Sort": sortFunctions.gnomeSort,
+  "Bitonic Sort": sortFunctions.bitonicSort,
+  "Sleep Sort": sortFunctions.sleepSort,
+  "Bogo Sort": sortFunctions.bogoSort,
 };
 
-const SORT_FUNCTIONS = Object.values(SORT_NAMES_FUNCTIONS);
-// const SORT_FUNCTIONS = [insertionSort, selectionSort, mergeSort, quicksort, shellsort, bubbleSort, combSort, heapsort, cocktailShakerSort, cycleSort, gnomeSort, bitonicSort, sleepSort]
+const SORT_FUNCTIONS = Object.values(SORT_NAMES_FUNCTIONS).filter(
+  (func) => ![sortFunctions.bogoSort].includes(func)
+);
 
 function getKeyByValue(object, value) {
   return Object.keys(object).find((key) => object[key] === value);
@@ -51,15 +38,17 @@ export default function Home() {
   const [sortFunc, setSortFunc] = useState(
     () => SORT_FUNCTIONS[Math.floor(Math.random() * SORT_FUNCTIONS.length)]
   );
-  const [isSortFuncsElemOpen, setIsSortFuncsElemOpen] = useState(false); // sort-functions element visibility state
+  const [isSortMenuOpen, setIsSortMenuOpen] = useState(false); // sort-functions menu visibility state
   const age = getAge("2005-06-25");
 
   useEffect(() => {
     setTitleIsVisible(!sortIsRunning);
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if (!sortIsRunning) return;
       setTitleIsVisible(true);
     }, 7500);
+
+    return () => clearTimeout(timeoutId);
   }, [sortIsRunning]);
 
   function renderSortFunctions() {
@@ -109,14 +98,14 @@ export default function Home() {
 
         <button
           className="sort-button button"
-          onClick={() => setIsSortFuncsElemOpen(!isSortFuncsElemOpen)}
+          onClick={() => setIsSortMenuOpen(!isSortMenuOpen)}
         >
           {getKeyByValue(SORT_NAMES_FUNCTIONS, sortFunc)}
         </button>
         <div
           className={
             "sort-functions transition-all" +
-            (isSortFuncsElemOpen ? " max-h-[40vh]" : " max-h-0")
+            (isSortMenuOpen ? " max-h-[40vh]" : " max-h-0")
           }
         >
           <ul className="sort-functions__list">{renderSortFunctions()}</ul>
@@ -133,8 +122,7 @@ export default function Home() {
         </div>
 
         <a
-          className="absolute flex self-end text-4xl m-8
-            mix-blend-difference hover:opacity-80"
+          className="absolute flex self-end text-4xl m-8 mix-blend-difference hover:opacity-80"
           href="#aboutme"
         >
           <FaArrowDown />
@@ -145,10 +133,7 @@ export default function Home() {
         className="aboutme flex flex-col items-center justify-center w-full py-[20rem] relative gap-60"
       >
         {/* 1 */}
-        <div
-          className="gap-12 md:gap-28 w-full
-          flex flex-col md:flex-row justify-center items-center"
-        >
+        <div className="gap-12 md:gap-28 w-full flex flex-col md:flex-row justify-center items-center">
           <div className="bg-body-color-2 w-[250px] h-[300px]"></div>
           {/* <img src="https://picsum.photos/300/400" alt="Portrait" /> */}
           <div className="flex flex-col self-center items-center md:items-start">
@@ -193,10 +178,9 @@ export default function Home() {
         {/* 3 */}
         <div className="relative home__block home__block__hobbys">
           <img
-            src="/assets/violin.png"
+            src={violinImg}
             alt="Violin"
-            className="h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20
-            md:relative md:translate-x-0 md:opacity-100 md:left-0"
+            className="h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20 md:relative md:translate-x-0 md:opacity-100 md:left-0"
           />
           <div className="z-20">
             <h1>Hobbys</h1>

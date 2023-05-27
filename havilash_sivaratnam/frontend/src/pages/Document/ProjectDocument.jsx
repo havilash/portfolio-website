@@ -36,7 +36,7 @@ export default function ProjectDocument() {
 
   useEffect(() => {
     if (project?.document) {
-      setDocumentUrl(`/assets/documents/projects/${project.document}`);
+      setDocumentUrl(`./documents/projects/${project.document}`);
     } else {
       navigate("/projects");
     }
@@ -60,7 +60,7 @@ export default function ProjectDocument() {
 
   return (
     documentUrl && (
-      <section className="section pt-16 sm:p-24 lg:p-48 min-h-screen">
+      <section className="section pt-16 sm:p-24 lg:p-48 2xl:px-80 min-h-screen">
         <div className="document__data">
           <div className="flex flex-row items-center gap-4">
             <a href={documentUrl} download>

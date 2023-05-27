@@ -49,7 +49,8 @@ class AuthController extends Controller
         
         // Send an email to the user if their access rights have changed
         $data = $validator->validated();
-        if (isset($data['access']) && $data['access'] != $user->access) {
+        $user->fill($data);
+        if (isset($data['access']) && $data['access'] != User::find($id)->access) {
             try {
                 Mail::to($user->email)->send(new UserAccessChanged($user));
             } catch (\Exception $e) {
@@ -59,9 +60,8 @@ class AuthController extends Controller
                 ], 500);
             }
         }
-
+        
         // Update the user's information
-        $user->fill($data);
         $user->save();
 
         // Return the response

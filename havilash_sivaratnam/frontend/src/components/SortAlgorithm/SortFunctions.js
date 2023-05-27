@@ -1,10 +1,6 @@
 // https://en.wikipedia.org/wiki/Sorting_algorithm#Popular_sorting_algorithms
 
-import { Bar } from "src/services/Utils";
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import { sleep } from "src/services/Utils";
 
 function swap(arr, i, j) {
   let temp = arr[i];
