@@ -1,11 +1,19 @@
 version: '1'
 
 services:
-  client:
+  frontend:
     restart: unless-stopped
-    image: portfolio:production
+    image: portfolio-frontend:production
     build: 
       context: .
-      dockerfile: ./Dockerfile.production
+      dockerfile: ./frontend/Dockerfile.production
     ports:
       - 80:80
+  backend:
+    restart: unless-stopped
+    image: portfolio-backend:production
+    build: 
+      context: .
+      dockerfile: ./backend/Dockerfile.production
+    ports:
+      - 8000:8000

@@ -1,0 +1,37 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+/* @import url("https://fonts.googleapis.com/css2?family=Consolas"); */
+
+@font-face {
+  font-family: "Consolas";
+  src: local("Consolas"),
+    url(./assets/fonts/Consolas/Consolas.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Aldrich";
+  src: local("Aldrich"),
+    url(./assets/fonts/Aldrich/Aldrich-Regular.ttf) format("truetype");
+}
+
+/** CSS Variables **/
+:root {
+  --nav-height: 4rem;
+
+  --hue-color: 30;
+
+  --primary-color: hsl(var(--hue-color), 100%, 47%);
+  --secondary-color: hsl(var(--hue-color), 93%, 62%);
+
+  --text-color: hsl(var(--hue-color), 0%, 95%);
+
+  --block-color: hsl(var(--hue-color), 1%, 16%);
+  --block-color-alt: hsla(var(--hue-color), 1%, 12%, 0.95);
+
+  --body-color-1: hsl(var(--hue-color), 1%, 15%);
+  --body-color-2: hsl(var(--hue-color), 0%, 95%);
+  /* --body-color-2: hsl(var(--hue-color), 1%, 80%); */
+
+  /* swiper */
+  --swiper-theme-color: var(--primary-color) !important;
+}
