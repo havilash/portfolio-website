@@ -1,30 +1,54 @@
-# Build stage
-FROM composer:2 as build
-WORKDIR /app
-COPY . .
-RUN composer install --optimize-autoloader --no-dev
+FROM php:fpm
 
-# Production stage
-FROM php:7.4-fpm-alpine
-WORKDIR /var/www/html
-
-RUN apk add --no-cache \
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
     libpng-dev \
-    libzip-dev \
-    zip \
-    unzip \
-    && docker-php-ext-install \
-    gd \
-    opcache \
-    pdo_mysql \
-    zip
+    libonig-dev \
+    libxml2-dev \
+    nginx \
+    cron \
+    git \
+    unzip
 
-COPY --from=build /app /var/www/html
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY .env .env
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql sockets opcache
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Configure PHP OPcache
+RUN { \
+        echo 'opcache.memory_consumption=128'; \
+        echo 'opcache.interned_strings_buffer=8'; \
+        echo 'opcache.max_accelerated_files=4000'; \
+        echo 'opcache.revalidate_freq=60'; \
+        echo 'opcache.fast_shutdown=1'; \
+        echo 'opcache.enable_cli=1'; \
+    } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-CMD php artisan migrate --seed && php artisan schedule:run && php-fpm
+# Copy Composer binary from composer:latest image
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-EXPOSE 9000
+# Set working directory
+WORKDIR /app
+
+# Copy existing application directory contents
+COPY . .
+
+# Install Composer dependencies
+RUN composer install --no-dev --optimize-autoloader
+
+# Copy Nginx configuration
+COPY nginx.conf /etc/nginx/sites-available/default
+
+# Set file permissions for Laravel
+RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
+
+EXPOSE 8000
+
+CMD php artisan migrate && \
+    php artisan db:seed && \
+    (crontab -l ; echo "30 3 * * * cd /app && /usr/local/bin/php artisan schedule:run >> /var/log/cron.log 2>&1") | crontab - && \
+    service cron start && \
+    service nginx start && \
+    php-fpm

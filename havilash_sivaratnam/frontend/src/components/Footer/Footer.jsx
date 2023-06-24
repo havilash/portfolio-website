@@ -89,7 +89,7 @@ export default function Footer({ className, divRef }) {
               className="self-start mt-2"
               onClick={() => setImprintOpen(true)}
             >
-              Impressum
+              Imprint
             </button>
           </div>
         </div>

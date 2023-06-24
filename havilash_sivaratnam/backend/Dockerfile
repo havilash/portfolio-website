@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:8.0-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -26,9 +26,9 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN composer install
+RUN composer install --optimize-autoloader --no-dev
 
 # Run migrations and start server on first start
-CMD php artisan migrate --seed && php artisan serve --host=0.0.0.0
+CMD php artisan migrate --force && php artisan schedule:run && php artisan serve --host=0.0.0.0
 
 EXPOSE 8000

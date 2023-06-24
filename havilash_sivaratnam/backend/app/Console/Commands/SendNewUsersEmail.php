@@ -18,7 +18,10 @@ class SendNewUsersEmail extends Command
     {
         // Get all new users registered in the past 24 hours
         $newUsers = User::where('created_at', '>=', Carbon::now()->subDay())->get();
-
+        $admins = User::where('access', User::ACCESS_ADMIN)->get();
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->send(new NewUsers($newUsers, $admin));
+        }
         // Send the email if there are new users
         if ($newUsers->count() > 0) {
             $admins = User::where('access', User::ACCESS_ADMIN)->get();

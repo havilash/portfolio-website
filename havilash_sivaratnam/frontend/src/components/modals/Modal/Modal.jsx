@@ -32,11 +32,10 @@ export default function Modal({ children, open, onClose, onOpen, className }) {
       className={`bg-block-color-alt shadow-md 
         flex flex-col justify-center items-center rounded-md 
         fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-        overflow-hidden transition-all duration-300
-        min-w-[75%] xs:min-w-[50%] md:min-w-0 w-auto h-auto z-40 p-4 md:px-16
+        overflow-hidden transition-all duration-300 z-40 
         ${
           open
-            ? "max-w-[90vw] max-h-[90vh]"
+            ? "min-w-[75%] xs:min-w-[50%] md:min-w-0 w-auto h-auto max-w-[90vw] max-h-[90vh] p-4 md:px-16"
             : "min-w-0 min-h-0 max-w-0 max-h-0 p-0"
         } ${className}`}
     >
