@@ -1,41 +1,61 @@
-version: '1'
-
+version: "3.8"
 services:
+  # Frontend service
   frontend:
-    restart: unless-stopped
-    image: portfolio-frontend:development
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: portfolio-frontend:development
     ports:
-      - 3000:3000
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    networks:
+      - portfolio-network
+
+  # Backend service
   backend:
-    restart: unless-stopped
-    image: portfolio-backend:development
-    build: 
+    build:
       context: ./backend
-      dockerfile:  Dockerfile
+      dockerfile: Dockerfile
+    image: portfolio-backend:development
     ports:
-      - 8000:8000
-    depends_on:
-      - mysql
+      - "8000:8000"
+    volumes:
+      - ./backend:/var/www
     environment:
-      DB_CONNECTION: mysql
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_DATABASE: db_havilash_sivaratnam
-      DB_USERNAME: user
-      DB_PASSWORD: user
+      - "DB_CONNECTION=mysql"
+      - "DB_HOST=mysql"
+      - "DB_PORT=3306"
+      - "DB_DATABASE=db_havilash_sivaratnam"
+      - "DB_USERNAME=root"
+      - "DB_PASSWORD=root"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - portfolio-network
+
+  # MySQL service
   mysql:
     image: mysql:latest
-    restart: unless-stopped
+    restart: always
     environment:
       MYSQL_DATABASE: db_havilash_sivaratnam
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - db-data:/var/lib/mysql
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - portfolio-network
 
+# Volumes
 volumes:
-  db-data:
+  db_data:
+
+# Networks
+networks:
+  portfolio-network:

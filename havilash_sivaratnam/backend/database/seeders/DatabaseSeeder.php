@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UsersTableSeeder;
-use Database\Seeders\DataTableSeeder;
+use App\Models\User;
+use App\Models\File;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(UsersTableSeeder::class);
-        $this->call(DataTableSeeder::class);
+        if (User::count() === 0) {
+            $this->call(UsersTableSeeder::class);
+        }
+
+        if (File::count() === 0) {
+            $this->call(DataTableSeeder::class);
+        }
     }
 }
