@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { generateBars } from "src/services/Utils";
+import { useEffect, useRef, useState } from "react";
+import { ReactComponent as Logo } from "src/assets/logo.svg";
 import data from "src/data.js";
-import "./Footer.css";
+import { generateBars } from "src/services/Utils";
 import Imprint from "../Imprint/Imprint";
 import Modal from "../modals/Modal/Modal";
-import { ReactComponent as Logo } from "src/assets/logo.svg";
+import "./Footer.css";
 
 export default function Footer({ className, divRef }) {
   const BODY_COLOR_2 = getComputedStyle(

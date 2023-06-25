@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaBars, FaUser } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import data from "src/data.js";

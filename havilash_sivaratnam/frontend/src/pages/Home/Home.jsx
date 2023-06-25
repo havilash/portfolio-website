@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import SortAlgorithm from "src/components/SortAlgorithm/SortAlgorithm";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
-import * as sortFunctions from "src/components/SortAlgorithm/SortFunctions";
 import violinImg from "src/assets/violin.png";
+import SortAlgorithm from "src/components/SortAlgorithm/SortAlgorithm";
+import * as sortFunctions from "src/components/SortAlgorithm/SortFunctions";
 
 import "./Home.css";
 

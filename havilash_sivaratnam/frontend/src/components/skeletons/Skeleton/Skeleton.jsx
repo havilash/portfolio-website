@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Skeleton.css";
 
 export default function Skeleton({ width, height, className }) {

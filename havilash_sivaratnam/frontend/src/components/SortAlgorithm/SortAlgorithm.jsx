@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import * as SortFunctions from "./SortFunctions";
-import { generateBars } from "src/services/Utils";
+import { useEffect, useRef, useState } from "react";
 import "src/index.css";
+import { generateBars } from "src/services/Utils";
+import * as SortFunctions from "./SortFunctions";
 
 const BODY_COLOR_2 = getComputedStyle(
   document.documentElement

@@ -1,4 +1,3 @@
-import React from "react";
 import Skeleton from "src/components/skeletons/Skeleton/Skeleton";
 
 export default function SkeletonFile({ className }) {

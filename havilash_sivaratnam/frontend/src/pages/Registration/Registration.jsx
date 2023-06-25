@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { FaCheckCircle, FaKey, FaTimesCircle } from "react-icons/fa";
 import { Link, useSearchParams } from "react-router-dom";
-import { FaCheckCircle, FaTimesCircle, FaKey } from "react-icons/fa";
 
-import "./Registration.css";
-import { readForm } from "src/services/Utils";
-import { login, register } from "src/lib/api";
-import Modal from "src/components/modals/Modal/Modal";
 import { ReactComponent as Loader } from "src/assets/loader.svg";
+import Modal from "src/components/modals/Modal/Modal";
+import { login, register } from "src/lib/api";
+import { readForm } from "src/services/Utils";
+import "./Registration.css";
 
 function validate(data) {
   const errors = {};

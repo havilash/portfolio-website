@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { createFile, updateFile, deleteFile, getFiles } from "src/lib/api";
-import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
+import { useCallback, useEffect, useState } from "react";
 import { IoReloadCircleSharp } from "react-icons/io5";
-import { base64toObjectUrl, toBase64 } from "src/services/Utils";
-import { MdCheck, MdClose } from "react-icons/md";
 import { RxFile } from "react-icons/rx";
+import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
+import { createFile, deleteFile, getFiles, updateFile } from "src/lib/api";
+import { base64toObjectUrl, toBase64 } from "src/services/Utils";
 
 const fileHeader = ["name", "file", "delete"];
 

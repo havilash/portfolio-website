@@ -1,9 +1,8 @@
-import React from "react";
-import Users from "src/components/Users/Users";
-import "./Admin.css";
-import { useRedirectToLogin } from "src/hooks/useSession";
-import Keys from "src/components/Keys/Keys";
 import Files from "src/components/Files/Files";
+import Keys from "src/components/Keys/Keys";
+import Users from "src/components/Users/Users";
+import { useRedirectToLogin } from "src/hooks/useSession";
+import "./Admin.css";
 
 export default function Admin({ session }) {
   useRedirectToLogin(session, 2);

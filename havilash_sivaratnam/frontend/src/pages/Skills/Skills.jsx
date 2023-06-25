@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Block from "src/components/Block/Block";
-import * as icons from "react-icons/si";
 import data from "src/data.js";
 
-import "./Skills.css";
 import Modal from "src/components/modals/Modal/Modal";
+import "./Skills.css";
 
 const skills = data.skills;
 

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FiCopy } from "react-icons/fi";
-import { createKey, deleteKey, getKeys, updateKey } from "src/lib/api";
 import { IoReloadCircleSharp } from "react-icons/io5";
 import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
+import { createKey, deleteKey, getKeys, updateKey } from "src/lib/api";
 
 function getDateAfterDays(days) {
   const today = new Date();

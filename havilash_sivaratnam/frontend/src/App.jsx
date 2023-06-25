@@ -1,22 +1,22 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Footer from "src/components/Footer/Footer";
 
 import Nav from "src/components/Nav/Nav";
 import SortAlgorithm from "src/components/SortAlgorithm/SortAlgorithm";
 // Pages
-import Error404 from "src/pages/errors/Error404";
-import Home from "src/pages/Home/Home";
+import useSession from "src/hooks/useSession";
+import Admin from "src/pages/Admin/Admin";
 import Career from "src/pages/Career/Career";
-import Skills from "src/pages/Skills/Skills";
-import Projects from "src/pages/Projects/Projects";
-import Portfolio from "src/pages/Portfolio/Portfolio";
 import PortfolioDocument from "src/pages/Document/PortfolioDocument";
 import ProjectDocument from "src/pages/Document/ProjectDocument";
+import Home from "src/pages/Home/Home";
 import Login from "src/pages/Login/Login";
-import useSession from "src/hooks/useSession";
+import Portfolio from "src/pages/Portfolio/Portfolio";
+import Projects from "src/pages/Projects/Projects";
 import Registration from "src/pages/Registration/Registration";
-import Admin from "src/pages/Admin/Admin";
+import Skills from "src/pages/Skills/Skills";
+import Error404 from "src/pages/errors/Error404/Error404";
 
 function App() {
   const session = useSession();
@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     if (!footerRef.current) return;
     handleResize();
-  }, [footerRef.current]);
+  }, []);
 
   return (
     <div className="app relative h-auto w-full overflow-hidden">

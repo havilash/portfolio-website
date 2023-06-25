@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { deleteUser, getUsers, updateUser } from "src/lib/api";
-import Modal from "src/components/modals/Modal/Modal";
-import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
+import { useCallback, useEffect, useState } from "react";
 import { IoReloadCircleSharp } from "react-icons/io5";
+import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
+import Modal from "src/components/modals/Modal/Modal";
+import { deleteUser, getUsers, updateUser } from "src/lib/api";
 
 const userHeader = [
   "name",

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import data from "src/data.js";
 
-import "./Projects.css";
 import { Link } from "react-router-dom";
-import { getRepo, getRepoCollaborators } from "src/lib/api";
 import Skeleton from "src/components/skeletons/Skeleton/Skeleton";
+import { getRepo, getRepoCollaborators } from "src/lib/api";
+import "./Projects.css";
 
 function sortByNothing(data) {
   return data;

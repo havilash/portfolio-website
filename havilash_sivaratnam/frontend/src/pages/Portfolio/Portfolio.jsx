@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { RxFile } from "react-icons/rx";
 
-import "./Portfolio.css";
 import { Link } from "react-router-dom";
-import data from "src/data";
 import Modal from "src/components/modals/Modal/Modal";
-import { useRedirectToHome, useRedirectToLogin } from "src/hooks/useSession";
+import data from "src/data";
+import { useRedirectToLogin } from "src/hooks/useSession";
 import { getFilesZip } from "src/lib/api";
 import { base64toObjectUrl } from "src/services/Utils";
+import "./Portfolio.css";
 
 export default function Portfolio({ session }) {
   useRedirectToLogin(session, 1);

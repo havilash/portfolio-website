@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { BiCodeAlt } from "react-icons/bi";
+import { BsPlay } from "react-icons/bs";
+import { MdOutlineFileDownload } from "react-icons/md";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useNavigate, useParams } from "react-router";
-import { MdOutlineFileDownload } from "react-icons/md";
-import { BsPlay } from "react-icons/bs";
-import { BiCodeAlt } from "react-icons/bi";
 import data from "src/data";
 
-import "./Document.css";
 import { Link } from "react-router-dom";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
+import "./Document.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 

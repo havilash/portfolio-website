@@ -1,7 +1,6 @@
-import React from "react";
 import { FaCircle } from "react-icons/fa";
-import "./Career.css";
 import data from "src/data";
+import "./Career.css";
 
 export default function Career() {
   function renderTimelineItems(items) {

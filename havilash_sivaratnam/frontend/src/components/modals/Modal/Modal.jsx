@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { MdClose } from "react-icons/md";
 
 export default function Modal({ children, open, onClose, onOpen, className }) {

@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { MdOutlineFileDownload } from "react-icons/md";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useNavigate, useParams } from "react-router";
-import { MdOutlineFileDownload } from "react-icons/md";
 
-import "./Document.css";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
 import { useRedirectToLogin } from "src/hooks/useSession";
 import { getFile } from "src/lib/api";
 import { toUint8Array } from "src/services/Utils";
+import "./Document.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
