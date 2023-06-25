@@ -17,7 +17,7 @@ export default function Block({
 
   useEffect(() => {
     onIsOpenChange && onIsOpenChange(isOpen);
-  }, [isOpen]);
+  }, [isOpen, onIsOpenChange]);
 
   return (
     <div
@@ -37,8 +37,8 @@ export default function Block({
         />
       </div>
       <div
-        className={`overflow-y-scroll p-4 transition-all duration-200 ${
-          isOpen ? "h-[50vh]" : "p-0 h-0"
+        className={`overflow-y-scroll px-4 transition-all duration-200 ${
+          isOpen ? "h-[50vh] py-4" : "py-0 h-0"
         }`}
       >
         {children}

@@ -94,7 +94,7 @@ function KeysTable({ session }) {
 
   useEffect(() => {
     loadData();
-  }, [session.token]);
+  }, [session.token, loadData]);
 
   const handleConfirmDeleteKey = async () => {
     try {

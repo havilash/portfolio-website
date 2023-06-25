@@ -17,29 +17,29 @@ export default function SortAlgorithm({
   sortFunc: parentSortFunc,
 }) {
   const canvasRef = useRef(null);
+  const ctxRef = useRef(null);
+  const barsRef = useRef([]);
   const [isRunning, setIsRunning] = useState(false);
   const [sortFunc, setSortFunc] = useState(
     () =>
       parentSortFunc ||
       SORT_FUNCTIONS[Math.floor(Math.random() * SORT_FUNCTIONS.length)]
   );
-  let bars = [];
-  let ctx;
   let animationFrameId;
 
   // Initialize the canvas and add event listeners
   useEffect(() => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
+    ctxRef.current = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    window.addEventListener("resize", () => handleResize(ctx));
-    if (!Boolean(sorted)) start(ctx, sortFunc);
-    else bars = generateBars(canvasRef.current, false);
-    draw(ctx);
+    window.addEventListener("resize", () => handleResize(ctxRef.current));
+    if (!Boolean(sorted)) start(ctxRef.current, sortFunc);
+    else barsRef.current = generateBars(canvasRef.current, false);
+    draw(ctxRef.current);
     return () => {
-      window.removeEventListener("resize", () => handleResize(ctx));
+      window.removeEventListener("resize", () => handleResize(ctxRef.current));
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -50,7 +50,7 @@ export default function SortAlgorithm({
 
   useEffect(() => {
     if (resetRef) resetRef.current = reset;
-  }, [resetRef]);
+  }, [reset, resetRef]);
 
   useEffect(() => {
     if (setParentIsRunning) setParentIsRunning(isRunning);
@@ -61,24 +61,23 @@ export default function SortAlgorithm({
     if (!canvasRef.current) return;
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
-    bars = generateBars(canvasRef.current);
+    barsRef.current = generateBars(canvasRef.current);
     draw(ctx);
   }
 
   // Reset the canvas and start sorting with the given sort function
   function reset(sortFunc) {
     const canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
-    start(ctx, sortFunc);
+    ctxRef.current = canvas.getContext("2d");
+    start(ctxRef.current, sortFunc);
   }
 
   // Start sorting with the given sort function
   async function start(ctx, sortFunc) {
-    if (isRunning) return;
     setIsRunning(true);
-    bars = generateBars(canvasRef.current, true);
+    barsRef.current = generateBars(canvasRef.current, true);
     draw(ctx);
-    await sortFunc(bars, () => requestDraw(ctx));
+    await sortFunc(barsRef.current, () => requestDraw(ctx));
     setIsRunning(false);
   }
 
@@ -93,7 +92,7 @@ export default function SortAlgorithm({
     if (!canvasRef.current) return;
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     ctx.fillStyle = BODY_COLOR_2;
-    bars.forEach((bar, i) => {
+    barsRef.current.forEach((bar, i) => {
       bar.draw(ctx, canvasRef.current, i);
     });
   }

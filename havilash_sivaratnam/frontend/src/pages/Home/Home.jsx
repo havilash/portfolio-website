@@ -41,6 +41,10 @@ export default function Home() {
   const [isSortMenuOpen, setIsSortMenuOpen] = useState(false); // sort-functions menu visibility state
   const age = getAge("2005-06-25");
 
+  // useEffect(() => {
+  //   setSortIsRunning(true);
+  // }, []);
+
   useEffect(() => {
     setTitleIsVisible(!sortIsRunning);
     const timeoutId = setTimeout(() => {

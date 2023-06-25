@@ -12,17 +12,16 @@ export default function Footer({ className, divRef }) {
   ).getPropertyValue("--body-color-2");
   const [imprintOpen, setImprintOpen] = useState(false);
   const canvasRef = useRef(null);
-  let ctx;
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    ctx = canvas.getContext("2d");
+    let ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", () => handleResize(ctx));
     run(ctx);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", () => handleResize(ctx));
     };
   }, []);
 
@@ -39,7 +38,7 @@ export default function Footer({ className, divRef }) {
     });
   }
 
-  const handleResize = () => {
+  const handleResize = (ctx) => {
     canvasRef.current.width = window.innerWidth;
     canvasRef.current.height = window.innerHeight;
     run(ctx);
@@ -71,6 +70,7 @@ export default function Footer({ className, divRef }) {
                 >
                   <a
                     target="_blank"
+                    rel="noreferrer"
                     className="footer__social__link"
                     href={item.href}
                   >
