@@ -13,18 +13,22 @@ export default function Block({
 
   useEffect(() => {
     setIsOpen(open);
-  }, [open]);
+    onIsOpenChange && onIsOpenChange(open);
+  }, [open, onIsOpenChange]);
 
-  useEffect(() => {
-    onIsOpenChange && onIsOpenChange(isOpen);
-  }, [isOpen, onIsOpenChange]);
+  function toggleIsOpen() {
+    setIsOpen((prevIsOpen) => {
+      onIsOpenChange && onIsOpenChange(!prevIsOpen);
+      return !prevIsOpen;
+    });
+  }
 
   return (
     <div
       className={`bg-block-color transition-all rounded-lg w-1/3 h-fit ${className}`}
     >
       <div
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleIsOpen}
         className="shadow-lg p-4 flex flex-row items-center justify-between relative "
       >
         <h1 className="text-[5vw] xs:text-3xl text-white mr-4">{title}</h1>

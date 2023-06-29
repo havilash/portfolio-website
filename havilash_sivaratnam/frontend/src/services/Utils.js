@@ -26,7 +26,12 @@ export function generateBars(canvas, isRandom) {
     genBars.push(new Bar(barHeights[i]));
   }
 
-  if (isRandom) genBars = genBars.sort(() => Math.random() - 0.5);
+  if (isRandom) {
+    for (let i = genBars.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [genBars[i], genBars[j]] = [genBars[j], genBars[i]];
+    }
+  }
 
   return genBars;
 }
