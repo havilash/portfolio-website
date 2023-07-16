@@ -86,7 +86,7 @@ export default function Footer({ className, divRef }) {
               </a>
             </p>
             <button
-              className="self-start mt-2"
+              className="self-start mt-2 opacity-80"
               onClick={() => setImprintOpen(true)}
             >
               Imprint

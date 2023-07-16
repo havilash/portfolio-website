@@ -10,32 +10,44 @@ function sortByNothing(data) {
   return data;
 }
 
+function sortByTitle(data) {
+  return data.sort((a, b) => a.title.localeCompare(b.title));
+}
+
 function sortByRecent(data) {
   return data.sort((a, b) => {
     const dateA = a.updated_at ? new Date(a.updated_at) : new Date(0);
     const dateB = b.updated_at ? new Date(b.updated_at) : new Date(0);
+    if (!a.updated_at) return 1;
+    if (!b.updated_at) return -1;
     return dateB - dateA;
   });
-}
-
-function sortByTitle(data) {
-  return data.sort((a, b) => a.title.localeCompare(b.title));
 }
 
 function sortByCreationDate(data) {
   return data.sort((a, b) => {
     const dateA = a.created_at ? new Date(a.created_at) : new Date(0);
     const dateB = b.created_at ? new Date(b.created_at) : new Date(0);
+    if (!a.created_at) return 1;
+    if (!b.created_at) return -1;
     return dateB - dateA;
   });
 }
 
 function sortBySize(data) {
-  return data.sort((a, b) => a.size - b.size);
+  return data.sort((a, b) => {
+    if (!a.size) return 1;
+    if (!b.size) return -1;
+    return a.size - b.size;
+  });
 }
 
 function sortByStars(data) {
-  return data.sort((a, b) => b.stars - a.stars);
+  return data.sort((a, b) => {
+    if (!a.stars) return 1;
+    if (!b.stars) return -1;
+    return b.stars - a.stars;
+  });
 }
 
 const sortFunctions = {
@@ -169,7 +181,10 @@ function Project({ title, image, description, authors }) {
           )}
         </div>
       </Link>
-      <ul className="flex flex-row flex-wrap absolute my-2 mx-3 bottom-0 right-0 text-xs font-extralight gap-2 opacity-50">
+      <ul
+        className="flex flex-row flex-wrap absolute my-2 mx-3 bottom-0 right-0 text-xs 
+        font-extralight gap-2 opacity-50 overflow-hidden whitespace-nowrap overflow-ellipsis"
+      >
         {authors ? (
           authors.map((author, index) => (
             <li key={`${title}-author-${index}`}>

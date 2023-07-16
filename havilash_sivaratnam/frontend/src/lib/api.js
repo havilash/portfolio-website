@@ -2,21 +2,17 @@ const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 const AUTH_URL = `${BASE_URL}/auth`;
 const DATA_URL = `${BASE_URL}/data`;
 
-const GITHUB_NAME = "Havilash";
 const GITHUB_BASE_URL = "https://api.github.com";
 const GITHUB_REPO_URL = `${GITHUB_BASE_URL}/repos`;
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 // Github
-export async function getRepo(repoName) {
-  const response = await fetch(
-    `${GITHUB_REPO_URL}/${GITHUB_NAME}/${repoName}`,
-    {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    }
-  );
+export async function getRepo(repo) {
+  const response = await fetch(`${GITHUB_REPO_URL}/${repo}`, {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+    },
+  });
 
   if (!response.ok) {
     return Promise.reject(response);
@@ -26,9 +22,24 @@ export async function getRepo(repoName) {
   return data;
 }
 
-export async function getRepoCollaborators(repoName) {
+export async function getRepoCollaborators(repo) {
+  const response = await fetch(`${GITHUB_REPO_URL}/${repo}/collaborators`, {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+    },
+  });
+
+  if (!response.ok) {
+    return Promise.reject(response);
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function getRepoFile(repo, filePath) {
   const response = await fetch(
-    `${GITHUB_REPO_URL}/${GITHUB_NAME}/${repoName}/collaborators`,
+    `${GITHUB_REPO_URL}/${repo}/contents/${filePath}`,
     {
       headers: {
         Authorization: `token ${GITHUB_TOKEN}`,

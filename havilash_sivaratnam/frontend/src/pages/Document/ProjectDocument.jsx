@@ -9,14 +9,10 @@ import data from "src/data";
 import { Link } from "react-router-dom";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
 import "./Document.css";
+import { getProjectByTitle } from "src/services/Utils";
+import { getRepoFile } from "src/lib/api";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-function getProjectByTitle(title) {
-  return data.projects.find(
-    (project) => project.title.toLowerCase() === title.toLowerCase()
-  );
-}
 
 export default function ProjectDocument() {
   const navigate = useNavigate();
@@ -35,12 +31,34 @@ export default function ProjectDocument() {
   }
 
   useEffect(() => {
-    if (project?.document) {
-      setDocumentUrl(`./documents/projects/${project.document}`);
-    } else {
-      navigate("/projects");
+    async function checkDocument() {
+      if (project?.document) {
+        setDocumentUrl(`/documents/projects/${project.document}`);
+      } else if (project?.repo) {
+        const repo = project.repo;
+        const filePaths = ["/docs/abstract.pdf", "/abstract.pdf"];
+        let fileFound = false;
+        for (const filePath of filePaths) {
+          try {
+            const data = await getRepoFile(repo, filePath);
+            if (data) {
+              setDocumentUrl(data.download_url);
+              fileFound = true;
+              break;
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        if (!fileFound) {
+          navigate("/projects");
+        }
+      } else {
+        navigate("/projects");
+      }
     }
 
+    checkDocument();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -63,7 +81,7 @@ export default function ProjectDocument() {
       <section className="section pt-16 sm:p-24 lg:p-48 2xl:px-80 min-h-screen">
         <div className="document__data">
           <div className="flex flex-row items-center gap-4">
-            <a href={documentUrl} download>
+            <a href={documentUrl}>
               <MdOutlineFileDownload className="document__data__download" />
             </a>
             <h2 className="text-white mix-blend-difference text-[5vw] xs:text-2xl">
@@ -75,11 +93,7 @@ export default function ProjectDocument() {
               <BiCodeAlt className="document__data__button" />
             </a>
             {project.demo && (
-              <Link
-                to={`/projects/${project.title.toLowerCase()}/demo`}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <Link to={`/projects/${project.title.toLowerCase()}/demo`}>
                 <BsPlay className="document__data__button" />
               </Link>
             )}

@@ -1,3 +1,5 @@
+import data from "src/data";
+
 const BAR_WIDTH = 10;
 
 export class Bar {
@@ -79,4 +81,10 @@ export function base64toObjectUrl(file) {
 
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export function getProjectByTitle(title) {
+  return data.projects.find(
+    (project) => project.title.toLowerCase() === title.toLowerCase()
+  );
 }

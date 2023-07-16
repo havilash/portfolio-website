@@ -23,7 +23,6 @@ export default function Files({ session }) {
       });
     } catch (error) {
       console.error(error);
-      // TODO: display error message to user
     }
   };
 
@@ -73,7 +72,6 @@ function FilesTable({ session }) {
       setFiles(newFiles);
     } catch (error) {
       console.error(error);
-      // TODO: display error message to user
     }
   }, [session]);
 

@@ -17,6 +17,7 @@ import Projects from "src/pages/Projects/Projects";
 import Registration from "src/pages/Registration/Registration";
 import Skills from "src/pages/Skills/Skills";
 import Error404 from "src/pages/errors/Error404/Error404";
+import ProjectDemo from "./pages/ProjectDemo/ProjectDemo";
 
 function App() {
   const session = useSession();
@@ -56,20 +57,25 @@ function App() {
       <main className="content h-auto w-full flex justify-center items-center z-10">
         <Routes>
           <Route exact path="/*" element={<Error404 />} />
-          <Route path="/projects/:project" element={<ProjectDocument />} />
-          <Route
-            path="/portfolio/:document"
-            element={<PortfolioDocument session={session} />}
-          />
 
           <Route exact path="/" element={<Home />} />
           <Route exact path="/career" element={<Career />} />
           <Route exact path="/skills" element={<Skills />} />
           <Route exact path="/projects" element={<Projects />} />
+          <Route path="/projects/:project" element={<ProjectDocument />} />
+          <Route
+            exact
+            path="/projects/:project/demo"
+            element={<ProjectDemo />}
+          />
           <Route
             exact
             path="/portfolio"
             element={<Portfolio session={session} />}
+          />
+          <Route
+            path="/portfolio/:document"
+            element={<PortfolioDocument session={session} />}
           />
           <Route exact path="/login" element={<Login session={session} />} />
           <Route

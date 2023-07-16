@@ -189,7 +189,7 @@ export default {
   // projects
   projects: [
     {
-      repo: "Neural-Network",
+      repo: "Havilash/Neural-Network",
       title: "Neural-Network",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
@@ -207,7 +207,31 @@ export default {
       demo: "asdf",
     },
     {
-      repo: "Portfolio-Website-v1",
+      repo: "TD99/planet-go",
+      title: "Planet-Go",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+      description:
+        "An educational app that represents the solar system on a city map. Players walk to planets and learn about the solar system.",
+      tags: [
+        "planet go",
+        "typescript",
+        "html",
+        "css",
+        "ionic",
+        "solar system",
+        "pokemon go",
+        "website",
+        "maps",
+        "education",
+        "health",
+        "fitness",
+      ],
+      href: "https://github.com/TD99/planet-go",
+      document: "placeholder.pdf",
+    },
+    {
+      repo: "Havilash/Portfolio-Website-v1",
       title: "Portfolio-Website-v1",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
@@ -221,10 +245,10 @@ export default {
         "javascript",
       ],
       href: "https://github.com/Havilash/Portfolio-Website-v1",
-      document: "placeholder.pdf",
+      // document: "placeholder.pdf",
     },
     {
-      repo: "Softbody-Simulation",
+      repo: "Havilash/Softbody-Simulation",
       title: "Softbody-Simulation",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
@@ -243,7 +267,7 @@ export default {
       document: "placeholder.pdf",
     },
     {
-      repo: "Golf-Game",
+      repo: "Havilash/Golf-Game",
       title: "Golf-Game",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
@@ -271,7 +295,7 @@ export default {
       document: "test.pdf",
     },
     {
-      repo: "OneCalc",
+      repo: "Havilash/OneCalc",
       title: "OneCalc",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
