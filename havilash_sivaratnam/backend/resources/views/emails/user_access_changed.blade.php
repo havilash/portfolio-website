@@ -22,6 +22,8 @@
                 @break
         @endswitch
 
+        <p>You can access Havilash Sivaratnam's portfolio website by clicking <a href="{{ $portfolioUrl }}">here</a> ({{ $portfolioUrl }}).</p>
+
         <p>If you have any questions or concerns, please don't hesitate to contact Havilash at <a href="mailto:havilash.sivaratnam@protonmail.com">havilash.sivaratnam@protonmail.com</a> or by phone at +49 77 954 20 22.</p>
 
         <p>Best regards,</p>

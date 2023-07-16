@@ -31,9 +31,12 @@ class UserAccessChanged extends Mailable
      */
     public function build()
     {
+        $portfolioUrl = env('PORTFOLIO_URL');
+        
         return $this->view('emails.user_access_changed')
                     ->with([
                         'user' => $this->user,
+                        'portfolioUrl' => $portfolioUrl,
                     ]);
     }
 }

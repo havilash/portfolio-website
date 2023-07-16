@@ -23,7 +23,7 @@
   <body>
     <h1>New Users Registered</h1>
     <p>Dear {{ $admin->name }},</p>
-    <p>The following new users have registered on your Havilash Sivaratnam's portfolio website:</p>
+    <p>The following new users have registered on Havilash Sivaratnam's portfolio website:</p>
     <table>
       <tr>
         <th>Name</th>
@@ -38,8 +38,10 @@
       </tr>
       @endforeach
     </table>
+
+    <p>You can access Havilash Sivaratnam's portfolio website by clicking <a href="{{ $portfolioUrl }}">here</a> ({{ $portfolioUrl }}).</p>
+
     <p>Best regards,</p>
     <p>Havilash Sivaratnam</p>
   </body>
 </html>
-

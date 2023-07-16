@@ -33,10 +33,13 @@ class NewUsers extends Mailable
      */
     public function build()
     {
+        $portfolioUrl = env('PORTFOLIO_URL');
+
         return $this->view('emails.new_users')
             ->with([
                 'users' => $this->users,
                 'admin' => $this->admin,
+                'portfolioUrl' => $portfolioUrl,
             ]);
     }
 }
