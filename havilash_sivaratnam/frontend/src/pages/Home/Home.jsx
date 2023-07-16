@@ -3,6 +3,7 @@ import { FaArrowDown } from "react-icons/fa";
 import violinImg from "src/assets/violin.png";
 import SortAlgorithm from "src/components/SortAlgorithm/SortAlgorithm";
 import * as sortFunctions from "src/components/SortAlgorithm/SortFunctions";
+import data from "src/data";
 
 import "./Home.css";
 
@@ -168,13 +169,7 @@ export default function Home() {
           <div className="max-w-5xl">
             <h1 className="">Who am I?</h1>
             <p className="text-justify text-xl font-semibold">
-              Consectetur pariatur dolore cupidatat veniam sint amet ipsum
-              magna. Officia aute ut officia velit id proident ullamco. Elit
-              fugiat ex dolore laborum consectetur id consectetur cillum nulla
-              cupidatat aute. Fugiat duis voluptate amet sint culpa sit
-              cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut
-              duis laborum reprehenderit minim fugiat in tempor amet pariatur
-              nostrud mollit consectetur.
+              {data.home.whoAmI}
             </p>
           </div>
         </div>
@@ -189,13 +184,7 @@ export default function Home() {
           <div className="z-20">
             <h1>Hobbys</h1>
             <p className="text-justify text-xl font-semibold max-w-3xl">
-              Consectetur pariatur dolore cupidatat veniam sint amet ipsum
-              magna. Officia aute ut officia velit id proident ullamco. Elit
-              fugiat ex dolore laborum consectetur id consectetur cillum nulla
-              cupidatat aute. Fugiat duis voluptate amet sint culpa sit
-              cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut
-              duis laborum reprehenderit minim fugiat in tempor amet pariatur
-              nostrud mollit consectetur.
+              {data.home.hobbys}
             </p>
           </div>
         </div>

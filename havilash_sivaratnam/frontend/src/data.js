@@ -41,6 +41,13 @@ export default {
       icon: FaFacebookSquare,
     },
   ],
+  // home
+  home: {
+    whoAmI:
+      "Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.",
+    hobbys:
+      "Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.",
+  },
   // career
   career: [
     {
