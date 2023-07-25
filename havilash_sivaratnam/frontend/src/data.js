@@ -44,9 +44,9 @@ export default {
   // home
   home: {
     whoAmI:
-      "Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.",
+      "My name is Havilash Sivaratnam, a computer scientist with a passion for AI and Machine Learning. I have a wide range of programming skills and have implemented simulations, developed machine learning-based games, worked with neural networks and much more.  I take pleasure in solving complex physics and math problems using languages such as Python, Rust, and others. Always seeking new challenges, I am constantly expanding my knowledge and skills in computer science.",
     hobbys:
-      "Consectetur pariatur dolore cupidatat veniam sint amet ipsum magna. Officia aute ut officia velit id proident ullamco. Elit fugiat ex dolore laborum consectetur id consectetur cillum nulla cupidatat aute. Fugiat duis voluptate amet sint culpa sit cupidatat minim occaecat sint excepteur ad. Culpa consectetur ut duis laborum reprehenderit minim fugiat in tempor amet pariatur nostrud mollit consectetur.",
+      "In my free time, I enjoy various hobbies and activities. One is playing the violin, which I started at the age of 10 and often perform in small concerts. Playing the violin is a relaxing way for me to unwind. Another hobby of mine is drawing, where I enjoy creating drafts of faces and objects. Occasionally, I play chess to challenge my strategic thinking. When it comes to gaming, some of my favorites include Minecraft, Terraria, and Poly Bridge. These games allow me to engage my creativity and problem-solving skills in a fun way.",
   },
   // career
   career: [

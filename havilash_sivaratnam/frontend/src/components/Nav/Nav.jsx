@@ -10,6 +10,18 @@ export default function Nav({ session }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const headerRef = useRef();
   const [navItems, setNavItems] = useState([]);
+  const timeoutId = useRef(null);
+
+  useEffect(() => {
+    if (isNavOpen) {
+      clearTimeout(timeoutId.current);
+      headerRef.current.classList.remove("mix-blend-difference");
+    } else {
+      timeoutId.current = setTimeout(() => {
+        headerRef.current.classList.add("mix-blend-difference");
+      }, 150);
+    }
+  }, [isNavOpen]);
 
   useEffect(() => {
     const items = data.pages.map((page) => ({
@@ -44,41 +56,38 @@ export default function Nav({ session }) {
     return session.user ? (
       <Link
         to="/login"
-        className={`bg-white px-2 py-0 lg:px-3 lg:py-1 rounded-md nav__link flex justify-center items-center 
-        ${session.user.access >= 2 && "outline-none outline-white"}`}
+        className={`nav__user-link ${
+          session.user.access >= 2 && "outline-none outline-white"
+        }`}
       >
-        <p className="text-center font-aldrich not-italic text-4xl text-white">
+        <p className="nav__user-name">
           {session.user.name.charAt(0).toUpperCase()}
         </p>
       </Link>
     ) : (
       <Link to="/login" className="nav__link">
-        <FaUser className="text-black text-5xl bg-white px-3 py-0 rounded-md" />
+        <FaUser className="nav__user-icon" />
       </Link>
     );
   }
 
   return (
-    <header
-      ref={headerRef}
-      className={`${
-        !isNavOpen && "-left-full mix-blend-difference"
-      } sm:mix-blend-difference`}
-    >
+    <header ref={headerRef} className={`${!isNavOpen && "-left-full"}`}>
       <nav className="nav">
         {/* nav bars, logo */}
         <i
-          className={`fixed left-8 sm:relative sm:left-0 z-[51] transition-all ${
+          className={`nav__bars-icon sm:hidden left-8 sm:left-0 ${
             isNavOpen ? "left-[60vw]" : "left-8"
           }`}
         >
           <FaBars
             onClick={() => setIsNavOpen(!isNavOpen)}
-            className="nav__bars nav__link sm:hidden"
+            className="nav__bars nav__link"
           />
-          <i className="hidden sm:block">{renderUser()}</i>
         </i>
-        <i className="absolute sm:hidden">{renderUser()}</i>
+        <i className="absolute sm:relative mix-blend-difference">
+          {renderUser()}
+        </i>
 
         {/* nav list */}
         <ul className="nav__list">

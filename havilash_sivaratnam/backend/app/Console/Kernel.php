@@ -14,6 +14,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('email:new-users')->daily();
         // $schedule->command('email:new-users')->everyMinute();
+
+        $schedule->command('backup:database')->weekly()->mondays()->at('1:00');
+        // $schedule->command('backup:database')->everyMinute();
     }
 
     /**

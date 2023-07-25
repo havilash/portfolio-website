@@ -168,7 +168,7 @@ export default function Home() {
         <div className="home__block">
           <div className="max-w-5xl">
             <h1 className="">Who am I?</h1>
-            <p className="text-justify text-xl font-semibold">
+            <p className="text-justify text-xl font-semibold mix-blend-normal">
               {data.home.whoAmI}
             </p>
           </div>
@@ -183,7 +183,7 @@ export default function Home() {
           />
           <div className="z-20">
             <h1>Hobbys</h1>
-            <p className="text-justify text-xl font-semibold max-w-3xl">
+            <p className="text-justify text-xl font-semibold max-w-3xl mix-blend-normal">
               {data.home.hobbys}
             </p>
           </div>
