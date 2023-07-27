@@ -235,7 +235,8 @@ export default {
       title: "Portfolio-Website-v1",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-      // description: "A personal portfolio website to showcase your work and skills.",
+      description:
+        "A personal portfolio website to showcase your work and skills.",
       tags: [
         "portfolio website v1",
         "version 1",
@@ -245,7 +246,7 @@ export default {
         "javascript",
       ],
       href: "https://github.com/Havilash/Portfolio-Website-v1",
-      // document: "placeholder.pdf",
+      demo: "https://portfolio-website-backend.onrender.com/",
     },
     {
       repo: "Havilash/Softbody-Simulation",

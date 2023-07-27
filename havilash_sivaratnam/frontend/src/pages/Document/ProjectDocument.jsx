@@ -9,8 +9,8 @@ import data from "src/data";
 import { Link } from "react-router-dom";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
 import "./Document.css";
-import { getProjectByTitle } from "src/services/Utils";
-import { getRepoFile } from "src/lib/api";
+import { getProjectByTitle, isValidUrl } from "src/services/Utils";
+import { checkFileExists, getRepoFile } from "src/lib/api";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -81,22 +81,30 @@ export default function ProjectDocument() {
       <section className="section pt-16 sm:p-24 lg:p-48 2xl:px-80 min-h-screen">
         <div className="document__data">
           <div className="flex flex-row items-center gap-4">
-            <a href={documentUrl}>
+            <a
+              href={documentUrl}
+              download={`abstract_${project.title.toLowerCase()}`}
+            >
               <MdOutlineFileDownload className="document__data__download" />
             </a>
-            <h2 className="text-white mix-blend-difference text-[5vw] xs:text-2xl">
-              {project.document}
+            <h2 className="text-white mix-blend-difference text-[4vw] xs:text-2xl">
+              {`abstract_${project.title.toLowerCase()}`}
             </h2>
           </div>
           <div className="flex flex-row items-center gap-4">
             <a href={project.href} target="_blank" rel="noreferrer">
               <BiCodeAlt className="document__data__button" />
             </a>
-            {project.demo && (
-              <Link to={`/projects/${project.title.toLowerCase()}/demo`}>
-                <BsPlay className="document__data__button" />
-              </Link>
-            )}
+            {project.demo &&
+              (isValidUrl(project.demo) ? (
+                <a href={project.demo} target="_blank" rel="noreferrer">
+                  <BsPlay className="document__data__button" />
+                </a>
+              ) : (
+                <Link to={`/projects/${project.title.toLowerCase()}/demo`}>
+                  <BsPlay className="document__data__button" />
+                </Link>
+              ))}
           </div>
         </div>
         <div ref={containerRef} className="document">
