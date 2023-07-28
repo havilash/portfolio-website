@@ -175,6 +175,4 @@ class DataController extends Controller
 
         return response()->json(['zip' => $base64], 200);
     }
-
-
 }

@@ -14,9 +14,7 @@ export default function Skills() {
   const [isOpen1, setIsOpen1] = useState(!isLargeDevice);
   const [isOpen2, setIsOpen2] = useState(!isLargeDevice);
 
-  const [selectedSkill, setSelectedSkill] = useState(
-    data.skills.programmingLanguage[0]
-  );
+  const [selectedSkill, setSelectedSkill] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleSkillClick = (skill) => {
@@ -40,17 +38,16 @@ export default function Skills() {
   return (
     <section
       className="section h-screen w-full 
- flex flex-col lg:flex-row justify-center 
- items-center gap-[1rem] lg:gap-[10vw]"
+        flex flex-col lg:flex-row justify-center 
+        items-center gap-[1rem] lg:gap-[10vw]"
     >
       <Block
         className="skills__block"
         title="Programming Languages"
         open={isOpen1}
         onIsOpenChange={(o) => {
-          if (isLargeDevice) return;
           setIsOpen1(o);
-          o && setIsOpen2(false);
+          if (!isLargeDevice && o) setIsOpen2(false);
         }}
       >
         {skills.programmingLanguage.map((item, index) => (
@@ -58,7 +55,7 @@ export default function Skills() {
             key={`SkillBar-${index}`}
             title={item.title}
             percent={item.percent}
-            onClick={() => handleSkillClick(item)}
+            onClick={() => item.details && handleSkillClick(item)}
           />
         ))}
       </Block>
@@ -68,9 +65,9 @@ export default function Skills() {
         subtitle="Sorted by experience"
         open={isOpen2}
         onIsOpenChange={(o) => {
-          if (isLargeDevice) return;
+          console.log(o, 2);
           setIsOpen2(o);
-          o && setIsOpen1(false);
+          if (!isLargeDevice && o) setIsOpen1(false);
         }}
       >
         <div className="skills__technologies">
@@ -79,7 +76,7 @@ export default function Skills() {
               key={`SkillBox-${index}`}
               title={item.title}
               icon={item.icon}
-              onClick={() => handleSkillClick(item)}
+              onClick={() => item.details && handleSkillClick(item)}
             />
           ))}
         </div>

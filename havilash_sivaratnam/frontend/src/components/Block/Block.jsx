@@ -9,18 +9,8 @@ export default function Block({
   open,
   onIsOpenChange,
 }) {
-  const [isOpen, setIsOpen] = useState(open || false);
-
-  useEffect(() => {
-    setIsOpen(open);
-    onIsOpenChange && onIsOpenChange(open);
-  }, [open, onIsOpenChange]);
-
   function toggleIsOpen() {
-    setIsOpen((prevIsOpen) => {
-      onIsOpenChange && onIsOpenChange(!prevIsOpen);
-      return !prevIsOpen;
-    });
+    onIsOpenChange && onIsOpenChange(!open);
   }
 
   return (
@@ -31,18 +21,20 @@ export default function Block({
         onClick={toggleIsOpen}
         className="shadow-lg p-4 flex flex-row items-center justify-between relative "
       >
-        <h1 className="text-[5vw] xs:text-3xl text-white mr-4">{title}</h1>
+        <h1 className="text-[5.5vw] xs:text-3xl text-white xs:mr-4 whitespace-nowrap overflow-hidden">
+          {title}
+        </h1>
         <p className="absolute bottom-2 text-xs opacity-75">{subtitle}</p>
         <FaAngleDown
           size="2.5rem"
           className={`transition-all delay-50 duration-200 cursor-pointer ${
-            isOpen && "rotate-180"
+            open && "rotate-180"
           }`}
         />
       </div>
       <div
         className={`overflow-y-scroll px-4 transition-all duration-200 ${
-          isOpen ? "h-[50vh] py-4" : "py-0 h-0"
+          open ? "h-[50vh] py-4" : "py-0 h-0"
         }`}
       >
         {children}

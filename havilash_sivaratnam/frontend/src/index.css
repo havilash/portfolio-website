@@ -122,14 +122,13 @@
     @apply outline-none;
   }
 
-  /* input */
-
-  /* errors */
   .select option {
-    @apply font-normal text-left;
+    @apply font-normal text-left bg-black text-white opacity-90 outline-none;
     text-align: left;
+    mix-blend-mode: difference;
   }
 
+  /* errors */
   .error-text {
     @apply text-red-500;
   }

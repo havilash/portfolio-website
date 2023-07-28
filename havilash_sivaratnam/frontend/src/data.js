@@ -44,19 +44,19 @@ export default {
   // home
   home: {
     whoAmI:
-      "My name is Havilash Sivaratnam, a computer scientist with a passion for AI and Machine Learning. I have a wide range of programming skills and have implemented simulations, developed machine learning-based games, worked with neural networks and much more.  I take pleasure in solving complex physics and math problems using languages such as Python, Rust, and others. Always seeking new challenges, I am constantly expanding my knowledge and skills in computer science.",
+      "Mein Name ist Havilash Sivaratnam, ein Informatiker mit einer Leidenschaft für KI und maschinelles Lernen. Ich verfüge über ein breites Spektrum an Programmierkenntnissen. Ich habe Simulationen implementiert, maschinelles Lernen-basierte Spiele entwickelt, verschiedene webseiten erstellt und vieles mehr. Ich habe Freude daran, komplexe Physik- und Mathematikprobleme mit Sprachen wie Python, Rust und anderen zu lösen. Immer auf der Suche nach neuen Herausforderungen erweitere ich kontinuierlich mein Wissen und meine Fähigkeiten in der Informatik.",
     hobbys:
-      "In my free time, I enjoy various hobbies and activities. One is playing the violin, which I started at the age of 10 and often perform in small concerts. Playing the violin is a relaxing way for me to unwind. Another hobby of mine is drawing, where I enjoy creating drafts of faces and objects. Occasionally, I play chess to challenge my strategic thinking. When it comes to gaming, some of my favorites include Minecraft, Terraria, and Poly Bridge. These games allow me to engage my creativity and problem-solving skills in a fun way.",
+      "In meiner Freizeit beschäftige ich mich gerne mit verschiedenen Hobbys und Aktivitäten. Eines davon ist das Geigenspiel, das ich im Alter von 10 Jahren begonnen habe und oft in kleinen Konzerten auftrete. Das Geigenspiel ist für mich eine entspannende Möglichkeit, abzuschalten. Ein weiteres Hobby von mir ist das Zeichnen, wo ich gerne Skizzen von Gesichtern und Objekten erstelle. Gelegentlich spiele ich Schach, um mein strategisches Denken herauszufordern. Beim Gamen gehören Minecraft, Terraria und Poly Bridge zu meinen Favoriten. Diese Spiele ermöglichen es mir, meine Kreativität und Problemlösungsfähigkeiten auf unterhaltsame Weise einzusetzen.",
   },
   // career
   career: [
     {
       date: "Aktuell",
-      description: "2. Schuljahr Informatikmittelschule (BWD, Gibb, BBC)",
+      description: "3. Schuljahr Informatikmittelschule (BWD, Gibb, BBC)",
     },
     {
-      date: "August 2021 - Juli 2022",
-      description: "1. Schuljahr Informatikmittelschule (BWD, Gibb, BBC)",
+      date: "August 2021 - Juli 2023",
+      description: "1-2. Schuljahr Informatikmittelschule (BWD, Gibb, BBC)",
     },
     {
       date: "August 2018 - Juli 2021",
@@ -85,7 +85,6 @@ export default {
       {
         title: "JavaScript",
         percent: 65,
-        details: ["Intermediate", "React", "Node.js", "Express"],
       },
       {
         title: "HTML / CSS",
@@ -203,8 +202,6 @@ export default {
         "ai",
       ],
       href: "https://github.com/Havilash/Neural-Network",
-      document: "placeholder.pdf",
-      demo: "asdf",
     },
     {
       repo: "TD99/planet-go",
