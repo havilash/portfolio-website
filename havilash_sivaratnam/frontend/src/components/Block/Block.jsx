@@ -24,7 +24,9 @@ export default function Block({
         <h1 className="text-[5.5vw] xs:text-3xl text-white xs:mr-4 whitespace-nowrap overflow-hidden">
           {title}
         </h1>
-        <p className="absolute bottom-2 text-xs opacity-75">{subtitle}</p>
+        <p className="absolute bottom-[0.35rem] text-xs opacity-75">
+          {subtitle}
+        </p>
         <FaAngleDown
           size="2.5rem"
           className={`transition-all delay-50 duration-200 cursor-pointer ${

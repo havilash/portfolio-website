@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FiCopy } from "react-icons/fi";
 import { IoReloadCircleSharp } from "react-icons/io5";
 import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
 import { createKey, deleteKey, getKeys, updateKey } from "src/lib/api";
+import Modal from "../modals/Modal/Modal";
 
 function getDateAfterDays(days) {
   const today = new Date();
@@ -20,13 +21,14 @@ function formatDate(date) {
 export default function Keys({ session }) {
   const [key, setKey] = useState("");
   const [expiresAt, setExpiresAt] = useState(getDateAfterDays(30));
+  const [error, setError] = useState(null);
 
   async function generateKey() {
     try {
       const resp = await createKey(session, { expires_at: expiresAt });
       setKey(resp.key.key);
     } catch (error) {
-      console.error(error);
+      setError("Failed to create key.");
     }
   }
 
@@ -64,12 +66,17 @@ export default function Keys({ session }) {
             type="date"
             id="expiresAtInput"
             value={formatDate(expiresAt)}
-            onChange={(e) => setExpiresAt(e.target.value)}
+            onChange={(e) => setExpiresAt(new Date(e.target.value))}
           />
         </div>
       </div>
       {/* key table (with delete and expires_at change) */}
       <KeysTable session={session} />
+      {error && (
+        <Modal open={true} onClose={() => setError(null)}>
+          <p>{error}</p>
+        </Modal>
+      )}
     </div>
   );
 }
@@ -81,8 +88,9 @@ function KeysTable({ session }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
   const [selectedKey, setSelectedKey] = useState(null);
+  const [error, setError] = useState(null);
 
-  async function loadData() {
+  const loadData = useCallback(async () => {
     if (!session.token) return;
     try {
       const resp = await getKeys(session);
@@ -90,29 +98,30 @@ function KeysTable({ session }) {
     } catch (error) {
       console.error(error);
     }
-  }
+  }, []);
 
   useEffect(() => {
+    console.log(session.token);
     loadData();
   }, [session.token, loadData]);
 
   const handleConfirmDeleteKey = async () => {
+    setModalOpen(false);
     try {
       await deleteKey(session, selectedKey);
       loadData();
-      setModalOpen(false);
     } catch (error) {
-      console.error(error);
+      setError("Failed to delete key.");
     }
   };
 
   const handleConfirmUpdateExpiresAt = async () => {
+    setModalOpen(false);
     try {
       await updateKey(session, selectedKey);
       loadData();
-      setModalOpen(false);
     } catch (error) {
-      console.error(error);
+      setError("Failed to update key.");
     }
   };
 
@@ -200,6 +209,11 @@ function KeysTable({ session }) {
             onConfirm={handleConfirmUpdateExpiresAt}
             onCancel={() => setModalOpen(false)}
           />
+        )}
+        {error && (
+          <Modal open={true} onClose={() => setError(null)}>
+            <p>{error}</p>
+          </Modal>
         )}
       </div>
     </div>

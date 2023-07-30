@@ -253,7 +253,7 @@ export default {
       description:
         "A project that simulates soft deformable objects using soft-body dynamics.",
       tags: [
-        "Python",
+        "python",
         "softbody dynamics",
         "animation",
         "simulation",

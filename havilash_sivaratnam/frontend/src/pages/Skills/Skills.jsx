@@ -15,11 +15,9 @@ export default function Skills() {
   const [isOpen2, setIsOpen2] = useState(!isLargeDevice);
 
   const [selectedSkill, setSelectedSkill] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const handleSkillClick = (skill) => {
     setSelectedSkill(skill);
-    setModalOpen(true);
   };
 
   useEffect(() => {
@@ -55,7 +53,6 @@ export default function Skills() {
             key={`SkillBar-${index}`}
             title={item.title}
             percent={item.percent}
-            onClick={() => item.details && handleSkillClick(item)}
           />
         ))}
       </Block>
@@ -65,7 +62,6 @@ export default function Skills() {
         subtitle="Sorted by experience"
         open={isOpen2}
         onIsOpenChange={(o) => {
-          console.log(o, 2);
           setIsOpen2(o);
           if (!isLargeDevice && o) setIsOpen1(false);
         }}
@@ -77,32 +73,18 @@ export default function Skills() {
               title={item.title}
               icon={item.icon}
               onClick={() => item.details && handleSkillClick(item)}
+              selected={selectedSkill === item}
             />
           ))}
         </div>
       </Block>
-      {selectedSkill && (
-        <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-          <div className="details flex flex-col gap-4 p-8">
-            <h2 className="text-white text-xl">{selectedSkill.title}</h2>
-            <ul className="bullet list-disc">
-              {selectedSkill.details.map((detail, index) => (
-                <li key={`detail-${index}`}>{detail}</li>
-              ))}
-            </ul>
-          </div>
-        </Modal>
-      )}
     </section>
   );
 }
 
 function SkillBar({ title, percent, onClick }) {
   return (
-    <div
-      onClick={onClick}
-      className="mt-6 w-full flex flex-col gap-4 cursor-pointer"
-    >
+    <div className="mt-6 w-full flex flex-col gap-4 cursor-pointer">
       <h2 className="text-white text-xl">{title}</h2>
       <div className="w-full bg-body-color-2 h-2">
         <div
@@ -114,14 +96,19 @@ function SkillBar({ title, percent, onClick }) {
   );
 }
 
-function SkillBox({ title, icon, onClick }) {
+function SkillBox({ title, icon, onClick, selected }) {
   const Icon = icon;
   const fontSize = title.length > 8 ? "1rem" : "1.2rem";
+  const gridSpan = selected ? "span 2" : "span 1";
   return (
     <div
       onClick={onClick}
-      className="w-28 h-28 border-4 border-primary-color rounded-2xl 
- flex flex-col justify-evenly items-center cursor-pointer"
+      className="transition-all duration-500 w-full h-full aspect-square border-4 border-primary-color rounded-2xl 
+        flex flex-col justify-evenly items-center cursor-pointer"
+      style={{
+        gridColumn: gridSpan,
+        gridRow: gridSpan,
+      }}
     >
       {/* {icon} */}
       <Icon className="text-5xl" />

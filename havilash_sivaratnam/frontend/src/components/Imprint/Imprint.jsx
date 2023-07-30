@@ -13,7 +13,7 @@ export default function Imprint() {
       </ul>
       <h2>Kontakt</h2>
       <ul>
-        <li>+49 77 954 20 22</li>
+        <li>+41 77 954 20 22</li>
         <li>E-Mail: havilash.sivaratnam@protonmail.com</li>
       </ul>
     </div>

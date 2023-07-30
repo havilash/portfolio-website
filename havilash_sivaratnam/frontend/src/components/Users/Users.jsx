@@ -18,6 +18,7 @@ export default function Users({ session }) {
   const [selectedUser, setSelectedUser] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState(null);
+  const [error, setError] = useState(null);
 
   const loadUsers = useCallback(async () => {
     if (!session.token) return;
@@ -25,8 +26,7 @@ export default function Users({ session }) {
       const newUsers = await getUsers(session);
       setUsers(newUsers);
     } catch (error) {
-      console.error(error);
-      // TODO: display error message to user
+      setError(error.message);
     }
   }, [session]);
 
@@ -41,6 +41,7 @@ export default function Users({ session }) {
   }, []);
 
   const handleConfirmAccessChange = useCallback(async () => {
+    setModalOpen(false);
     try {
       await updateUser(session, {
         id: selectedUser.id,
@@ -51,24 +52,21 @@ export default function Users({ session }) {
           user.id === selectedUser.id ? selectedUser : user
         )
       );
-      setModalOpen(false);
     } catch (error) {
-      console.error(error);
-      // TODO: display error message to user
+      setError("Failed to update user access.");
     }
   }, [selectedUser, session]);
 
   const handleDeleteUser = useCallback(
     async (user) => {
+      setModalOpen(false);
       try {
         await deleteUser(session, user);
         setUsers((prevUsers) =>
           prevUsers.filter((pUser) => pUser.id !== user.id)
         );
-        setModalOpen(false);
       } catch (error) {
-        console.error(error);
-        // TODO: display error message to user
+        setError("Failed to delete user.");
       }
     },
     [session]
@@ -168,13 +166,20 @@ export default function Users({ session }) {
             onCancel={() => setModalOpen(false)}
           />
         )}
-        {modalOpen && modalType === "comment" && (
-          <Modal
-            open={modalOpen}
-            onClose={() => setModalOpen(false)}
-            className="max-w-xl"
-          >
-            <p>{selectedUser.comment}</p>
+        {modalOpen &&
+          modalType === "comment" &&
+          selectedUser.comment !== null && (
+            <Modal
+              open={modalOpen}
+              onClose={() => setModalOpen(false)}
+              className="max-w-xl"
+            >
+              <p className="break-all hyphens-auto">{selectedUser.comment}</p>
+            </Modal>
+          )}
+        {error && (
+          <Modal open={true} onClose={() => setError(null)}>
+            <p>{error}</p>
           </Modal>
         )}
       </div>

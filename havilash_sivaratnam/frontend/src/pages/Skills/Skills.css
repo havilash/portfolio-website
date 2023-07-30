@@ -6,7 +6,7 @@
   }
 
   .skills__technologies {
-    @apply w-full grid gap-4 justify-items-center;
+    @apply w-full grid gap-4 justify-items-center transition-all;
     grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
   }
 }
