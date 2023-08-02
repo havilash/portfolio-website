@@ -23,6 +23,7 @@ export default function ProjectDocument() {
   const [containerWidth, setContainerWidth] = useState(null);
   const containerRef = useRef();
   const [isLoading, setIsLoading] = useState(true);
+  const [fileError, setFileError] = useState();
 
   function handleResize() {
     if (containerRef.current) {
@@ -32,29 +33,23 @@ export default function ProjectDocument() {
 
   useEffect(() => {
     async function checkDocument() {
-      if (project?.document) {
+      if (!project) return navigate("/projects");
+
+      if (project.document) {
         setDocumentUrl(`/documents/projects/${project.document}`);
-      } else if (project?.repo) {
+      } else if (project.repoDocument) {
         const repo = project.repo;
-        const filePaths = ["/docs/abstract.pdf", "/abstract.pdf"];
-        let fileFound = false;
-        for (const filePath of filePaths) {
-          try {
-            const data = await getRepoFile(repo, filePath);
-            if (data) {
-              setDocumentUrl(data.download_url);
-              fileFound = true;
-              break;
-            }
-          } catch (error) {
-            console.error(error);
+        try {
+          const data = await getRepoFile(repo, project?.repoDocument);
+          if (data) {
+            setDocumentUrl(data.download_url);
           }
-        }
-        if (!fileFound) {
-          navigate("/projects");
+        } catch (error) {
+          // console.error(error);
+          setFileError("File not found");
         }
       } else {
-        navigate("/projects");
+        setFileError("File coming soon");
       }
     }
 
@@ -77,59 +72,62 @@ export default function ProjectDocument() {
   }
 
   return (
-    documentUrl && (
-      <section className="section pt-16 sm:p-24 lg:p-48 2xl:px-80 min-h-screen">
-        <div className="document__data">
-          <div className="flex flex-row items-center gap-4">
-            <a
-              href={documentUrl}
-              download={`abstract_${project.title.toLowerCase()}`}
-            >
-              <MdOutlineFileDownload className="document__data__download" />
-            </a>
-            <h2 className="text-white mix-blend-difference text-[4vw] xs:text-2xl">
-              {`abstract_${project.title.toLowerCase()}`}
-            </h2>
-          </div>
-          <div className="flex flex-row items-center gap-4">
-            <a href={project.href} target="_blank" rel="noreferrer">
-              <BiCodeAlt className="document__data__button" />
-            </a>
-            {project.demo &&
-              (isValidUrl(project.demo) ? (
-                <a href={project.demo} target="_blank" rel="noreferrer">
-                  <BsPlay className="document__data__button" />
-                </a>
-              ) : (
-                <Link to={`/projects/${project.title.toLowerCase()}/demo`}>
-                  <BsPlay className="document__data__button" />
-                </Link>
-              ))}
-          </div>
+    <section className="section pt-16 sm:p-24 lg:p-48 2xl:px-80 min-h-screen">
+      <div className="document__data">
+        <div className="flex flex-row items-center gap-4">
+          <a href={documentUrl} download={`Abstract_${project.title}`}>
+            <MdOutlineFileDownload className="document__data__download" />
+          </a>
+          <h2 className="text-white mix-blend-difference text-[4vw] xs:text-2xl">
+            {`Abstract_${project.title}`}
+          </h2>
         </div>
-        <div ref={containerRef} className="document">
-          {isLoading && <SkeletonFile />}
-          {
-            <Document
-              file={documentUrl}
-              onLoadSuccess={onDocumentLoadSuccess}
-              loading=""
-            >
-              {Array.from(new Array(numPages), (el, index) => (
-                <Page
-                  className="shadow-lg"
-                  key={`page_${index + 1}`}
-                  pageNumber={index + 1}
-                  width={containerWidth}
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  loading=""
-                />
-              ))}
-            </Document>
-          }
+        <div className="flex flex-row items-center gap-4">
+          <a href={project.href} target="_blank" rel="noreferrer">
+            <BiCodeAlt className="document__data__button" />
+          </a>
+          {project.demo &&
+            (isValidUrl(project.demo) ? (
+              <a href={project.demo} target="_blank" rel="noreferrer">
+                <BsPlay className="document__data__button" />
+              </a>
+            ) : (
+              <Link to={`/projects/${project.title.toLowerCase()}/demo`}>
+                <BsPlay className="document__data__button" />
+              </Link>
+            ))}
         </div>
-      </section>
-    )
+      </div>
+      <div ref={containerRef} className="document">
+        {fileError && (
+          <div
+            className="bg-white w-full flex justify-center items-center"
+            style={{ aspectRatio: "1/1.414" }}
+          >
+            <h1 className="text-black text-[8vw] xs:text-4xl">{fileError}</h1>
+          </div>
+        )}
+        {isLoading && !fileError && <SkeletonFile />}
+        {documentUrl && (
+          <Document
+            file={documentUrl}
+            onLoadSuccess={onDocumentLoadSuccess}
+            loading=""
+          >
+            {Array.from(new Array(numPages), (el, index) => (
+              <Page
+                className="shadow-lg"
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                width={containerWidth}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+                loading=""
+              />
+            ))}
+          </Document>
+        )}
+      </div>
+    </section>
   );
 }

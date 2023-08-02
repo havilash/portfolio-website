@@ -63,11 +63,11 @@ function App() {
           <Route exact path="/skills" element={<Skills />} />
           <Route exact path="/projects" element={<Projects />} />
           <Route path="/projects/:project" element={<ProjectDocument />} />
-          <Route
+          {/* <Route
             exact
             path="/projects/:project/demo"
             element={<ProjectDemo />}
-          />
+          /> */}
           <Route
             exact
             path="/portfolio"

@@ -73,14 +73,6 @@ export default {
       {
         title: "Python",
         percent: 80,
-        details: [
-          "Advanced",
-          "Pygame",
-          "Tkinter",
-          "Kivy",
-          "TensorFlow",
-          "Keras",
-        ],
       },
       {
         title: "JavaScript",
@@ -89,99 +81,80 @@ export default {
       {
         title: "HTML / CSS",
         percent: 85,
-        details: ["Advanced", "HTML5", "CSS3", "Responsive Design"],
       },
       {
         title: "PHP",
         percent: 45,
-        details: ["Intermediate", "Laravel", "WordPress"],
       },
       {
         title: "C",
         percent: 35,
-        details: ["Beginner", "Data Structures", "Algorithms"],
       },
       {
         title: "C#",
         percent: 45,
-        details: ["Intermediate", ".NET", "Unity"],
       },
       {
         title: "Java",
         percent: 45,
-        details: ["Intermediate", "Spring", "Android"],
       },
       {
         title: "Lua",
         percent: 55,
-        details: ["Beginner"],
       },
     ],
     technologies: [
       {
         title: "Git",
         icon: SiGit,
-        details: ["Advanced", "Version Control"],
       },
       {
         title: "Docker",
         icon: SiDocker,
-        details: ["Intermediate", "Containerization"],
       },
       {
         title: "AWS",
         icon: SiAmazonaws,
-        details: ["Intermediate", "EC2", "S3", "Lambda"],
       },
       {
         title: "React",
         icon: SiReact,
-        details: ["Intermediate", "Frontend Development"],
       },
       {
         title: "Node.js",
         icon: SiNodedotjs,
-        details: ["Intermediate", "Backend Development"],
       },
       {
         title: "MongoDB",
         icon: SiMongodb,
-        details: ["Intermediate", "NoSQL Database"],
       },
       {
         title: "MySQL",
         icon: SiMysql,
-        details: ["Intermediate", "SQL Database"],
       },
       {
         title: "PostgreSQL",
         icon: SiPostgresql,
-        details: ["Intermediate", "SQL Database"],
       },
       {
         title: "Redis",
         icon: SiRedis,
-        details: ["Intermediate", "In-memory Data Store"],
       },
       {
         title: "Nginx",
         icon: SiNginx,
-        details: ["Intermediate", "Web Server"],
       },
       {
         title: "Apache",
         icon: SiApache,
-        details: ["Intermediate", "Web Server"],
       },
       {
         title: "Terraform",
         icon: SiTerraform,
-        details: ["Intermediate", "Infrastructure as Code"],
       },
       {
         title: "Kubernetes",
         icon: SiKubernetes,
-        details: ["Intermediate", "Container Orchestration"],
       },
     ],
   },
@@ -190,9 +163,9 @@ export default {
     {
       repo: "Havilash/Neural-Network",
       title: "Neural-Network",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-      // description: "A versatile neural network package for classification tasks, including image recognition.",
+      image: "./assets/projects/neural-network.png",
+      description:
+        "A versatile neural network package for classification tasks, including image recognition.",
       tags: [
         "neural network",
         "classification",
@@ -202,12 +175,12 @@ export default {
         "ai",
       ],
       href: "https://github.com/Havilash/Neural-Network",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "TD99/planet-go",
       title: "Planet-Go",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+      image: "",
       description:
         "An educational app that represents the solar system on a city map. Players walk to planets and learn about the solar system.",
       tags: [
@@ -225,78 +198,50 @@ export default {
         "fitness",
       ],
       href: "https://github.com/TD99/planet-go",
-      document: "placeholder.pdf",
     },
     {
       repo: "Havilash/Portfolio-Website-v1",
       title: "Portfolio-Website-v1",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+      image: "./assets/projects/portfolio-website-v1.png",
       description:
-        "A personal portfolio website to showcase your work and skills.",
+        "A provisional portfolio website for future applications, created with React and TailwindCSS for the frontend and Node Express for the backend.",
       tags: [
         "portfolio website v1",
-        "version 1",
         "website",
         "html",
         "css",
         "javascript",
+        "react",
+        "tailwindcss",
       ],
       href: "https://github.com/Havilash/Portfolio-Website-v1",
-      demo: "https://portfolio-website-backend.onrender.com/",
+      repoDocument: "/docs/abstract.pdf",
+      demo: "https://havilash-portfolio-website-v1.netlify.app/",
     },
     {
       repo: "Havilash/Softbody-Simulation",
       title: "Softbody-Simulation",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+      image: "./assets/projects/softbody-simulation.png",
       description:
         "A project that simulates soft deformable objects using soft-body dynamics.",
-      tags: [
-        "python",
-        "softbody dynamics",
-        "animation",
-        "simulation",
-        "python",
-        "pygame",
-        "physics",
-      ],
+      tags: ["softbody simulation", "python", "pygame", "physics"],
       href: "https://github.com/Havilash/Softbody-Simulation",
-      document: "placeholder.pdf",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "Havilash/Golf-Game",
       title: "Golf-Game",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+      image: "./assets/projects/golf-game.png",
       description:
         "A golf game with custom physics engine for realistic ball movement.",
       tags: ["golf game", "physics", "python", "ball", "pygame"],
       href: "https://github.com/Havilash/Golf-Game",
-      document: "placeholder.pdf",
-    },
-    {
-      title: "Anmeldesystem",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
-      description:
-        "A backend for a web application built using the Django framework.",
-      tags: [
-        "django backend",
-        "anmeldesystem",
-        "django",
-        "backend",
-        "web development",
-        "python",
-      ],
-      href: "",
-      document: "test.pdf",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "Havilash/OneCalc",
       title: "OneCalc",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+      image: "",
       description:
         "A simple and easy-to-understand calculator application with a history that can be filtered by date and a graphing calculator build wit .NET MAUI",
       tags: [
@@ -310,7 +255,80 @@ export default {
         "c#",
       ],
       href: "https://github.com/Havilash/OneCalc",
-      document: "placeholder.pdf",
+    },
+    {
+      repo: "Havilash/Chess-HTML5",
+      title: "Chess-HTML5",
+      image: "./assets/projects/chess-html5.png",
+      description:
+        "Chess-HTML5 is a simple chess game built using HTML5, JavaScript, and CSS. Playable directly in your web browser, it features intuitive controls and a clean design.",
+      tags: ["chess html5", "javascript", "html", "css"],
+      href: "https://github.com/Havilash/Chess-HTML5",
+      demo: "https://havilash-chess-html5.netlify.app/",
+      repoDocument: "/docs/abstract.pdf",
+    },
+    {
+      repo: "Havilash/TRex-Runner-AI",
+      title: "TRex-Runner-AI",
+      image: "",
+      description:
+        "A T-Rex runner game with an AI that learns to play it. The AI uses the NEAT algorithm.",
+      tags: [
+        "trex runner ai",
+        "python",
+        "pygame",
+        "neat",
+        "ai",
+        "neural network",
+      ],
+      href: "https://github.com/Havilash/TRex-Runner-AI",
+    },
+    {
+      repo: "Havilash/A-Star-Algorithm",
+      title: "A-Star-Algorithm",
+      image: "",
+      description: "",
+      tags: ["a star algorithm", "python", "pygame", "pathfinding"],
+      href: "https://github.com/Havilash/A-Star-Algorithm",
+    },
+    {
+      repo: "Havilash/Face-Recognition",
+      title: "Face-Recognition",
+      image: "",
+      description: "",
+      tags: [
+        "face recognition",
+        "python",
+        "tensorflow",
+        "ai",
+        "neural network",
+        "label me",
+        "data",
+      ],
+      href: "https://github.com/Havilash/Face-Recognition",
+    },
+    {
+      repo: "Havilash/Hand-Tracking",
+      title: "Hand-Tracking",
+      image: "",
+      description: "",
+      tags: [
+        "face recognition",
+        "python",
+        "ai",
+        "neural network",
+        "mediapipe",
+        "mouse control",
+      ],
+      href: "https://github.com/Havilash/Hand-Tracking",
+    },
+    {
+      repo: "Havilash/Conways-Game-of-Life",
+      title: "Conways-Game-of-Life",
+      image: "",
+      description: "",
+      tags: ["conways game of life", "python", "pygame"],
+      href: "https://github.com/Havilash/Conways-Game-of-Life",
     },
   ],
   // portfolio

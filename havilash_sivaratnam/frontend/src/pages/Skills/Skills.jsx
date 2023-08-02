@@ -72,8 +72,6 @@ export default function Skills() {
               key={`SkillBox-${index}`}
               title={item.title}
               icon={item.icon}
-              onClick={() => item.details && handleSkillClick(item)}
-              selected={selectedSkill === item}
             />
           ))}
         </div>
@@ -82,9 +80,9 @@ export default function Skills() {
   );
 }
 
-function SkillBar({ title, percent, onClick }) {
+function SkillBar({ title, percent }) {
   return (
-    <div className="mt-6 w-full flex flex-col gap-4 cursor-pointer">
+    <div className="mt-6 w-full flex flex-col gap-4">
       <h2 className="text-white text-xl">{title}</h2>
       <div className="w-full bg-body-color-2 h-2">
         <div
@@ -96,19 +94,14 @@ function SkillBar({ title, percent, onClick }) {
   );
 }
 
-function SkillBox({ title, icon, onClick, selected }) {
+function SkillBox({ title, icon, onClick }) {
   const Icon = icon;
   const fontSize = title.length > 8 ? "1rem" : "1.2rem";
-  const gridSpan = selected ? "span 2" : "span 1";
   return (
     <div
       onClick={onClick}
       className="transition-all duration-500 w-full h-full aspect-square border-4 border-primary-color rounded-2xl 
-        flex flex-col justify-evenly items-center cursor-pointer"
-      style={{
-        gridColumn: gridSpan,
-        gridRow: gridSpan,
-      }}
+        flex flex-col justify-evenly items-center"
     >
       {/* {icon} */}
       <Icon className="text-5xl" />

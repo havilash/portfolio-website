@@ -157,11 +157,15 @@ function Project({ title, image, description, authors }) {
   return (
     <div className="bg-block-color w-[20rem] h-[26rem] rounded-lg relative">
       <Link to={`/projects/${title.toLowerCase()}`}>
-        <img
-          src={image}
-          alt={title}
-          className="bg-[#fffc] text-center w-full h-1/2 object-cover rounded-t-lg"
-        />
+        <div className="bg-[#0f0f0f] p-4 h-1/2 flex justify-center items-center rounded-t-lg">
+          {image && (
+            <img
+              src={image}
+              alt={title}
+              className="text-center w-full h-full object-contain"
+            />
+          )}
+        </div>
         <div className="p-4">
           <h2 className="text-primary mt-4">{title ? title : <Skeleton />}</h2>
           {description ? (
