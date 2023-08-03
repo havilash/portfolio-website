@@ -26,7 +26,7 @@ export default function Users({ session }) {
       const newUsers = await getUsers(session);
       setUsers(newUsers);
     } catch (error) {
-      setError(error.message);
+      setError("Failed to get users");
     }
   }, [session]);
 

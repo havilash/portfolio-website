@@ -96,12 +96,11 @@ function KeysTable({ session }) {
       const resp = await getKeys(session);
       setKeys(resp);
     } catch (error) {
-      console.error(error);
+      setError("Failed to get keys");
     }
   }, []);
 
   useEffect(() => {
-    console.log(session.token);
     loadData();
   }, [session.token, loadData]);
 

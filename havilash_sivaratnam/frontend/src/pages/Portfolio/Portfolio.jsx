@@ -6,20 +6,21 @@ import { Link } from "react-router-dom";
 import Modal from "src/components/modals/Modal/Modal";
 import data from "src/data";
 import { useRedirectToLogin } from "src/hooks/useSession";
-import { getFilesZip } from "src/lib/api";
 import { base64toObjectUrl } from "src/services/Utils";
 import "./Portfolio.css";
+import { getFile } from "src/lib/api";
 
 export default function Portfolio({ session }) {
   useRedirectToLogin(session, 1);
   const [document, setDocument] = useState();
   const [modalOpen, setModalOpen] = useState(false);
-  const [filesZip, setFilesZip] = useState();
+  const [allZip, setAllZip] = useState();
 
   async function loadFilesZip() {
     try {
-      const newFilesZip = await getFilesZip(session);
-      setFilesZip(newFilesZip.zip);
+      const newAll = await getFile(session, { name: "all.zip" });
+      console.log(newAll);
+      setAllZip(base64toObjectUrl(newAll.file, "application/zip"));
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +41,7 @@ export default function Portfolio({ session }) {
       <ul className="w-80 flex flex-col gap-4">
         <li className="self-center mb-2">
           <a
-            href={filesZip ? base64toObjectUrl(filesZip) : ""}
+            href={allZip ? allZip : ""}
             className="portfolio__button"
             download="portfolio.zip"
           >

@@ -180,7 +180,7 @@ export default {
     {
       repo: "TD99/planet-go",
       title: "Planet-Go",
-      image: "",
+      image: "./assets/projects/planet-go.png",
       description:
         "An educational app that represents the solar system on a city map. Players walk to planets and learn about the solar system.",
       tags: [
@@ -239,24 +239,6 @@ export default {
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/OneCalc",
-      title: "OneCalc",
-      image: "",
-      description:
-        "A simple and easy-to-understand calculator application with a history that can be filtered by date and a graphing calculator build wit .NET MAUI",
-      tags: [
-        "calculator",
-        "math",
-        "history",
-        "graphing calculator",
-        "windows",
-        "android",
-        ".net maui",
-        "c#",
-      ],
-      href: "https://github.com/Havilash/OneCalc",
-    },
-    {
       repo: "Havilash/Chess-HTML5",
       title: "Chess-HTML5",
       image: "./assets/projects/chess-html5.png",
@@ -270,7 +252,7 @@ export default {
     {
       repo: "Havilash/TRex-Runner-AI",
       title: "TRex-Runner-AI",
-      image: "",
+      image: "./assets/projects/trex-runner-ai.png",
       description:
         "A T-Rex runner game with an AI that learns to play it. The AI uses the NEAT algorithm.",
       tags: [
@@ -282,20 +264,23 @@ export default {
         "neural network",
       ],
       href: "https://github.com/Havilash/TRex-Runner-AI",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "Havilash/A-Star-Algorithm",
       title: "A-Star-Algorithm",
-      image: "",
-      description: "",
+      image: "./assets/projects/a-star-algorithm.png",
+      description:
+        "A Pygame visualization of the A-Star pathfinding algorithm, demonstrating how it finds the shortest path between two points.",
       tags: ["a star algorithm", "python", "pygame", "pathfinding"],
       href: "https://github.com/Havilash/A-Star-Algorithm",
     },
     {
       repo: "Havilash/Face-Recognition",
       title: "Face-Recognition",
-      image: "",
-      description: "",
+      image: "./assets/projects/face-recognition.png",
+      description:
+        "A machine learning project that detects faces in images, using a custom-trained model on a self-made dataset.",
       tags: [
         "face recognition",
         "python",
@@ -306,12 +291,14 @@ export default {
         "data",
       ],
       href: "https://github.com/Havilash/Face-Recognition",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "Havilash/Hand-Tracking",
       title: "Hand-Tracking",
-      image: "",
-      description: "",
+      image: "./assets/projects/hand-tracking.png",
+      description:
+        "A Mediapipe project that tracks hand movements and gestures, with features such as volume and mouse control.",
       tags: [
         "face recognition",
         "python",
@@ -323,12 +310,13 @@ export default {
       href: "https://github.com/Havilash/Hand-Tracking",
     },
     {
-      repo: "Havilash/Conways-Game-of-Life",
+      repo: "Havilash/Conways-Game-of-Life_Pygame",
       title: "Conways-Game-of-Life",
-      image: "",
-      description: "",
+      image: "./assets/projects/conways-game-of-life.png",
+      description:
+        "A Pygame implementation of Conway’s Game of Life, simulating the evolution of a cellular automaton based on rules.",
       tags: ["conways game of life", "python", "pygame"],
-      href: "https://github.com/Havilash/Conways-Game-of-Life",
+      href: "https://github.com/Havilash/Conways-Game-of-Life_Pygame",
     },
   ],
   // portfolio

@@ -318,23 +318,6 @@ export async function getFiles({ token }) {
   return data;
 }
 
-export async function getFilesZip({ token }) {
-  const response = await fetch(`${DATA_URL}/files/zip`, {
-    method: "GET",
-    headers: {
-      "content-type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    return Promise.reject(response);
-  }
-
-  const data = await response.json();
-  return data;
-}
-
 export async function createFile({ token }, { name, file }) {
   const response = await fetch(`${DATA_URL}/file`, {
     method: "POST",

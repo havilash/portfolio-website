@@ -82,7 +82,7 @@ class DataController extends Controller
         }
         
         // Decode the Base64-encoded string
-        $content = base64_decode(preg_replace('#^data:application/\w+;base64,#i', '', $request->input('file')));
+        $content = base64_decode(preg_replace('#^data:application/[\w-]+;base64,#i', '', $request->input('file')));
         
         // Update the file's information and content
         $file->fill($request->except('file'));
@@ -117,7 +117,7 @@ class DataController extends Controller
         $file = new File($validator->validated());
     
         // Decode the Base64-encoded string
-        $content = base64_decode(preg_replace('#^data:application/\w+;base64,#i', '', $request->input('file')));
+        $content = base64_decode(preg_replace('#^data:application/[\w-]+;base64,#i', '', $request->input('file')));
     
         // Update the file's content
         $file->file = $content;
@@ -147,32 +147,5 @@ class DataController extends Controller
         $file->delete();
 
         return response()->json(['success' => 'File deleted successfully'], 200);
-    }
-
-    /**
-     * Get a zip file with all files in the database.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getFilesZip()
-    {
-        $files = File::all();
-        $zip = new \ZipArchive();
-        $zipFileName = 'files.zip';
-        if ($zip->open($zipFileName, \ZipArchive::CREATE) === true) {
-            foreach ($files as $file) {
-                if ($file->file){
-                    $zip->addFromString($file->name, $file->file);
-                }
-            }
-            $zip->close();
-        }
-
-
-        $content = file_get_contents($zipFileName);
-        $base64 = base64_encode($content);
-        unlink($zipFileName);
-
-        return response()->json(['zip' => $base64], 200);
     }
 }

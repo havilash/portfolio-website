@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
 import "./Document.css";
 import { getProjectByTitle, isValidUrl } from "src/services/Utils";
-import { checkFileExists, getRepoFile } from "src/lib/api";
+import { getRepoFile } from "src/lib/api";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -49,7 +49,7 @@ export default function ProjectDocument() {
           setFileError("File not found");
         }
       } else {
-        setFileError("File coming soon");
+        setFileError("In progress ...");
       }
     }
 

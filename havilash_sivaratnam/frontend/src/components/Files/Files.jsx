@@ -4,25 +4,24 @@ import { RxFile } from "react-icons/rx";
 import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
 import { createFile, deleteFile, getFiles, updateFile } from "src/lib/api";
 import { base64toObjectUrl, toBase64 } from "src/services/Utils";
+import Modal from "../modals/Modal/Modal";
 
 const fileHeader = ["name", "file", "delete"];
 
 export default function Files({ session }) {
   const [newFile, setNewFile] = useState();
+  const [error, setError] = useState();
 
   const handleCreateFile = async (event) => {
     event.preventDefault();
+    if (!newFile.file) return;
     try {
-      if (newFile.file && newFile.file.type !== "application/pdf") {
-        setNewFile({ ...newFile, file: null });
-        return;
-      }
       await createFile(session, {
         name: newFile.name,
         file: newFile.file ? await toBase64(newFile.file) : null,
       });
     } catch (error) {
-      console.error(error);
+      setError("Failed to create file.");
     }
   };
 
@@ -55,6 +54,11 @@ export default function Files({ session }) {
         </form>
       </div>
       <FilesTable session={session} />
+      {error && (
+        <Modal open={true} onClose={() => setError(null)}>
+          <p>{error}</p>
+        </Modal>
+      )}
     </div>
   );
 }
@@ -64,6 +68,7 @@ function FilesTable({ session }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [error, setError] = useState();
 
   const loadFiles = useCallback(async () => {
     if (!session.token) return;
@@ -71,7 +76,7 @@ function FilesTable({ session }) {
       const newFiles = await getFiles(session);
       setFiles(newFiles);
     } catch (error) {
-      console.error(error);
+      setError("Failed to load file.");
     }
   }, [session]);
 
@@ -81,26 +86,21 @@ function FilesTable({ session }) {
 
   const handleUpdateFile = async (name, file, event) => {
     try {
-      if (file.type !== "application/pdf") {
-        event.target.value = null;
-        return;
-      }
       await updateFile(session, {
         name,
         file: await toBase64(file),
       });
       loadFiles();
     } catch (error) {
-      console.error(error);
-      // TODO: display error message to user
+      setError("Failed to get files");
     }
   };
 
   const handleConfirmDeleteFile = async () => {
+    setModalOpen(false);
     try {
       await deleteFile(session, selectedFile);
       loadFiles();
-      setModalOpen(false);
     } catch (error) {
       console.error(error);
     }
@@ -186,6 +186,11 @@ function FilesTable({ session }) {
           />
         )}
       </div>
+      {error && (
+        <Modal open={true} onClose={() => setError(null)}>
+          <p>{error}</p>
+        </Modal>
+      )}
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
 import { useRedirectToLogin } from "src/hooks/useSession";
 import { getFile } from "src/lib/api";
-import { toUint8Array } from "src/services/Utils";
+import { base64toObjectUrl, toUint8Array } from "src/services/Utils";
 import "./Document.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -34,10 +34,7 @@ export default function PortfolioDocument({ session }) {
         const data = await getFile(session, { name: documentName });
         const fileContent = data.file;
         if (!fileContent) return navigate("/portfolio");
-        const binaryData = atob(fileContent); // to binary
-        const byteArray = toUint8Array(binaryData);
-        const blob = new Blob([byteArray], { type: "application/pdf" });
-        setDocument(URL.createObjectURL(blob));
+        setDocument(base64toObjectUrl(fileContent));
       } catch (error) {
         console.error(error);
         navigate("/portfolio");

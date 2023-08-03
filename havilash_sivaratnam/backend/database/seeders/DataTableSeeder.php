@@ -13,12 +13,10 @@ class DataTableSeeder extends Seeder
      * @var array
      */
     protected $fileNames = [
-        'cv_classic.pdf',
-        'cv_modern.pdf',
-        'certificate_ims.pdf',
-        'certificate_abacus.pdf',
-        'report_card_ims_1.pdf',
-        'report_card_ims_2.pdf',
+        'all.zip',
+        'cv.pdf',
+        'certificate.pdf',
+        'report_card.pdf',
     ];
 
     /**

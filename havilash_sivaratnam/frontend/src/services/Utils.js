@@ -72,10 +72,10 @@ export function toUint8Array(binaryString) {
   return byteArray;
 }
 
-export function base64toObjectUrl(file) {
+export function base64toObjectUrl(file, type = "application/pdf") {
   const binaryData = atob(file); // to binary
   const byteArray = toUint8Array(binaryData);
-  const blob = new Blob([byteArray], { type: "application/pdf" });
+  const blob = new Blob([byteArray], { type });
   return URL.createObjectURL(blob);
 }
 
