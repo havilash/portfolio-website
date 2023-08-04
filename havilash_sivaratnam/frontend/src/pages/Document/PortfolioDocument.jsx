@@ -20,6 +20,7 @@ export default function PortfolioDocument({ session }) {
   const [containerWidth, setContainerWidth] = useState(null);
   const containerRef = useRef();
   const [isLoading, setIsLoading] = useState(true);
+  const [fileError, setFileError] = useState();
 
   function handleResize() {
     if (containerRef.current) {
@@ -33,11 +34,11 @@ export default function PortfolioDocument({ session }) {
       try {
         const data = await getFile(session, { name: documentName });
         const fileContent = data.file;
-        if (!fileContent) return navigate("/portfolio");
+        if (!fileContent) return setFileError("File not found");
         setDocument(base64toObjectUrl(fileContent));
       } catch (error) {
-        console.error(error);
-        navigate("/portfolio");
+        // console.error(error);
+        setFileError("File not found");
       }
     }
 
@@ -77,7 +78,15 @@ export default function PortfolioDocument({ session }) {
         </div>
       </div>
       <div ref={containerRef} className="document relative">
-        {isLoading && <SkeletonFile />}
+        {fileError && (
+          <div
+            className="bg-white w-full flex justify-center items-center"
+            style={{ aspectRatio: "1/1.414" }}
+          >
+            <h1 className="text-black text-[8vw] xs:text-4xl">{fileError}</h1>
+          </div>
+        )}
+        {isLoading && !fileError && <SkeletonFile />}
         {
           <Document
             file={document}

@@ -14,4 +14,8 @@
   .portfolio__button__icon {
     @apply text-5xl text-primary-color;
   }
+
+  .portfolio__documents::-webkit-scrollbar-track {
+    @apply bg-block-color;
+  }
 }

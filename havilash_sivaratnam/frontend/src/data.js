@@ -1,4 +1,9 @@
-import { FaFacebookSquare, FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaFacebookSquare,
+  FaGithubSquare,
+  FaLinkedin,
+} from "react-icons/fa";
 import {
   SiGit,
   SiDocker,
@@ -38,7 +43,7 @@ export default {
     {
       name: "Facebook",
       href: "",
-      icon: FaFacebookSquare,
+      icon: FaEnvelope,
     },
   ],
   // home
@@ -324,23 +329,23 @@ export default {
     documents: [
       {
         title: "Lebenslauf",
-        documents: [
-          { title: "Klassisch", document: "cv_classic.pdf" },
-          { title: "Modern", document: "cv_modern.pdf" },
-        ],
+        document: "cv.pdf",
       },
       {
         title: "Zeugnis",
         documents: [
-          { title: "IMS 1", document: "report_card_ims_1.pdf" },
           { title: "IMS 2", document: "report_card_ims_2.pdf" },
+          { title: "IMS 1", document: "report_card_ims_1.pdf" },
+          { title: "Schule 9", document: "report_card_schule_9.pdf" },
+          { title: "Schule 8", document: "report_card_schule_8.pdf" },
+          { title: "Schule 7", document: "report_card_schule_7.pdf" },
         ],
       },
       {
         title: "Zertifikat",
         documents: [
           { title: "Abacus", document: "certificate_abacus.pdf" },
-          { title: "EFZ", document: "certificate_efz.pdf" },
+          { title: "Violine", document: "certificate_violine.pdf" },
         ],
       },
     ],

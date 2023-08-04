@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { RxFile } from "react-icons/rx";
@@ -12,6 +13,7 @@ import { getFile } from "src/lib/api";
 
 export default function Portfolio({ session }) {
   useRedirectToLogin(session, 1);
+  const navigate = useNavigate();
   const [document, setDocument] = useState();
   const [modalOpen, setModalOpen] = useState(false);
   const [allZip, setAllZip] = useState();
@@ -19,7 +21,6 @@ export default function Portfolio({ session }) {
   async function loadFilesZip() {
     try {
       const newAll = await getFile(session, { name: "all.zip" });
-      console.log(newAll);
       setAllZip(base64toObjectUrl(newAll.file, "application/zip"));
     } catch (error) {
       console.error(error);
@@ -32,8 +33,12 @@ export default function Portfolio({ session }) {
   }, [session.token]);
 
   function onButtonClick(item) {
-    setModalOpen(true);
-    setDocument(item);
+    if (item.document) {
+      navigate(`/portfolio/${item.document}`);
+    } else if (item.documents) {
+      setModalOpen(true);
+      setDocument(item);
+    }
   }
 
   return (
@@ -59,19 +64,23 @@ export default function Portfolio({ session }) {
             </button>
           </li>
         ))}
-        <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-          <div className="flex flex-col items-center gap-4">
+        <Modal
+          className="md:px-4"
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+        >
+          <div className="flex flex-col items-center gap-4 w-full max-h-[65vh] sm:max-h-[50vh]">
             <h2>{document && document.title}</h2>
-            <ul className="flex flex-col gap-2 w-full">
+            <ul className="portfolio__documents flex flex-col gap-2 w-full overflow-y-auto">
               {document &&
                 document.documents.map((item, index) => (
                   <li
                     key={`document-${index}`}
-                    className="flex flex-row gap-2 w-full"
+                    className="flex flex-row gap-2 w-full px-12"
                   >
                     <Link
                       to={`/portfolio/${item.document}`}
-                      className="portfolio__button-alt w-full"
+                      className="portfolio__button-alt w-full whitespace-nowrap"
                     >
                       {item.title}
                     </Link>

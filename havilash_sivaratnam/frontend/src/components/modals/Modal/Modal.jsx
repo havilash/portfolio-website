@@ -1,7 +1,14 @@
 import { useCallback, useEffect, useRef } from "react";
 import { MdClose } from "react-icons/md";
 
-export default function Modal({ children, open, onClose, onOpen, className }) {
+export default function Modal({
+  children,
+  open,
+  onClose,
+  onOpen,
+  className,
+  position,
+}) {
   const modalRef = useRef();
 
   const handleClick = useCallback(
@@ -38,6 +45,11 @@ export default function Modal({ children, open, onClose, onOpen, className }) {
             ? "min-w-[75%] xs:min-w-[50%] md:min-w-0 w-auto h-auto max-w-[90vw] max-h-[90vh] p-4 md:px-16"
             : "min-w-0 min-h-0 max-w-0 max-h-0 p-0"
         } ${className}`}
+      style={{
+        top: position?.[0] || "50%",
+        left: position?.[1] || "50%",
+        transform: position ? "" : "translate(-50%, -50%)",
+      }}
     >
       <button className="absolute top-0 right-0 m-4" onClick={onClose}>
         <MdClose className="font-extrabold" size={24} />
