@@ -1,5 +1,6 @@
 import {
   FaEnvelope,
+  FaEnvelopeSquare,
   FaFacebookSquare,
   FaGithubSquare,
   FaLinkedin,
@@ -42,8 +43,8 @@ export default {
     },
     {
       name: "Facebook",
-      href: "",
-      icon: FaEnvelope,
+      href: "mailto:havilash.sivaratnam@protonmail.com",
+      icon: FaEnvelopeSquare,
     },
   ],
   // home
@@ -224,6 +225,30 @@ export default {
       demo: "https://havilash-portfolio-website-v1.netlify.app/",
     },
     {
+      repo: "Havilash/LetsGo-AI",
+      title: "LetsGo-AI",
+      image: "./assets/projects/letsgo-ai.png",
+      description:
+        "LetsGo-AI is a game where players are paired with either a person or an AI, ask questions, and then guess if their counterpart is human or AI",
+      tags: [
+        "letsgo ai",
+        "ai",
+        "openai",
+        "chatgpt",
+        "java",
+        "android app",
+        "node express",
+        "mongodb",
+      ],
+      href: "https://github.com/Havilash/LetsGo-AI",
+      repoDocument: "/docs/abstract.pdf",
+      authors: [
+        { name: "Havilash", href: "https://github.com/Havilash" },
+        { name: "rergr", href: "https://github.com/rergr" },
+        { name: "mike" },
+      ],
+    },
+    {
       repo: "Havilash/Softbody-Simulation",
       title: "Softbody-Simulation",
       image: "./assets/projects/softbody-simulation.png",
@@ -279,6 +304,7 @@ export default {
         "A Pygame visualization of the A-Star pathfinding algorithm, demonstrating how it finds the shortest path between two points.",
       tags: ["a star algorithm", "python", "pygame", "pathfinding"],
       href: "https://github.com/Havilash/A-Star-Algorithm",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "Havilash/Face-Recognition",
@@ -313,6 +339,7 @@ export default {
         "mouse control",
       ],
       href: "https://github.com/Havilash/Hand-Tracking",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "Havilash/Conways-Game-of-Life_Pygame",
@@ -322,6 +349,7 @@ export default {
         "A Pygame implementation of Conway’s Game of Life, simulating the evolution of a cellular automaton based on rules.",
       tags: ["conways game of life", "python", "pygame"],
       href: "https://github.com/Havilash/Conways-Game-of-Life_Pygame",
+      repoDocument: "/docs/abstract.pdf",
     },
   ],
   // portfolio

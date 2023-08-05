@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { FiCopy } from "react-icons/fi";
 import { IoReloadCircleSharp } from "react-icons/io5";
-import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
+import ConfirmationPopup from "src/components/popups/ConfirmationPopup/ConfirmationPopup";
 import { createKey, deleteKey, getKeys, updateKey } from "src/lib/api";
-import Modal from "../modals/Modal/Modal";
+import Popup from "../popups/Popup/Popup";
 
 function getDateAfterDays(days) {
   const today = new Date();
@@ -73,9 +73,9 @@ export default function Keys({ session }) {
       {/* key table (with delete and expires_at change) */}
       <KeysTable session={session} />
       {error && (
-        <Modal open={true} onClose={() => setError(null)}>
+        <Popup open={true} onClose={() => setError(null)}>
           <p>{error}</p>
-        </Modal>
+        </Popup>
       )}
     </div>
   );
@@ -85,8 +85,8 @@ const keyHeader = ["key", "expires_at", "delete"];
 
 function KeysTable({ session }) {
   const [keys, setKeys] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState(null);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupType, setPopupType] = useState(null);
   const [selectedKey, setSelectedKey] = useState(null);
   const [error, setError] = useState(null);
 
@@ -105,7 +105,7 @@ function KeysTable({ session }) {
   }, [session.token, loadData]);
 
   const handleConfirmDeleteKey = async () => {
-    setModalOpen(false);
+    setPopupOpen(false);
     try {
       await deleteKey(session, selectedKey);
       loadData();
@@ -115,7 +115,7 @@ function KeysTable({ session }) {
   };
 
   const handleConfirmUpdateExpiresAt = async () => {
-    setModalOpen(false);
+    setPopupOpen(false);
     try {
       await updateKey(session, selectedKey);
       loadData();
@@ -171,8 +171,8 @@ function KeysTable({ session }) {
                           ...key,
                           expires_at: event.target.value,
                         });
-                        setModalOpen(true);
-                        setModalType("update");
+                        setPopupOpen(true);
+                        setPopupType("update");
                       }}
                     />
                   </td>
@@ -181,8 +181,8 @@ function KeysTable({ session }) {
                       className="font-extrabold text-black h-full text-center py-1 px-2 m-0 cursor-pointer bg-white"
                       onClick={() => {
                         setSelectedKey(key);
-                        setModalOpen(true);
-                        setModalType("delete");
+                        setPopupOpen(true);
+                        setPopupType("delete");
                       }}
                     >
                       Delete
@@ -193,26 +193,26 @@ function KeysTable({ session }) {
           </tbody>
         </table>
 
-        {modalOpen && modalType === "delete" && (
-          <ConfirmationModal
-            open={modalOpen}
+        {popupOpen && popupType === "delete" && (
+          <ConfirmationPopup
+            open={popupOpen}
             text="Are you sure you want to delete this key?"
             onConfirm={handleConfirmDeleteKey}
-            onCancel={() => setModalOpen(false)}
+            onCancel={() => setPopupOpen(false)}
           />
         )}
-        {modalOpen && modalType === "update" && (
-          <ConfirmationModal
-            open={modalOpen}
+        {popupOpen && popupType === "update" && (
+          <ConfirmationPopup
+            open={popupOpen}
             text="Are you sure you want to update this key?"
             onConfirm={handleConfirmUpdateExpiresAt}
-            onCancel={() => setModalOpen(false)}
+            onCancel={() => setPopupOpen(false)}
           />
         )}
         {error && (
-          <Modal open={true} onClose={() => setError(null)}>
+          <Popup open={true} onClose={() => setError(null)}>
             <p>{error}</p>
-          </Modal>
+          </Popup>
         )}
       </div>
     </div>

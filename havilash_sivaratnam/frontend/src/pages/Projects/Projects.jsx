@@ -192,9 +192,13 @@ function Project({ title, image, description, authors }) {
         {authors ? (
           authors.map((author, index) => (
             <li key={`${title}-author-${index}`}>
-              <a href={author.href} target="_blank" rel="noreferrer">
-                {author.name}
-              </a>
+              {author.href ? (
+                <a href={author.href} target="_blank" rel="noreferrer">
+                  {author.name}
+                </a>
+              ) : (
+                <span>{author.name}</span>
+              )}
             </li>
           ))
         ) : (

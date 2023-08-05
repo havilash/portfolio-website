@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { IoReloadCircleSharp } from "react-icons/io5";
-import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
-import Modal from "src/components/modals/Modal/Modal";
+import ConfirmationPopup from "src/components/popups/ConfirmationPopup/ConfirmationPopup";
+import Popup from "src/components/popups/Popup/Popup";
 import { deleteUser, getUsers, updateUser } from "src/lib/api";
 
 const userHeader = [
@@ -16,8 +16,8 @@ const userHeader = [
 export default function Users({ session }) {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState(null);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupType, setPopupType] = useState(null);
   const [error, setError] = useState(null);
 
   const loadUsers = useCallback(async () => {
@@ -36,12 +36,12 @@ export default function Users({ session }) {
 
   const handleAccessChange = useCallback((event, user) => {
     setSelectedUser({ ...user, access: event.target.value });
-    setModalOpen(true);
-    setModalType("access");
+    setPopupOpen(true);
+    setPopupType("access");
   }, []);
 
   const handleConfirmAccessChange = useCallback(async () => {
-    setModalOpen(false);
+    setPopupOpen(false);
     try {
       await updateUser(session, {
         id: selectedUser.id,
@@ -59,7 +59,7 @@ export default function Users({ session }) {
 
   const handleDeleteUser = useCallback(
     async (user) => {
-      setModalOpen(false);
+      setPopupOpen(false);
       try {
         await deleteUser(session, user);
         setUsers((prevUsers) =>
@@ -104,9 +104,9 @@ export default function Users({ session }) {
                   <td
                     className="table__col overflow-hidden whitespace-nowrap overflow-ellipsis max-w-[10rem] cursor-pointer"
                     onClick={() => {
-                      setModalOpen(true);
+                      setPopupOpen(true);
                       setSelectedUser(user);
-                      setModalType("comment");
+                      setPopupType("comment");
                     }}
                   >
                     {user.comment}
@@ -135,8 +135,8 @@ export default function Users({ session }) {
                         className="font-extrabold text-black h-full text-center py-1 px-2 m-0 cursor-pointer bg-white"
                         onClick={() => {
                           setSelectedUser(user);
-                          setModalOpen(true);
-                          setModalType("delete");
+                          setPopupOpen(true);
+                          setPopupType("delete");
                         }}
                       >
                         Delete
@@ -150,37 +150,37 @@ export default function Users({ session }) {
           </tbody>
         </table>
 
-        {modalOpen && modalType === "access" && (
-          <ConfirmationModal
-            open={modalOpen}
+        {popupOpen && popupType === "access" && (
+          <ConfirmationPopup
+            open={popupOpen}
             text="Are you sure you want to change the access value for this user?"
             onConfirm={handleConfirmAccessChange}
-            onCancel={() => setModalOpen(false)}
+            onCancel={() => setPopupOpen(false)}
           />
         )}
-        {modalOpen && modalType === "delete" && (
-          <ConfirmationModal
-            open={modalOpen}
+        {popupOpen && popupType === "delete" && (
+          <ConfirmationPopup
+            open={popupOpen}
             text="Are you sure you want to delete this user?"
             onConfirm={() => handleDeleteUser(selectedUser)}
-            onCancel={() => setModalOpen(false)}
+            onCancel={() => setPopupOpen(false)}
           />
         )}
-        {modalOpen &&
-          modalType === "comment" &&
+        {popupOpen &&
+          popupType === "comment" &&
           selectedUser.comment !== null && (
-            <Modal
-              open={modalOpen}
-              onClose={() => setModalOpen(false)}
+            <Popup
+              open={popupOpen}
+              onClose={() => setPopupOpen(false)}
               className="max-w-xl"
             >
               <p className="break-all hyphens-auto">{selectedUser.comment}</p>
-            </Modal>
+            </Popup>
           )}
         {error && (
-          <Modal open={true} onClose={() => setError(null)}>
+          <Popup open={true} onClose={() => setError(null)}>
             <p>{error}</p>
-          </Modal>
+          </Popup>
         )}
       </div>
     </div>

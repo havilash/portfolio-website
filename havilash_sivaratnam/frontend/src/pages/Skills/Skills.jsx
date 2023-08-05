@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Block from "src/components/Block/Block";
 import data from "src/data.js";
 
-import Modal from "src/components/modals/Modal/Modal";
+import Popup from "src/components/popups/Popup/Popup";
 import "./Skills.css";
 
 const skills = data.skills;

@@ -3,7 +3,7 @@ import { FaCheckCircle, FaKey, FaTimesCircle } from "react-icons/fa";
 import { Link, useSearchParams } from "react-router-dom";
 
 import { ReactComponent as Loader } from "src/assets/loader.svg";
-import Modal from "src/components/modals/Modal/Modal";
+import Popup from "src/components/popups/Popup/Popup";
 import { login, register } from "src/lib/api";
 import { readForm } from "src/services/Utils";
 import "./Registration.css";
@@ -50,7 +50,7 @@ export default function Registration({ session }) {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -91,7 +91,7 @@ export default function Registration({ session }) {
 
   useEffect(() => {
     if (status == "success") {
-      setModalOpen(true);
+      setPopupOpen(true);
     }
   }, [status]);
 
@@ -183,7 +183,7 @@ export default function Registration({ session }) {
           <Link to="/login">Log In</Link>
         </fieldset>
       </form>
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+      <Popup open={popupOpen} onClose={() => setPopupOpen(false)}>
         <div className="max-w-[24rem]">
           {searchParams.get("key") ? (
             <p>
@@ -199,7 +199,7 @@ export default function Registration({ session }) {
             </p>
           )}
         </div>
-      </Modal>
+      </Popup>
     </section>
   );
 }

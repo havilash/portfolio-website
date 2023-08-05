@@ -4,7 +4,7 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { RxFile } from "react-icons/rx";
 
 import { Link } from "react-router-dom";
-import Modal from "src/components/modals/Modal/Modal";
+import Popup from "src/components/popups/Popup/Popup";
 import data from "src/data";
 import { useRedirectToLogin } from "src/hooks/useSession";
 import { base64toObjectUrl } from "src/services/Utils";
@@ -15,7 +15,7 @@ export default function Portfolio({ session }) {
   useRedirectToLogin(session, 1);
   const navigate = useNavigate();
   const [document, setDocument] = useState();
-  const [modalOpen, setModalOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
   const [allZip, setAllZip] = useState();
 
   async function loadFilesZip() {
@@ -36,7 +36,7 @@ export default function Portfolio({ session }) {
     if (item.document) {
       navigate(`/portfolio/${item.document}`);
     } else if (item.documents) {
-      setModalOpen(true);
+      setPopupOpen(true);
       setDocument(item);
     }
   }
@@ -64,10 +64,10 @@ export default function Portfolio({ session }) {
             </button>
           </li>
         ))}
-        <Modal
+        <Popup
           className="md:px-4"
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
+          open={popupOpen}
+          onClose={() => setPopupOpen(false)}
         >
           <div className="flex flex-col items-center gap-4 w-full max-h-[65vh] sm:max-h-[50vh]">
             <h2>{document && document.title}</h2>
@@ -88,7 +88,7 @@ export default function Portfolio({ session }) {
                 ))}
             </ul>
           </div>
-        </Modal>
+        </Popup>
       </ul>
     </section>
   );

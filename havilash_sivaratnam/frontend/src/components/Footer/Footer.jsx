@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from "src/assets/logo.svg";
 import data from "src/data.js";
 import { generateBars } from "src/services/Utils";
 import Imprint from "../Imprint/Imprint";
-import Modal from "../modals/Modal/Modal";
+import Popup from "../popups/Popup/Popup";
 import "./Footer.css";
 
 export default function Footer({ className, divRef }) {
@@ -49,9 +49,9 @@ export default function Footer({ className, divRef }) {
       ref={divRef}
       className={`footer relative h-auto w-screen ${className}`}
     >
-      <Modal open={imprintOpen} onClose={() => setImprintOpen(false)}>
+      <Popup open={imprintOpen} onClose={() => setImprintOpen(false)}>
         <Imprint />
-      </Modal>
+      </Popup>
       <canvas ref={canvasRef} className="w-full h-32" />
       <div className="footer__content">
         <div className="footer__content__text">
@@ -79,17 +79,11 @@ export default function Footer({ className, divRef }) {
                 </li>
               ))}
             </ul>
-            <p className="font-extralight opacity-80">
-              E-Mail:{" "}
-              <a href="mailto:havilash.sivaratnam@protonmail.com">
-                havilash.sivaratnam@protonmail.com
-              </a>
-            </p>
             <button
               className="self-start mt-2 opacity-80"
               onClick={() => setImprintOpen(true)}
             >
-              Imprint
+              Impressum
             </button>
           </div>
         </div>

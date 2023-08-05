@@ -3,7 +3,7 @@ import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import { ReactComponent as Loader } from "src/assets/loader.svg";
-import Modal from "src/components/modals/Modal/Modal";
+import Popup from "src/components/popups/Popup/Popup";
 import { login, logout } from "src/lib/api";
 import { readForm } from "src/services/Utils";
 import "./Login.css";
@@ -31,7 +31,7 @@ function validate(data) {
 export default function Login({ session }) {
   const [status, setStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
     if (!session.token || !session.ready) return;
@@ -68,7 +68,7 @@ export default function Login({ session }) {
 
   useEffect(() => {
     if (status == "success") {
-      session.user.access == 0 && setModalOpen(true);
+      session.user.access == 0 && setPopupOpen(true);
     }
   }, [status]);
 
@@ -126,14 +126,14 @@ export default function Login({ session }) {
           <Link to="/registration">Register</Link>
         </fieldset>
       </form>
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+      <Popup open={popupOpen} onClose={() => setPopupOpen(false)}>
         <div className="max-w-[24rem]">
           <p>
             Welcome back! We're sorry, but it looks like you don't have access
             to the secure space at this time.
           </p>
         </div>
-      </Modal>
+      </Popup>
     </section>
   );
 }

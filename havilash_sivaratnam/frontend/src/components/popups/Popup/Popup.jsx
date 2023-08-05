@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { MdClose } from "react-icons/md";
 
-export default function Modal({
+export default function Popup({
   children,
   open,
   onClose,
@@ -9,11 +9,11 @@ export default function Modal({
   className,
   position,
 }) {
-  const modalRef = useRef();
+  const popupRef = useRef();
 
   const handleClick = useCallback(
     (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
         onClose();
       }
     },
@@ -35,7 +35,7 @@ export default function Modal({
 
   return (
     <div
-      ref={modalRef}
+      ref={popupRef}
       className={`bg-block-color-alt shadow-md 
         flex flex-col justify-center items-center rounded-md 
         fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 

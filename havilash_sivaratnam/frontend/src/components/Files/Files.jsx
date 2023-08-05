@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { IoReloadCircleSharp } from "react-icons/io5";
 import { RxFile } from "react-icons/rx";
-import ConfirmationModal from "src/components/modals/ConfirmationModal/ConfirmationModal";
+import ConfirmationPopup from "src/components/popups/ConfirmationPopup/ConfirmationPopup";
 import { createFile, deleteFile, getFiles, updateFile } from "src/lib/api";
 import { base64toObjectUrl, toBase64 } from "src/services/Utils";
-import Modal from "../modals/Modal/Modal";
+import Popup from "../popups/Popup/Popup";
 
 const fileHeader = ["name", "file", "delete"];
 
@@ -55,9 +55,9 @@ export default function Files({ session }) {
       </div>
       <FilesTable session={session} />
       {error && (
-        <Modal open={true} onClose={() => setError(null)}>
+        <Popup open={true} onClose={() => setError(null)}>
           <p>{error}</p>
-        </Modal>
+        </Popup>
       )}
     </div>
   );
@@ -65,8 +65,8 @@ export default function Files({ session }) {
 
 function FilesTable({ session }) {
   const [files, setFiles] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState("");
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupType, setPopupType] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [error, setError] = useState();
 
@@ -97,7 +97,7 @@ function FilesTable({ session }) {
   };
 
   const handleConfirmDeleteFile = async () => {
-    setModalOpen(false);
+    setPopupOpen(false);
     try {
       await deleteFile(session, selectedFile);
       loadFiles();
@@ -162,8 +162,8 @@ function FilesTable({ session }) {
                       className="font-extrabold text-black h-full text-center py-1 px-2 m-0 cursor-pointer bg-white"
                       onClick={() => {
                         setSelectedFile(file);
-                        setModalOpen(true);
-                        setModalType("delete");
+                        setPopupOpen(true);
+                        setPopupType("delete");
                       }}
                     >
                       Delete
@@ -174,22 +174,22 @@ function FilesTable({ session }) {
           </tbody>
         </table>
 
-        {modalOpen && modalType === "delete" && (
-          <ConfirmationModal
-            open={modalOpen}
+        {popupOpen && popupType === "delete" && (
+          <ConfirmationPopup
+            open={popupOpen}
             text={`Are you sure you want to delete the file ${selectedFile.name}?`}
             onConfirm={handleConfirmDeleteFile}
             onCancel={() => {
-              setModalOpen(false);
+              setPopupOpen(false);
               setSelectedFile(null);
             }}
           />
         )}
       </div>
       {error && (
-        <Modal open={true} onClose={() => setError(null)}>
+        <Popup open={true} onClose={() => setError(null)}>
           <p>{error}</p>
-        </Modal>
+        </Popup>
       )}
     </div>
   );

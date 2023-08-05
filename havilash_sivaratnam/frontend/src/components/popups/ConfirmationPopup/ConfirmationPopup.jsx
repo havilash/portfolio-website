@@ -1,8 +1,8 @@
-import Modal from "src/components/modals/Modal/Modal";
+import Popup from "src/components/popups/Popup/Popup";
 
-function ConfirmationModal({ open, text, onConfirm, onCancel }) {
+function ConfirmationPopup({ open, text, onConfirm, onCancel }) {
   return (
-    <Modal
+    <Popup
       open={open}
       onClose={onCancel}
       className="flex flex-col gap-6 max-w-xl"
@@ -16,8 +16,8 @@ function ConfirmationModal({ open, text, onConfirm, onCancel }) {
           No
         </button>
       </div>
-    </Modal>
+    </Popup>
   );
 }
 
-export default ConfirmationModal;
+export default ConfirmationPopup;
