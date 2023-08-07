@@ -10,7 +10,7 @@
   }
 
   .footer__content__text {
-    @apply flex flex-col sm:flex-row sm:justify-between px-8 py-12 items-center gap-12;
+    @apply flex flex-col sm:flex-row sm:justify-between px-8 md:px-24 py-12 items-center gap-12;
   }
 
   .footer__content__text > div {

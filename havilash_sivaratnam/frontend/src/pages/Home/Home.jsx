@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
-import violinImg from "src/assets/violin.png";
 import SortAlgorithm from "src/components/SortAlgorithm/SortAlgorithm";
 import * as sortFunctions from "src/components/SortAlgorithm/SortFunctions";
 import data from "src/data";
@@ -39,12 +38,8 @@ export default function Home() {
   const [sortFunc, setSortFunc] = useState(
     () => SORT_FUNCTIONS[Math.floor(Math.random() * SORT_FUNCTIONS.length)]
   );
-  const [isSortMenuOpen, setIsSortMenuOpen] = useState(false); // sort-functions menu visibility state
+  const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
   const age = getAge("2005-06-25");
-
-  // useEffect(() => {
-  //   setSortIsRunning(true);
-  // }, []);
 
   useEffect(() => {
     setTitleIsVisible(!sortIsRunning);
@@ -139,8 +134,12 @@ export default function Home() {
       >
         {/* 1 */}
         <div className="gap-12 md:gap-28 w-full flex flex-col md:flex-row justify-center items-center">
-          <div className="bg-body-color-2 w-[250px] h-[300px]"></div>
-          {/* <img src="https://picsum.photos/300/400" alt="Portrait" /> */}
+          <img
+            className=" border-white border-4"
+            src="/assets/portrait.jpg"
+            alt="Portrait"
+            width="300"
+          />
           <div className="flex flex-col self-center items-center md:items-start">
             <h1 className="font-extrabold text-[2rem] xs:text-4xl">
               Havilash Sivaratnam
@@ -177,7 +176,7 @@ export default function Home() {
         {/* 3 */}
         <div className="relative home__block home__block__hobbys">
           <img
-            src={violinImg}
+            src="/assets/violin.png"
             alt="Violin"
             className="h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20 md:relative md:translate-x-0 md:opacity-100 md:left-0"
           />

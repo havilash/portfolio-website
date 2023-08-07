@@ -5,6 +5,7 @@ import { generateBars } from "src/services/Utils";
 import Imprint from "../Imprint/Imprint";
 import Popup from "../popups/Popup/Popup";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 export default function Footer({ className, divRef }) {
   const BODY_COLOR_2 = getComputedStyle(
@@ -56,7 +57,9 @@ export default function Footer({ className, divRef }) {
       <div className="footer__content">
         <div className="footer__content__text">
           <div>
-            <Logo className="w-24 mix-blend-difference" />
+            <Link to="/">
+              <Logo className="w-24 mix-blend-difference" />
+            </Link>
           </div>
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl text-text-color font-medium opacity-80">

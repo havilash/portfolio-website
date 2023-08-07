@@ -38,7 +38,7 @@ export default {
     },
     {
       name: "Linkedin",
-      href: "",
+      href: "https://www.linkedin.com/in/havilash-sivaratnam-586083265/",
       icon: FaLinkedin,
     },
     {
