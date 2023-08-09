@@ -13,14 +13,13 @@ jobs:
       - name: git-checkout
         uses: actions/checkout@v2
 
-      - name: Change working directory
-        run: cd havilash_sivaratnam/frontend
-
       - name: Install all dependencies
         run: npm install
+        working-directory: havilash_sivaratnam/frontend
 
       - name: Build
         run: npm run build
+        working-directory: havilash_sivaratnam/frontend
 
       - name: Push
         uses: s0/git-publish-subdir-action@develop
