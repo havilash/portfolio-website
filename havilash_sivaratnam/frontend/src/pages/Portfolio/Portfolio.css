@@ -1,0 +1,21 @@
+@tailwind components;
+
+@layer components {
+  .portfolio__button {
+    @apply flex flex-row items-center justify-evenly gap-4 bg-block-color 
+    py-4 px-6 text-2xl rounded-lg text-white shadow-md;
+  }
+
+  .portfolio__button-alt {
+    @apply flex flex-row items-center justify-evenly bg-white
+    py-2 px-16 text-xl text-black shadow-sm;
+  }
+
+  .portfolio__button__icon {
+    @apply text-5xl text-primary-color;
+  }
+
+  .portfolio__documents::-webkit-scrollbar-track {
+    @apply bg-block-color;
+  }
+}

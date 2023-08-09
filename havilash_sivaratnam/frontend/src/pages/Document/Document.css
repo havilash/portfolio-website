@@ -1,0 +1,18 @@
+@tailwind components;
+
+@layer components {
+  .document {
+    @apply h-auto w-full flex flex-col items-center justify-center;
+  }
+
+  .document__data {
+    @apply flex justify-center items-center sm:flex-row sm:items-start sm:justify-between mb-2 mx-1 flex-col-reverse;
+  }
+
+  .document__data__download {
+    @apply text-primary-color hover:opacity-80 text-[6.5vw] md:text-5xl lg:text-6xl;
+  }
+  .document__data__button {
+    @apply text-white bg-primary-color hover:opacity-80 text-[6.5vw] md:text-5xl lg:text-6xl rounded-sm xs:rounded-md;
+  }
+}

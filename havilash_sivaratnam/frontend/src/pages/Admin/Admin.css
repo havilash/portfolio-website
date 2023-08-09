@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .table__col {
+    @apply border px-4 py-2;
+  }
+}
