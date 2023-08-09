@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
-      - name: git-checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set CI environment variable
@@ -25,20 +25,24 @@ jobs:
 
       - name: Create subdomains folder
         run: mkdir -p subdomains/backend
-        working-directory: ${{ github.workspace }}
 
       - name: Copy Backend to subdomains folder
         run: cp -r havilash_sivaratnam/backend subdomains/backend
 
       - name: Move Frontend build to root
         run: mv havilash_sivaratnam/frontend/build/* .
-        working-directory: ${{ github.workspace }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config push.default current
 
       - name: Commit and Push to dist branch
-        uses: s0/git-publish-subdir-action@develop
+        run: |
+          git checkout -b dist
+          git add .
+          git commit -m "Build and folder structure update"
+          git push origin dist
         env:
-          REPO: self
-          BRANCH: dist
-          FOLDER: .
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MESSAGE: "Build: ({sha}) {msg}"
