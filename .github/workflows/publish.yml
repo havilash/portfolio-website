@@ -35,6 +35,7 @@ jobs:
       - name: Commit and Push to dist branch
         uses: s0/git-publish-subdir-action@develop
         with:
+          repo: self
           branch: dist
           folder: .
           github_token: ${{ secrets.GITHUB_TOKEN }}
