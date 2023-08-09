@@ -75,18 +75,21 @@ export default function Registration({ session }) {
       session.login({ user: resp.user, token: resp.access_token });
       setStatus("success");
     } catch (error) {
-      const resp = await error.json();
-      if (resp) {
-        setErrors(resp);
-      }
-      if (resp.error === "Invalid key provided") {
-        setStatus("invalidKey");
+      if (!error.json) {
+        setStatus("failed");
         setIsLoading(false);
         return;
       }
-      setStatus("failed");
+      const resp = await error.json();
+      if (resp) {
+        setErrors(resp);
+        setStatus(
+          resp.error === "Invalid key provided" ? "invalidKey" : "failed"
+        );
+      }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   useEffect(() => {

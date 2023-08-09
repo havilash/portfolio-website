@@ -36,7 +36,7 @@ export default function Popup({
   return (
     <div
       ref={popupRef}
-      className={`bg-block-color-alt shadow-md 
+      className={`bg-block-color-alt shadow-md
         flex flex-col justify-center items-center rounded-md 
         fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
         overflow-hidden transition-all duration-300 z-40 

@@ -20,6 +20,18 @@ import {
   SiTerraform,
   SiKubernetes,
   SiTailwindcss,
+  SiSpringboot,
+  SiDjango,
+  SiFlask,
+  SiTensorflow,
+  SiLinux,
+  SiDotnet,
+  SiLaravel,
+  SiMicrosoftazure,
+  SiExpress,
+  SiNumpy,
+  SiPandas,
+  SiScikitlearn,
 } from "react-icons/si";
 
 export default {
@@ -50,9 +62,9 @@ export default {
   // home
   home: {
     whoAmI:
-      "Mein Name ist Havilash Sivaratnam, ein Informatiker mit einer Leidenschaft für KI und maschinelles Lernen. Ich verfüge über ein breites Spektrum an Programmierkenntnissen. Ich habe Simulationen implementiert, maschinelles Lernen-basierte Spiele entwickelt, verschiedene webseiten erstellt und vieles mehr. Ich habe Freude daran, komplexe Physik- und Mathematikprobleme mit Sprachen wie Python, Rust und anderen zu lösen. Immer auf der Suche nach neuen Herausforderungen erweitere ich kontinuierlich mein Wissen und meine Fähigkeiten in der Informatik.",
+      "Mein Name ist Havilash Sivaratnam und ich bin ein Informatiker, der sich leidenschaftlich für Künstliche Intelligenz und maschinelles Lernen interessiert. Mit einem breiten Spektrum an Programmierkenntnissen habe ich Simulationen implementiert, Spiele auf Basis von maschinellem Lernen entwickelt, verschiedene Webseiten erstellt und vieles mehr. Ich liebe es, komplexe Physik- und Mathematikprobleme mit Sprachen wie Python, Rust und anderen zu lösen. Stets auf der Suche nach neuen Herausforderungen erweitere ich kontinuierlich mein Wissen und meine Fähigkeiten in der Informatik.",
     hobbys:
-      "In meiner Freizeit beschäftige ich mich gerne mit verschiedenen Hobbys und Aktivitäten. Eines davon ist das Geigenspiel, das ich im Alter von 10 Jahren begonnen habe und oft in kleinen Konzerten auftrete. Das Geigenspiel ist für mich eine entspannende Möglichkeit, abzuschalten. Ein weiteres Hobby von mir ist das Zeichnen, wo ich gerne Skizzen von Gesichtern und Objekten erstelle. Gelegentlich spiele ich Schach, um mein strategisches Denken herauszufordern. Beim Gamen gehören Minecraft, Terraria und Poly Bridge zu meinen Favoriten. Diese Spiele ermöglichen es mir, meine Kreativität und Problemlösungsfähigkeiten auf unterhaltsame Weise einzusetzen.",
+      "In meiner Freizeit genieße ich eine Vielzahl von Hobbys und Aktivitäten. Eines davon ist das Geigenspiel, das ich im Alter von 10 Jahren begonnen habe und bei dem ich oft in kleinen Konzerten auftrete. Das Geigenspiel bietet mir eine entspannende Möglichkeit, abzuschalten. Ein weiteres Hobby von mir ist das Zeichnen, bei dem ich gerne Skizzen von Gesichtern und Objekten anfertige. Gelegentlich spiele ich Schach, um mein strategisches Denken herauszufordern. Beim Gamen gehören Minecraft, Terraria und Poly Bridge zu meinen Favoriten. Diese Spiele ermöglichen es mir, meine Kreativität und Problemlösungsfähigkeiten auf unterhaltsame Weise einzusetzen.",
   },
   // career
   career: [
@@ -82,11 +94,15 @@ export default {
       },
       {
         title: "JavaScript",
-        percent: 65,
+        percent: 70,
       },
       {
         title: "HTML / CSS",
         percent: 85,
+      },
+      {
+        title: "Rust",
+        percent: 55,
       },
       {
         title: "PHP",
@@ -111,32 +127,96 @@ export default {
     ],
     technologies: [
       {
+        title: "React",
+        icon: SiReact,
+      },
+      {
+        title: "MySQL",
+        icon: SiMysql,
+      },
+      {
         title: "Git",
         icon: SiGit,
       },
       {
-        title: "Docker",
-        icon: SiDocker,
+        title: "Numpy",
+        icon: SiNumpy,
       },
       {
-        title: "AWS",
-        icon: SiAmazonaws,
+        title: "Express.js",
+        icon: SiExpress,
       },
       {
-        title: "React",
-        icon: SiReact,
+        title: "Flask",
+        icon: SiFlask,
+      },
+      {
+        title: "Tailwindcss",
+        icon: SiTailwindcss,
       },
       {
         title: "Node.js",
         icon: SiNodedotjs,
       },
       {
+        title: "Linux",
+        icon: SiLinux,
+      },
+      {
+        title: "Docker",
+        icon: SiDocker,
+      },
+      {
+        title: "Tensorflow",
+        icon: SiTensorflow,
+      },
+      {
+        title: "Django",
+        icon: SiDjango,
+      },
+      {
+        title: "Laravel",
+        icon: SiLaravel,
+      },
+      {
+        title: "Spring Boot",
+        icon: SiSpringboot,
+      },
+      {
+        title: "Pandas",
+        icon: SiPandas,
+      },
+      {
         title: "MongoDB",
         icon: SiMongodb,
       },
       {
-        title: "MySQL",
-        icon: SiMysql,
+        title: "Apache",
+        icon: SiApache,
+      },
+      {
+        title: "Nginx",
+        icon: SiNginx,
+      },
+      {
+        title: ".NET",
+        icon: SiDotnet,
+      },
+      {
+        title: "Microsoft Azure",
+        icon: SiMicrosoftazure,
+      },
+      {
+        title: "AWS",
+        icon: SiAmazonaws,
+      },
+      {
+        title: "Kubernetes",
+        icon: SiKubernetes,
+      },
+      {
+        title: "Terraform",
+        icon: SiTerraform,
       },
       {
         title: "PostgreSQL",
@@ -145,22 +225,6 @@ export default {
       {
         title: "Redis",
         icon: SiRedis,
-      },
-      {
-        title: "Nginx",
-        icon: SiNginx,
-      },
-      {
-        title: "Apache",
-        icon: SiApache,
-      },
-      {
-        title: "Terraform",
-        icon: SiTerraform,
-      },
-      {
-        title: "Kubernetes",
-        icon: SiKubernetes,
       },
     ],
   },

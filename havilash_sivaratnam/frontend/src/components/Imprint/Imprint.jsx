@@ -2,7 +2,7 @@ export default function Imprint() {
   return (
     <div
       className="imprint 
-        flex flex-col p-8 gap-4"
+        flex flex-col p-8 gap-4 whitespace-nowrap"
     >
       <h1>Imprint</h1>
       <h2>Angaben gemäss § 5 TMG</h2>

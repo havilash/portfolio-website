@@ -96,12 +96,13 @@ function SkillBar({ title, percent }) {
 
 function SkillBox({ title, icon, onClick }) {
   const Icon = icon;
-  const fontSize = title.length > 8 ? "1rem" : "1.2rem";
+  const fontSize =
+    title.length < 8 ? "1.2rem" : title.length < 12 ? "1rem" : "0.8rem";
   return (
     <div
       onClick={onClick}
       className="transition-all duration-500 w-full h-full aspect-square border-4 border-primary-color rounded-2xl 
-        flex flex-col justify-evenly items-center"
+        flex flex-col justify-evenly items-center whitespace-nowrap"
     >
       {/* {icon} */}
       <Icon className="text-5xl" />

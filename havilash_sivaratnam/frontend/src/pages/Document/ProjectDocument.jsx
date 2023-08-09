@@ -116,7 +116,7 @@ export default function ProjectDocument() {
           >
             {Array.from(new Array(numPages), (el, index) => (
               <Page
-                className="shadow-lg"
+                className="shadow-lg mb-4"
                 key={`page_${index + 1}`}
                 pageNumber={index + 1}
                 width={containerWidth}
