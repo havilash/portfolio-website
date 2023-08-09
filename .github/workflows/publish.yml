@@ -16,19 +16,29 @@ jobs:
       - name: Set CI environment variable
         run: echo "CI=false" >> $GITHUB_ENV
 
-      - name: Install all dependencies
-        run: npm install
-        working-directory: havilash_sivaratnam/frontend
+      - name: Install frontend dependencies and build
+        run: |
+          cd havilash_sivaratnam/frontend
+          npm install
+          npm run build
+        working-directory: ${{ github.workspace }}
 
-      - name: Build
-        run: npm run build
-        working-directory: havilash_sivaratnam/frontend
+      - name: Create subdomains folder
+        run: mkdir -p subdomains/backend
+        working-directory: ${{ github.workspace }}
 
-      - name: Push
+      - name: Copy Backend to subdomains folder
+        run: cp -r havilash_sivaratnam/backend subdomains/backend
+
+      - name: Move Frontend build to root
+        run: mv havilash_sivaratnam/frontend/build/* .
+        working-directory: ${{ github.workspace }}
+
+      - name: Commit and Push to dist branch
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          BRANCH: build
-          FOLDER: havilash_sivaratnam/frontend/build
+          BRANCH: dist
+          FOLDER: .
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MESSAGE: "Build: ({sha}) {msg}"
