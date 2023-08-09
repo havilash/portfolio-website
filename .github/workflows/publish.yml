@@ -13,6 +13,9 @@ jobs:
       - name: git-checkout
         uses: actions/checkout@v2
 
+      - name: Set CI environment variable
+        run: echo "CI=false" >> $GITHUB_ENV
+
       - name: Install all dependencies
         run: npm install
         working-directory: havilash_sivaratnam/frontend
