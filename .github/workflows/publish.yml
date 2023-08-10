@@ -37,4 +37,4 @@ jobs:
           rm -rf havilash_sivaratnam/
           git add .
           git commit -m "Build and copy files"
-          git push origin dist
+          git push --force-with-lease origin dist
