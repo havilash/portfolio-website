@@ -1,8 +1,0 @@
-@tailwind components;
-
-@layer components {
-  .projects__grid {
-    @apply w-full grid gap-4 justify-items-center;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  }
-}
