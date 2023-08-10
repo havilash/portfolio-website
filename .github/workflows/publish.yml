@@ -30,7 +30,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git checkout -B dist
-          git checkout main -- havilash_sivaratnam/frontend/build/*
+          cp -r havilash_sivaratnam/frontend/build/* .
           mkdir -p subdomains/backend/
           git checkout main -- havilash_sivaratnam/backend/*
           mv havilash_sivaratnam/backend/* subdomains/backend/
