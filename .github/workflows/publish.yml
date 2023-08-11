@@ -26,8 +26,8 @@ jobs:
         run: npm run build
         working-directory: havilash_sivaratnam/frontend
 
-      - name: Add inject_token.php include
-        run: sed -i 's/<\/body>/<?php include '\''inject_token.php'\''; ?><\/body>/g' havilash_sivaratnam/frontend/build/index.html
+      - name: Add inject_env.php include
+        run: sed -i 's/<\/body>/<?php include '\''inject_env.php'\''; ?><\/body>/g' havilash_sivaratnam/frontend/build/index.html
 
       - name: Rename index.html to index.php
         run: mv havilash_sivaratnam/frontend/build/index.html havilash_sivaratnam/frontend/build/index.php
