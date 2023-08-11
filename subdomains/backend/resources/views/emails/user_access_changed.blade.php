@@ -14,7 +14,7 @@
                 @break
 
             @case(App\Models\User::ACCESS_VERIFIED)
-                <p>As a user with <strong>Verified</strong> access, you have access to Havilash's portfolio documents, including his report card, certificates, and CV.</p>
+                <p>As a user with <strong>Verified</strong> access, you have access to Havilash's portfolio documents, including his report cards, certificates, and CV.</p>
                 @break
 
             @case(App\Models\User::ACCESS_ADMIN)
@@ -24,9 +24,20 @@
 
         <p>You can access Havilash Sivaratnam's portfolio website by clicking <a href="{{ $portfolioUrl }}">here</a> ({{ $portfolioUrl }}).</p>
 
-        <p>If you have any questions or concerns, please don't hesitate to contact Havilash at <a href="mailto:havilash.sivaratnam@protonmail.com">havilash.sivaratnam@protonmail.com</a> or by phone at +49 77 954 20 22.</p>
+        <p>If you have any questions or concerns, please don't hesitate to contact Havilash at <a href="mailto:havilash.sivaratnam@protonmail.com">havilash.sivaratnam@protonmail.com</a>.</p>
 
         <p>Best regards,</p>
         <p>Havilash Sivaratnam</p>
+
+        <br><br>
+        <hr>
+        <div style="font-size: 14px; font-family: Arial;">
+            Havilash Sivaratnam<br>
+            Bachstrasse 2<br>
+            3072 Ostermundigen<br>
+            +41 77 954 20 22<br>
+            havilash.sivaratnam@protonmail.com<br>
+            <a href="https://havilash.com">havilash.com</a>
+        </div>
     </body>
 </html>
