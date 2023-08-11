@@ -40,9 +40,12 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <?php
-      $GITHUB_TOKEN = getenv('BACKEND_URL');
+      $BACKEND_URL = getenv('BACKEND_URL');
       $GITHUB_TOKEN = getenv('GITHUB_TOKEN');
-      ?>
-    <script>window.GITHUB_TOKEN = '<?php echo $GITHUB_TOKEN; ?>';</script>
+    ?>
+    <script>
+      window.BACKEND_URL = '<?php echo $BACKEND_URL; ?>';
+      window.GITHUB_TOKEN = '<?php echo $GITHUB_TOKEN; ?>';
+    </script>
   </body>
 </html>
