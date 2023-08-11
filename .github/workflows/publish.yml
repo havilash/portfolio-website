@@ -21,6 +21,7 @@ jobs:
       - name: Set CI environment variable
         run: echo "CI=false" >> $GITHUB_ENV
 
+      # Setup frontend
       - name: Install all dependencies
         run: npm install
         working-directory: havilash_sivaratnam/frontend
@@ -29,6 +30,14 @@ jobs:
         run: npm run build
         working-directory: havilash_sivaratnam/frontend
 
+      # Setup backend
+      - name: Remove .gitignore from backend directory
+        run: rm havilash_sivaratnam/backend/.gitignore
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+        working-directory: havilash_sivaratnam/backend/
+
       - name: Create dist directory
         run: |
           mkdir dist
@@ -36,6 +45,7 @@ jobs:
           mkdir -p dist/subdomains/backend/
           cp -r havilash_sivaratnam/backend/* dist/subdomains/backend/
 
+      # Push
       - name: Push dist directory to dist branch
         uses: s0/git-publish-subdir-action@develop
         env:
