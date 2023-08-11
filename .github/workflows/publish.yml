@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  dist:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
@@ -25,6 +25,12 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: havilash_sivaratnam/frontend
+
+      - name: Uncomment inject_token.php include
+        run: sed -i 's/<!-- inject token -->/<?php include '\''inject_token.php'\''; ?>/g' havilash_sivaratnam/frontend/build/index.html
+
+      - name: Rename index.html to index.php
+        run: mv havilash_sivaratnam/frontend/build/index.html havilash_sivaratnam/frontend/build/index.php
 
       # Setup backend
       - name: Remove .gitignore from backend directory
