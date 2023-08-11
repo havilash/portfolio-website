@@ -1,10 +1,10 @@
-const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+const BASE_URL = window.BACKEND_URL || process.env.REACT_APP_BACKEND_URL;
 const AUTH_URL = `${BASE_URL}/auth`;
 const DATA_URL = `${BASE_URL}/data`;
 
 const GITHUB_BASE_URL = "https://api.github.com";
 const GITHUB_REPO_URL = `${GITHUB_BASE_URL}/repos`;
-const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+const GITHUB_TOKEN = window.GITHUB_TOKEN || process.env.REACT_APP_GITHUB_TOKEN;
 
 // Github
 export async function getRepo(repo) {
