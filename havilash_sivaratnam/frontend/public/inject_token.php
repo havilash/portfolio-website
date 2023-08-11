@@ -1,6 +1,7 @@
 <?php
-  $BACKEND_URL = getenv('BACKEND_URL');
-  $GITHUB_TOKEN = getenv('GITHUB_TOKEN');
+  $env = parse_ini_file('.env');
+  $BACKEND_URL = $env['BACKEND_URL'];
+  $GITHUB_TOKEN = $env['GITHUB_TOKEN'];
 ?>
 <script>
   window.BACKEND_URL = '<?php echo $BACKEND_URL; ?>';
