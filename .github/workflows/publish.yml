@@ -33,6 +33,12 @@ jobs:
         run: mv havilash_sivaratnam/frontend/build/index.html havilash_sivaratnam/frontend/build/index.php
 
       # Setup backend
+      - name: Install Composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.1"
+          version: "2.5.5"
+
       - name: Remove .gitignore from backend directory
         run: rm havilash_sivaratnam/backend/.gitignore
 
@@ -40,6 +46,7 @@ jobs:
         run: composer install --no-dev --optimize-autoloader --no-interaction --no-progress
         working-directory: havilash_sivaratnam/backend/
 
+      # Setup dist
       - name: Create dist directory
         run: |
           mkdir dist
