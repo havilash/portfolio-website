@@ -43,5 +43,17 @@
 
     <p>Best regards,</p>
     <p>Havilash Sivaratnam</p>
+
+    
+    <br><br>
+    <hr>
+    <div style="font-size: 14px; font-family: Arial;">
+        Havilash Sivaratnam<br>
+        Bachstrasse 2<br>
+        3072 Ostermundigen<br>
+        +41 77 954 20 22<br>
+        havilash.sivaratnam@protonmail.com<br>
+        <a href="https://havilash.com">havilash.com</a>
+    </div>
   </body>
 </html>
