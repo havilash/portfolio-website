@@ -32,8 +32,9 @@ export default function SortAlgorithm({
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
     ctxRef.current = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = rect.height * window.devicePixelRatio;
     window.addEventListener("resize", () => handleResize(ctxRef.current));
     if (!Boolean(sorted)) start(ctxRef.current, sortFunc);
     else barsRef.current = generateBars(canvasRef.current, false);
@@ -58,10 +59,12 @@ export default function SortAlgorithm({
 
   // Handle window resize event
   function handleResize(ctx) {
-    if (!canvasRef.current) return;
-    canvasRef.current.width = window.innerWidth;
-    canvasRef.current.height = window.innerHeight;
-    barsRef.current = generateBars(canvasRef.current);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = rect.height * window.devicePixelRatio;
+    barsRef.current = generateBars(canvas);
     draw(ctx);
   }
 

@@ -17,8 +17,9 @@ export default function Footer({ className, divRef }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     let ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = rect.height * window.devicePixelRatio;
     window.addEventListener("resize", () => handleResize(ctx));
     run(ctx);
     return () => {
@@ -40,8 +41,10 @@ export default function Footer({ className, divRef }) {
   }
 
   const handleResize = (ctx) => {
-    canvasRef.current.width = window.innerWidth;
-    canvasRef.current.height = window.innerHeight;
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = rect.height * window.devicePixelRatio;
     run(ctx);
   };
 

@@ -54,7 +54,7 @@ export default {
       icon: FaLinkedin,
     },
     {
-      name: "Facebook",
+      name: "E-Mail",
       href: "mailto:havilash.sivaratnam@protonmail.com",
       icon: FaEnvelopeSquare,
     },
