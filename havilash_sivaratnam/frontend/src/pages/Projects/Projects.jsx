@@ -127,7 +127,7 @@ export default function Projects() {
 
   return (
     <section className="section min-h-screen h-auto w-full flex flex-col py-24 md:px-8">
-      <div className="flex flex-row border-b-4 border-solid border-white mix-blend-difference items-end pb-1 gap-4">
+      <div className="flex flex-row border-b-4 border-solid border-white mix-blend-difference items-end pb-1 gap-4 transform-gpu">
         <input
           className="w-full bg-transparent border-none outline-none focus:outline-none h-full ml-4"
           type="text"

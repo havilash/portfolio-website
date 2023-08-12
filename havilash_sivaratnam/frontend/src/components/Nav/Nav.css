@@ -3,7 +3,8 @@
 @layer components {
   /* Header styles */
   header {
-    @apply transition-all fixed top-0 z-50 sm:w-screen left-0 sm:mix-blend-difference;
+    @apply transition-all fixed top-0 z-50 h-screen sm:w-screen left-0 sm:mix-blend-difference;
+    max-height: -webkit-fill-available;
   }
 
   @media (min-width: 640px) {
@@ -14,7 +15,7 @@
 
   /* Nav styles */
   nav {
-    @apply h-screen sm:h-nav-height xl:h-[calc(var(--nav-height)+1rem)]
+    @apply h-full sm:h-nav-height xl:h-[calc(var(--nav-height)+1rem)]
       w-[75vw] sm:w-full flex flex-col sm:flex-row sm:items-center justify-between
       p-6 gap-4 sm:gap-0 sm:p-8 bg-block-color-alt sm:bg-transparent font-consolas
       font-bold text-lg sm:left-0 select-none;
@@ -32,7 +33,7 @@
   /* Nav list styles */
   .nav__list {
     @apply flex flex-col justify-between sm:flex-row sm:items-center
-      w-[70vw] lg:w-[50vw] md:w-[55vw] max-w-6xl h-[38vh] sm:h-auto pt-24 sm:p-0;
+      w-[70vw] lg:w-[50vw] md:w-[55vw] max-w-6xl h-[50%] min-h-[8rem] sm:h-auto pt-24 sm:p-0;
   }
 
   .nav__item {
@@ -67,11 +68,11 @@
 
   /* User icon styles */
   .nav__user-link {
-    @apply bg-white px-2 py-0 lg:px-3 lg:py-1 rounded-md nav__link flex justify-center items-center;
+    @apply bg-white px-2 py-0 pt-1 lg:px-3 lg:py-1 rounded-md nav__link flex justify-center items-center transform-gpu;
   }
 
   .nav__user-name {
-    @apply text-center font-aldrich not-italic text-4xl text-white;
+    @apply text-center font-aldrich not-italic text-4xl text-black transform-gpu;
   }
 
   .nav__user-icon {

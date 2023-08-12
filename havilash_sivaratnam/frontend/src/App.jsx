@@ -32,16 +32,15 @@ function App() {
   }
 
   useEffect(() => {
+    if (footerRef.current) {
+      handleResize();
+    }
+
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
-
-  useEffect(() => {
-    if (!footerRef.current) return;
-    handleResize();
   }, []);
 
   return (

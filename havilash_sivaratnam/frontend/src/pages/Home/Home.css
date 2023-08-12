@@ -1,13 +1,15 @@
 @tailwind components;
+@tailwind utilities;
 
 @layer components {
   .sort-algorithm {
-    @apply absolute h-screen w-screen top-0 left-0 -z-50 overflow-hidden
+    @apply absolute h-full w-screen top-0 left-0 -z-50 overflow-hidden
     shadow-md;
   }
 
   .home {
     @apply flex items-center justify-center w-full h-screen relative m-0 left-0 top-0;
+    max-height: -webkit-fill-available;
   }
 
   .home__block {

@@ -81,7 +81,7 @@ export default function Users({ session }) {
         >
           <IoReloadCircleSharp size="2rem" />
         </button>
-        <table className="w-full border-collapse mix-blend-difference z-0">
+        <table className="w-full border-collapse mix-blend-difference z-0 transform-gpu">
           <thead>
             <tr className="w-full">
               {userHeader.map((key) => (

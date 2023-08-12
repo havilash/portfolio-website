@@ -31,7 +31,7 @@ export default function Files({ session }) {
         <form onSubmit={handleCreateFile}>
           <input
             className="p-1 border-2 rounded-md bg-transparent border-white mix-blend-difference 
-          placeholder:text-white placeholder:text-opacity-50 outline-none"
+          placeholder:text-white placeholder:text-opacity-50 outline-none transform-gpu"
             type="text"
             name="name"
             placeholder="File name"
@@ -46,9 +46,9 @@ export default function Files({ session }) {
             onChange={(event) =>
               setNewFile({ ...newFile, file: event.target.files[0] })
             }
-            className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white mt-2 outline-none"
+            className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white mt-2 outline-none transform-gpu"
           />
-          <button className="button px-4 py-2 bg-white text-black mix-blend-difference hover:bg-white hover:opacity-75 mt-2">
+          <button className="button px-4 py-2 bg-white text-black mix-blend-difference hover:bg-white hover:opacity-75 mt-2 transform-gpu">
             Create File
           </button>
         </form>
@@ -115,7 +115,7 @@ function FilesTable({ session }) {
         >
           <IoReloadCircleSharp size="2rem" />
         </button>
-        <table className="w-full border-collapse mix-blend-difference z-0">
+        <table className="w-full border-collapse mix-blend-difference z-0 transform-gpu">
           <thead>
             <tr className="w-full">
               {fileHeader.map((key) => (

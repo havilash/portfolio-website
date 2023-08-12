@@ -44,7 +44,7 @@ export default function Keys({ session }) {
             type="text"
             value={getKeyUrl(key)}
             readOnly
-            className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white"
+            className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white transform-gpu"
           />
           <button
             onClick={() => navigator.clipboard.writeText(getKeyUrl(key))}
@@ -56,13 +56,13 @@ export default function Keys({ session }) {
         <div className="flex flex-row gap-8 mt-2">
           <button
             onClick={generateKey}
-            className="button px-4 py-2 bg-white text-black mix-blend-difference hover:bg-white hover:opacity-75"
+            className="button px-4 py-2 bg-white text-black mix-blend-difference hover:bg-white hover:opacity-75 transform-gpu"
           >
             Generate Key
           </button>
           <input
             className="text-white bg-transparent date-icon cursor-pointer
-            mix-blend-difference flex px-4 py-2 outline-none w-40"
+            mix-blend-difference flex px-4 py-2 outline-none w-40 transform-gpu"
             type="date"
             id="expiresAtInput"
             value={formatDate(expiresAt)}
@@ -133,7 +133,7 @@ function KeysTable({ session }) {
         >
           <IoReloadCircleSharp size="2rem" />
         </button>
-        <table className="w-full mix-blend-difference">
+        <table className="w-full mix-blend-difference transform-gpu">
           <thead>
             <tr className="w-full">
               {keyHeader.map((key) => (

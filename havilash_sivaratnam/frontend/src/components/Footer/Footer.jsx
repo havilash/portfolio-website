@@ -50,10 +50,7 @@ export default function Footer({ className, divRef }) {
       ref={divRef}
       className={`footer relative h-auto w-screen ${className}`}
     >
-      <Popup open={imprintOpen} onClose={() => setImprintOpen(false)}>
-        <Imprint />
-      </Popup>
-      <canvas ref={canvasRef} className="w-full h-32" />
+      <canvas ref={canvasRef} className="w-full h-32 -mb-1" />
       <div className="footer__content">
         <div className="footer__content__text">
           <div>
@@ -95,6 +92,9 @@ export default function Footer({ className, divRef }) {
           Copyright © 2023 Havilash Sivaratnam
         </div>
       </div>
+      <Popup open={imprintOpen} onClose={() => setImprintOpen(false)}>
+        <Imprint />
+      </Popup>
     </footer>
   );
 }

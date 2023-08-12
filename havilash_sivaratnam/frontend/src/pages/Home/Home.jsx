@@ -97,7 +97,7 @@ export default function Home() {
         />
 
         <button
-          className="sort-button button"
+          className="sort-button button transform-gpu"
           onClick={() => setIsSortMenuOpen(!isSortMenuOpen)}
         >
           {getKeyByValue(SORT_NAMES_FUNCTIONS, sortFunc)}
@@ -113,7 +113,7 @@ export default function Home() {
 
         <div
           className={
-            "typing-effect w-[12ch] overflow-hidden font-consolas text-5xl xs:text-6xl sm:text-7xl md:text-8xl" +
+            "typing-effect w-[12ch] overflow-hidden font-consolas font-semibold text-5xl xs:text-6xl sm:text-7xl md:text-8xl transform-gpu mix-blend-difference" +
             (!titleIsVisible ? " hidden" : "")
           }
         >
@@ -141,7 +141,7 @@ export default function Home() {
             width="300"
           />
           <div className="flex flex-col self-center items-center md:items-start">
-            <h1 className="font-extrabold text-[2rem] xs:text-4xl">
+            <h1 className="font-extrabold text-[7.5vw] xs:text-4xl">
               Havilash Sivaratnam
             </h1>
             <table className="aboutme__data-table w-full md:w-[24rem] border-spacing-4 h-40 text-xl xs:text-2xl">
@@ -164,10 +164,10 @@ export default function Home() {
         </div>
 
         {/* 2 */}
-        <div className="home__block">
+        <div className="home__block home__block__whoami">
           <div className="max-w-5xl">
             <h1 className="">Who am I?</h1>
-            <p className="text-justify text-xl font-semibold mix-blend-normal">
+            <p className="text-justify text-lg md:text-xl font-semibold hyphens-manual">
               {data.home.whoAmI}
             </p>
           </div>
@@ -182,7 +182,7 @@ export default function Home() {
           />
           <div className="z-20">
             <h1>Hobbys</h1>
-            <p className="text-justify text-xl font-semibold max-w-3xl mix-blend-normal">
+            <p className="text-justify text-lg md:text-xl font-semibold hyphens-manual">
               {data.home.hobbys}
             </p>
           </div>
