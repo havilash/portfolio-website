@@ -36,6 +36,9 @@ jobs:
       - name: Remove .gitignore from backend directory
         run: rm havilash_sivaratnam/backend/.gitignore
 
+      - name: Update Composer
+        run: composer self-update --2
+
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader --no-interaction --no-progress
         working-directory: havilash_sivaratnam/backend/
