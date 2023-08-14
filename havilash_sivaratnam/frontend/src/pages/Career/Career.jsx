@@ -11,7 +11,7 @@ export default function Career() {
         style={{ gridTemplateColumns: "0.2rem auto" }}
       >
         <td
-          className="text-xl opacity-50 sm:opacity-100 text-left sm:text-right 
+          className="text-xl opacity-70 sm:opacity-100 text-left sm:text-right 
         w-auto sm:min-w-[40vw] order-2 sm:order-1 ml-4 sm:ml-0"
         >
           {item.date}

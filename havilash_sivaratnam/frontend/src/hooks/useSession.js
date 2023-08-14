@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { refresh } from "src/lib/api";
-import useLocalStorage from "./useLocalStorage"; // changed
+import useLocalStorage from "./useLocalStorage";
 
 const STORAGE_KEY = "session";
 const BUFFER_TIME = 60 * 1000; // 1 min
@@ -11,7 +11,7 @@ const defaultModel = { user: null, token: null };
 export default function useSession() {
   const [session, setSession] = useState(defaultModel);
   const [ready, setReady] = useState(false);
-  const [savedSession, setSavedSession] = useLocalStorage(STORAGE_KEY, null); // changed
+  const [savedSession, setSavedSession] = useLocalStorage(STORAGE_KEY, null);
 
   function login(value) {
     setSession(value);
@@ -23,9 +23,8 @@ export default function useSession() {
 
   useEffect(() => {
     if (savedSession) {
-      // changed
       try {
-        const value = savedSession; // changed
+        const value = savedSession;
         const { exp } = jwtDecode(value.token);
         const expirationDate = new Date(0);
         expirationDate.setUTCSeconds(exp);
@@ -40,9 +39,9 @@ export default function useSession() {
 
   useEffect(() => {
     if (session.user) {
-      setSavedSession(session); // changed
+      setSavedSession(session);
     } else {
-      setSavedSession(null); // changed
+      setSavedSession(null);
     }
   }, [session]);
 

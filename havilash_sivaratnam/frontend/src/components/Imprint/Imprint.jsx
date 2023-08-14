@@ -4,7 +4,7 @@ export default function Imprint() {
       className="imprint 
         flex flex-col p-8 gap-4 whitespace-nowrap"
     >
-      <h1>Imprint</h1>
+      <h1>Impressum</h1>
       <h2>Angaben gemäss § 5 TMG</h2>
       <ul>
         <li>Havilash Sivaratnam</li>

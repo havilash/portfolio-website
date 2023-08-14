@@ -6,7 +6,7 @@
 
 @layer base {
   * {
-    @apply box-border p-0 m-0;
+    @apply box-border p-0 m-0 scroll-smooth;
   }
 
   html,
