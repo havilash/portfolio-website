@@ -21,7 +21,7 @@ Route::group([
     Route::get('/user', [AuthController::class, 'getUser']);
     Route::patch('/user/{id}', [AuthController::class, 'updateUser'])->middleware('access:ACCESS_ADMIN');
     Route::delete('/user/{id}', [AuthController::class, 'deleteUser'])->middleware('access:ACCESS_ADMIN');
-    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1');
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:10,3');
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
