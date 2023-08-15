@@ -457,10 +457,10 @@ export default {
       {
         title: "Zeugnis",
         documents: [
-          { title: "GIBB", document: "report_card_ims_2.pdf" },
-          { title: "GIBB", document: "report_card_ims_2.pdf" },
-          { title: "BWD", document: "report_card_ims_1.pdf" },
-          { title: "Schule", document: "report_card_schule_9.pdf" },
+          { title: "Bbc", document: "report_card_bbc.pdf" },
+          { title: "Gibb", document: "report_card_gibb.pdf" },
+          { title: "Bwd", document: "report_card_ims.pdf" },
+          { title: "Schule", document: "report_card_schule.pdf" },
         ],
       },
       {
@@ -468,6 +468,7 @@ export default {
         documents: [
           { title: "Abacus", document: "certificate_abacus.pdf" },
           { title: "Violine", document: "certificate_violine.pdf" },
+          { title: "Stellwerk-Check", document: "certificate_stellwerk.pdf" },
         ],
       },
     ],
