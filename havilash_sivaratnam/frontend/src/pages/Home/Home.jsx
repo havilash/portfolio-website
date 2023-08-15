@@ -122,7 +122,7 @@ export default function Home() {
         </div>
 
         <a
-          className="absolute flex self-end text-4xl m-8 mix-blend-difference hover:opacity-80"
+          className="absolute flex self-end text-4xl m-8 mix-blend-difference hover:opacity-80 transform-gpu"
           href="#aboutme"
         >
           <FaArrowDown />
@@ -180,7 +180,7 @@ export default function Home() {
             alt="Violin"
             className="h-[28rem] absolute left-1/2 -translate-x-1/2 z-10 opacity-20 md:relative md:translate-x-0 md:opacity-100 md:left-0"
           />
-          <div className="z-20">
+          <div className="z-20 max-w-5xl">
             <h1>Hobbys</h1>
             <p className="text-justify text-lg md:text-xl font-semibold hyphens-manual">
               {data.home.hobbys}

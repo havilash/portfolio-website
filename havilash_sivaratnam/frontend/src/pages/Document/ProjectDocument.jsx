@@ -78,7 +78,7 @@ export default function ProjectDocument() {
           <a href={documentUrl} download={`Abstract_${project.title}`}>
             <MdOutlineFileDownload className="document__data__download" />
           </a>
-          <h2 className="text-white mix-blend-difference text-[4vw] xs:text-2xl">
+          <h2 className="text-white mix-blend-difference text-[4vw] xs:text-2xl transform-gpu">
             {`Abstract_${project.title}`}
           </h2>
         </div>

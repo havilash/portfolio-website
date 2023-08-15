@@ -4,6 +4,7 @@ import { IoReloadCircleSharp } from "react-icons/io5";
 import ConfirmationPopup from "src/components/popups/ConfirmationPopup/ConfirmationPopup";
 import { createKey, deleteKey, getKeys, updateKey } from "src/lib/api";
 import Popup from "../popups/Popup/Popup";
+import { copyToClipboard } from "src/services/Utils";
 
 function getDateAfterDays(days) {
   const today = new Date();
@@ -47,7 +48,7 @@ export default function Keys({ session }) {
             className="p-2 border-2 rounded-md bg-transparent w-full mix-blend-difference text-white transform-gpu"
           />
           <button
-            onClick={() => navigator.clipboard.writeText(getKeyUrl(key))}
+            onClick={() => copyToClipboard(getKeyUrl(key))}
             className="absolute button right-2 top-1/2 transform -translate-y-1/2 p-2 copy-button"
           >
             <FiCopy />
@@ -154,7 +155,7 @@ function KeysTable({ session }) {
                   <td className="table__col relative overflow-hidden whitespace-nowrap overflow-ellipsis max-w-[40vw] pr-16">
                     {key.key}
                     <button
-                      onClick={() => navigator.clipboard.writeText(key.key)}
+                      onClick={() => copyToClipboard(key.key)}
                       className="absolute button right-2 top-1/2 transform -translate-y-1/2 copy-button p-2"
                     >
                       <FiCopy />

@@ -53,12 +53,12 @@ export default function Footer({ className, divRef }) {
       ref={divRef}
       className={`footer relative h-auto w-screen ${className}`}
     >
-      <canvas ref={canvasRef} className="w-full h-32 -mb-1" />
-      <div className="footer__content">
+      <canvas ref={canvasRef} className="w-full h-32 -mb-2" />
+      <div className="footer__content pt-2">
         <div className="footer__content__text">
           <div>
             <Link to="/">
-              <Logo className="w-24 mix-blend-difference" />
+              <Logo className="w-24 mix-blend-difference transform-gpu" />
             </Link>
           </div>
           <div className="flex flex-col gap-2">

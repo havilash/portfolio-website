@@ -149,10 +149,10 @@ export default function Projects() {
             <Project key={`project-${index}`} {...project} />
           ))}
       </div>
-      <h3 className="flex flex-row justify-center items-center mt-8 text-white mix-blend-difference">
+      <h3 className="flex flex-row justify-center items-center mt-8 text-white mix-blend-difference transform-gpu">
         More on&nbsp;
         <a
-          className="text-primary-color hover:underline mix-blend-difference invert"
+          className="text-primary-color hover:underline mix-blend-difference invert transform-gpu"
           href="https://github.com/Havilash"
           target="_blank"
           rel="noreferrer"

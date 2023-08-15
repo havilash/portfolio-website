@@ -85,7 +85,7 @@ export default function Nav({ session }) {
             className="nav__bars nav__link"
           />
         </i>
-        <i className="absolute sm:relative mix-blend-difference">
+        <i className="absolute sm:relative mix-blend-difference transform-gpu">
           {renderUser()}
         </i>
 

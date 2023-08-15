@@ -56,7 +56,7 @@
   .typing-effect p:nth-child(1),
   .typing-effect p:nth-child(2) {
     @apply whitespace-nowrap overflow-hidden border-transparent w-0 mix-blend-difference
-    font-consolas font-semibold text-5xl xs:text-6xl sm:text-7xl md:text-8xl;
+    font-consolas font-semibold text-5xl xs:text-6xl sm:text-7xl md:text-8xl transform-gpu;
   }
 
   .typing-effect p:nth-child(1) {

@@ -6,7 +6,7 @@
   }
 
   .footer__content > div {
-    @apply mix-blend-difference;
+    @apply mix-blend-difference transform-gpu;
   }
 
   .footer__content__text {

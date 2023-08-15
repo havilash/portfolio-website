@@ -32,6 +32,13 @@ import {
   SiNumpy,
   SiPandas,
   SiScikitlearn,
+  SiGithubactions,
+  SiJupyter,
+  SiAnaconda,
+  SiVim,
+  SiUnity,
+  SiBlender,
+  SiGimp,
 } from "react-icons/si";
 
 export default {
@@ -95,6 +102,10 @@ export default {
       {
         title: "JavaScript",
         percent: 70,
+      },
+      {
+        title: "TypeScript",
+        percent: 65,
       },
       {
         title: "HTML / CSS",
@@ -163,6 +174,18 @@ export default {
         icon: SiLinux,
       },
       {
+        title: "Jupyter",
+        icon: SiJupyter,
+      },
+      {
+        title: "Anaconda",
+        icon: SiAnaconda,
+      },
+      {
+        title: "Gimp",
+        icon: SiGimp,
+      },
+      {
         title: "Docker",
         icon: SiDocker,
       },
@@ -175,8 +198,24 @@ export default {
         icon: SiDjango,
       },
       {
+        title: "Unity",
+        icon: SiUnity,
+      },
+      {
+        title: "Vim",
+        icon: SiVim,
+      },
+      {
+        title: "Blender",
+        icon: SiBlender,
+      },
+      {
         title: "Laravel",
         icon: SiLaravel,
+      },
+      {
+        title: "CI/CD",
+        icon: SiGithubactions,
       },
       {
         title: "Spring Boot",
@@ -189,14 +228,6 @@ export default {
       {
         title: "MongoDB",
         icon: SiMongodb,
-      },
-      {
-        title: "Apache",
-        icon: SiApache,
-      },
-      {
-        title: "Nginx",
-        icon: SiNginx,
       },
       {
         title: ".NET",
@@ -373,7 +404,7 @@ export default {
     {
       repo: "Havilash/Face-Recognition",
       title: "Face-Recognition",
-      image: "./assets/projects/face-recognition.png",
+      image: "./assets/projects/face-recognition.jpg",
       description:
         "A machine learning project that detects faces in images, using a custom-trained model on a self-made dataset.",
       tags: [
@@ -426,11 +457,10 @@ export default {
       {
         title: "Zeugnis",
         documents: [
-          { title: "IMS 2", document: "report_card_ims_2.pdf" },
-          { title: "IMS 1", document: "report_card_ims_1.pdf" },
-          { title: "Schule 9", document: "report_card_schule_9.pdf" },
-          { title: "Schule 8", document: "report_card_schule_8.pdf" },
-          { title: "Schule 7", document: "report_card_schule_7.pdf" },
+          { title: "GIBB", document: "report_card_ims_2.pdf" },
+          { title: "GIBB", document: "report_card_ims_2.pdf" },
+          { title: "BWD", document: "report_card_ims_1.pdf" },
+          { title: "Schule", document: "report_card_schule_9.pdf" },
         ],
       },
       {

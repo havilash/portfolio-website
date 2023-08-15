@@ -96,3 +96,24 @@ export function isValidUrl(urlString) {
     return false;
   }
 }
+
+export async function copyToClipboard(text) {
+  if (navigator.clipboard) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      fallbackCopyToClipboard(text);
+    }
+  } else {
+    fallbackCopyToClipboard(text);
+  }
+}
+
+function fallbackCopyToClipboard(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+}
