@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.6e884b70.css",
-    "main.js": "/static/js/main.f8aca46c.js",
+    "main.js": "/static/js/main.11301a00.js",
     "static/media/Consolas.ttf": "/static/media/Consolas.eca1ecc484456b474960.ttf",
     "static/media/Aldrich-Regular.ttf": "/static/media/Aldrich-Regular.cb0926e2c19a3ee89ae3.ttf",
     "static/media/loader.svg": "/static/media/loader.9afb431189a33b78deac11b877a86530.svg",
     "static/media/logo.svg": "/static/media/logo.8e959fd147f70b91709acac5fb0e649b.svg",
     "index.html": "/index.html",
     "main.6e884b70.css.map": "/static/css/main.6e884b70.css.map",
-    "main.f8aca46c.js.map": "/static/js/main.f8aca46c.js.map"
+    "main.11301a00.js.map": "/static/js/main.11301a00.js.map"
   },
   "entrypoints": [
     "static/css/main.6e884b70.css",
-    "static/js/main.f8aca46c.js"
+    "static/js/main.11301a00.js"
   ]
 }
