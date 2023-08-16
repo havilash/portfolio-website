@@ -3,7 +3,7 @@
 @layer components {
   /* Header styles */
   header {
-    @apply transition-all fixed top-0 h-screen sm:h-auto z-50 sm:w-screen left-0 sm:mix-blend-difference transform-gpu;
+    @apply transition-all fixed top-0 h-screen sm:h-auto z-50 sm:w-screen left-0 sm:mix-blend-difference;
     max-height: -webkit-fill-available;
   }
 
