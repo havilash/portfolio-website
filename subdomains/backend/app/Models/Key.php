@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Key extends Model
 {
-    const KEY_LENGTH = 128;
+    const KEY_LENGTH = 32;
 
     protected $fillable = [
         'key',
