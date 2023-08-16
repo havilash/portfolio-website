@@ -5,7 +5,7 @@ export default function Imprint() {
         flex flex-col p-8 gap-4 whitespace-nowrap"
     >
       <h1>Impressum</h1>
-      <h2>Angaben gemäss § 5 TMG</h2>
+      <h2>Angaben</h2>
       <ul>
         <li>Havilash Sivaratnam</li>
         <li>Bachstrasse 2</li>
