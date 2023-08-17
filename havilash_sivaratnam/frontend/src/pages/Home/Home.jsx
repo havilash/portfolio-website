@@ -136,7 +136,7 @@ export default function Home() {
         <div className="gap-12 md:gap-28 w-full flex flex-col md:flex-row justify-center items-center">
           <img
             className=" border-white border-4"
-            src="/assets/portrait.jpg"
+            src="/assets/portrait.png"
             alt="Portrait"
             width="300"
           />
