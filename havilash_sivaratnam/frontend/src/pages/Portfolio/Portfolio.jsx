@@ -47,7 +47,7 @@ export default function Portfolio({ session }) {
         <li className="self-center mb-2">
           <a
             href={allZip ? allZip : ""}
-            className="portfolio__button"
+            className={`portfolio__button ${!allZip ? "disabled" : ""}`}
             download="portfolio.zip"
           >
             <MdOutlineFileDownload className="portfolio__button__icon" />

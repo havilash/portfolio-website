@@ -18,4 +18,8 @@
   .portfolio__documents::-webkit-scrollbar-track {
     @apply bg-block-color;
   }
+
+  .portfolio__button.disabled {
+    @apply pointer-events-none opacity-75;
+  }
 }
