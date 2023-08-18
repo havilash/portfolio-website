@@ -459,7 +459,7 @@ export default {
         documents: [
           { title: "Bbc", document: "report_card_bbc.pdf" },
           { title: "Gibb", document: "report_card_gibb.pdf" },
-          { title: "Bwd", document: "report_card_ims.pdf" },
+          { title: "Bwd", document: "report_card_bwd.pdf" },
           { title: "Schule", document: "report_card_schule.pdf" },
         ],
       },
