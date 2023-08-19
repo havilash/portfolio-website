@@ -8,11 +8,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 
-class NewUsers extends Mailable
+class NewUser extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $users;
+    public $user;
     public $admin;
 
     /**
@@ -20,9 +20,9 @@ class NewUsers extends Mailable
      *
      * @return void
      */
-    public function __construct($users, User $admin)
+    public function __construct(User $user, User $admin)
     {
-        $this->users = $users;
+        $this->user = $user;
         $this->admin = $admin;
     }
 
@@ -35,9 +35,9 @@ class NewUsers extends Mailable
     {
         $portfolioUrl = env('PORTFOLIO_URL');
 
-        return $this->view('emails.new_users')
+        return $this->view('emails.new_user')
             ->with([
-                'users' => $this->users,
+                'user' => $this->user,
                 'admin' => $this->admin,
                 'portfolioUrl' => $portfolioUrl,
             ]);

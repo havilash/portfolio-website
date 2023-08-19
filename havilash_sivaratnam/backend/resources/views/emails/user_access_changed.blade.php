@@ -26,18 +26,20 @@
 
         <p>If you have any questions or concerns, please don't hesitate to contact Havilash at <a href="mailto:havilash.sivaratnam@protonmail.com">havilash.sivaratnam@protonmail.com</a>.</p>
 
+        <p>Please do not reply to this email as it is an automatic email.</p>
+
         <p>Best regards,</p>
         <p>Havilash Sivaratnam</p>
 
-        <br><br>
+        <br>
         <hr>
         <div style="font-size: 14px; font-family: Arial;">
             Havilash Sivaratnam<br>
             Bachstrasse 2<br>
             3072 Ostermundigen<br>
-            +41 77 954 20 22<br>
+            Tel.: +41 77 954 20 22<br>
             havilash.sivaratnam@protonmail.com<br>
-            <a href="https://havilash.com">havilash.com</a>
+            <a href="https://havilash.com">https://havilash.com</a>
         </div>
-    </body>
+        </body>
 </html>
