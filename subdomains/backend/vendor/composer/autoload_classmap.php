@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Commands\\BackupDatabase' => $baseDir . '/app/Console/Commands/BackupDatabase.php',
-    'App\\Console\\Commands\\SendNewUsersEmail' => $baseDir . '/app/Console/Commands/SendNewUsersEmail.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
@@ -24,7 +23,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
-    'App\\Mail\\NewUsers' => $baseDir . '/app/Mail/NewUsers.php',
+    'App\\Mail\\NewUser' => $baseDir . '/app/Mail/NewUser.php',
     'App\\Mail\\UserAccessChanged' => $baseDir . '/app/Mail/UserAccessChanged.php',
     'App\\Models\\File' => $baseDir . '/app/Models/File.php',
     'App\\Models\\Key' => $baseDir . '/app/Models/Key.php',

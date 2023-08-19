@@ -167,6 +167,14 @@ class AuthController extends Controller
         // Save the user to the database
         $user->save();
 
+        try {
+            // Send the email to admins with details of the user that was just saved
+            $admins = User::where('access', User::ACCESS_ADMIN)->get();
+            foreach ($admins as $admin) {
+                Mail::to($admin->email)->send(new NewUser($user, $admin));
+            }
+        } catch (\Exception $e) {}
+
         // Return the response
         return response()->json([
             'message' => 'User successfully registered',
