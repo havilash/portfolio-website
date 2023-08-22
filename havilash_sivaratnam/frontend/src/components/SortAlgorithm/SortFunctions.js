@@ -133,7 +133,7 @@ async function heapify(arr, N, i, draw) {
 
   if (r < N && arr[r] > arr[largest]) largest = r;
 
-  if (largest != i) {
+  if (largest !== i) {
     var swap = arr[i];
     arr[i] = arr[largest];
     arr[largest] = swap;
@@ -221,7 +221,7 @@ export async function combSort(arr, draw) {
   let gap = n;
   let swapped = true;
 
-  while (gap != 1 || swapped === true) {
+  while (gap !== 1 || swapped === true) {
     gap = getNextGap(gap);
 
     swapped = false;
@@ -268,7 +268,7 @@ function isSorted(arr) {
 function shuffle(array) {
   let currentIndex = array.length,
     randomIndex;
-  while (currentIndex != 0) {
+  while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
@@ -395,7 +395,7 @@ export async function bitonicSort(arr, draw) {
         let ixj = i ^ j;
         if (ixj > i) {
           if ((i & k) === 0 && arr[i] > arr[ixj]) swap(arr, i, ixj);
-          if ((i & k) != 0 && arr[i] < arr[ixj]) swap(arr, i, ixj);
+          if ((i & k) !== 0 && arr[i] < arr[ixj]) swap(arr, i, ixj);
           draw();
           await sleep(1);
         }

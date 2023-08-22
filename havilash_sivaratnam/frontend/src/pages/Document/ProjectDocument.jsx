@@ -4,6 +4,7 @@ import { BsPlay } from "react-icons/bs";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useNavigate, useParams } from "react-router";
+import data from "src/data";
 
 import { Link } from "react-router-dom";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
@@ -15,8 +16,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export default function ProjectDocument() {
   const navigate = useNavigate();
-  const params = useParams();
-  const projectTitle = params.project;
+  const { ["project"]: projectTitle } = useParams();
   const project = getProjectByTitle(projectTitle);
   const [documentUrl, setDocumentUrl] = useState(null);
   const [numPages, setNumPages] = useState(null);
@@ -59,12 +59,12 @@ export default function ProjectDocument() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [navigate, project]);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
     handleResize();
-  });
+  }, [containerRef.current]);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);

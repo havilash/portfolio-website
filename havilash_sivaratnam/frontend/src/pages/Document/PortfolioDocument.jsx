@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import SkeletonFile from "src/components/skeletons/SkeletonFile/SkeletonFile";
 import { useRedirectToLogin } from "src/hooks/useSession";
 import { getFile } from "src/lib/api";
-import { base64toObjectUrl } from "src/services/Utils";
+import { base64toObjectUrl, toUint8Array } from "src/services/Utils";
 import "./Document.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -14,8 +14,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export default function PortfolioDocument({ session }) {
   useRedirectToLogin(session, 1);
   const navigate = useNavigate();
-  const params = useParams();
-  const documentName = params.document;
+  const { ["document"]: documentName } = useParams();
   const [document, setDocument] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [containerWidth, setContainerWidth] = useState(null);
@@ -54,12 +53,12 @@ export default function PortfolioDocument({ session }) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [session, documentName, navigate]);
+  }, [session.ready]);
 
   useEffect(() => {
     if (!containerRef.current) return;
     handleResize();
-  });
+  }, [containerRef.current]);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
