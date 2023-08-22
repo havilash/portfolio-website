@@ -58,6 +58,7 @@ export default function Login({ session }) {
     try {
       const resp = await login(data);
       session.login({ user: resp.user, token: resp.access_token });
+      console.log(session);
       setStatus("success");
     } catch (error) {
       if (error.status === 429) {

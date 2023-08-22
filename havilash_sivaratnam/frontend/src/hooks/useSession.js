@@ -12,7 +12,6 @@ export default function useSession() {
   const [session, setSession] = useState(defaultModel);
   const [ready, setReady] = useState(false);
   const [savedSession, setSavedSession] = useLocalStorage(STORAGE_KEY, null);
-  const hasRun = useRef(false);
 
   function login(value) {
     setSession(value);
@@ -23,7 +22,6 @@ export default function useSession() {
   }
 
   useEffect(() => {
-    if (hasRun.current) return;
     if (savedSession) {
       try {
         const value = savedSession;
@@ -37,8 +35,7 @@ export default function useSession() {
       }
     }
     setReady(true);
-    hasRun.current = true;
-  }, [savedSession]);
+  }, []);
 
   useEffect(() => {
     if (session.user) {
