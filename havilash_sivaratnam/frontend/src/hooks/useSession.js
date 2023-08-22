@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { refresh } from "src/lib/api";
 import useLocalStorage from "./useLocalStorage";
@@ -43,7 +43,7 @@ export default function useSession() {
     } else {
       setSavedSession(null);
     }
-  }, [session, setSavedSession]);
+  }, [session]);
 
   const refreshToken = async () => {
     try {
@@ -80,7 +80,7 @@ export function useRedirectToLogin(session, access) {
   useEffect(() => {
     if (session.ready && (!session.user || session.user.access < access))
       navigate("/login");
-  }, [session, navigate, access]);
+  }, [session, navigate]);
 }
 
 export function useRedirectToHome(session) {
