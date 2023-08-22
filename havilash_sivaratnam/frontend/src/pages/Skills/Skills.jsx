@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Block from "src/components/Block/Block";
 import data from "src/data.js";
 
-import Popup from "src/components/popups/Popup/Popup";
 import "./Skills.css";
 
 const skills = data.skills;
@@ -13,12 +12,6 @@ export default function Skills() {
   );
   const [isOpen1, setIsOpen1] = useState(!isLargeDevice);
   const [isOpen2, setIsOpen2] = useState(!isLargeDevice);
-
-  const [selectedSkill, setSelectedSkill] = useState(null);
-
-  const handleSkillClick = (skill) => {
-    setSelectedSkill(skill);
-  };
 
   useEffect(() => {
     const handleResize = () => {

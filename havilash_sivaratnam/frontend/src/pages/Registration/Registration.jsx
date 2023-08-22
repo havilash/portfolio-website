@@ -93,7 +93,7 @@ export default function Registration({ session }) {
   }
 
   useEffect(() => {
-    if (status == "success") {
+    if (status === "success") {
       setPopupOpen(true);
     }
   }, [status]);

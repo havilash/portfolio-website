@@ -60,7 +60,7 @@ export default function Home() {
         <li
           key={`sort-function-${i}`}
           className={
-            "sort-functions__item" + (sortFunc == value ? " active" : "")
+            "sort-functions__item" + (sortFunc === value ? " active" : "")
           }
           onClick={() => {
             sortResetRef.current(value);

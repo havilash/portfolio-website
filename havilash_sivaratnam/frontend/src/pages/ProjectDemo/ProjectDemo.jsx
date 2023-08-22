@@ -4,7 +4,8 @@ import { getProjectByTitle } from "src/services/Utils";
 
 export default function ProjectDemo() {
   const navigate = useNavigate();
-  const { ["project"]: projectTitle } = useParams();
+  const params = useParams();
+  const projectTitle = params.project;
   const project = getProjectByTitle(projectTitle);
 
   useEffect(() => {

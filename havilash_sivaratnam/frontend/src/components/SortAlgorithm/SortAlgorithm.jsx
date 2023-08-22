@@ -26,9 +26,11 @@ export default function SortAlgorithm({
       SORT_FUNCTIONS[Math.floor(Math.random() * SORT_FUNCTIONS.length)]
   );
   let animationFrameId;
+  const hasRun = useRef(false);
 
   // Initialize the canvas and add event listeners
   useEffect(() => {
+    if (hasRun.current) return;
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
     ctxRef.current = canvas.getContext("2d");
@@ -39,11 +41,12 @@ export default function SortAlgorithm({
     if (!Boolean(sorted)) start(ctxRef.current, sortFunc);
     else barsRef.current = generateBars(canvasRef.current, false);
     draw(ctxRef.current);
+    hasRun.current = true;
     return () => {
       window.removeEventListener("resize", () => handleResize(ctxRef.current));
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [animationFrameId, handleResize, sortFunc, sorted, start]);
 
   useEffect(() => {
     setSortFunc(() => parentSortFunc);
@@ -55,7 +58,7 @@ export default function SortAlgorithm({
 
   useEffect(() => {
     if (setParentIsRunning) setParentIsRunning(isRunning);
-  }, [isRunning]);
+  }, [isRunning, setParentIsRunning]);
 
   // Handle window resize event
   function handleResize(ctx) {

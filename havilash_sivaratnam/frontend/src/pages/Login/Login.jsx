@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -32,12 +32,15 @@ export default function Login({ session }) {
   const [status, setStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    if (!session.token || !session.ready) return;
+    if (hasRun.current) return;
+    if (!Boolean(session.token) || !session.ready) return;
     logout(session);
     session.logout();
-  }, []);
+    hasRun.current = true;
+  }, [session]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -67,10 +70,10 @@ export default function Login({ session }) {
   }
 
   useEffect(() => {
-    if (status == "success") {
-      session.user.access == 0 && setPopupOpen(true);
+    if (status === "success") {
+      session.user?.access === 0 && setPopupOpen(true);
     }
-  }, [status]);
+  }, [status, session]);
 
   let statusMessage;
   switch (status) {

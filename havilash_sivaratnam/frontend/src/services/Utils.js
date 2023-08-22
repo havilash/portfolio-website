@@ -43,7 +43,7 @@ export function readForm(form) {
   var obj = {};
   for (var i = 0; i < elements.length; i++) {
     var item = elements.item(i);
-    if (item.type != "submit" && item.name != "") obj[item.name] = item.value;
+    if (item.type !== "submit" && item.name !== "") obj[item.name] = item.value;
   }
 
   return obj;

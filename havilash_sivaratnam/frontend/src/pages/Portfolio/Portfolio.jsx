@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { RxFile } from "react-icons/rx";
 
@@ -18,19 +18,19 @@ export default function Portfolio({ session }) {
   const [popupOpen, setPopupOpen] = useState(false);
   const [allZip, setAllZip] = useState();
 
-  async function loadFilesZip() {
+  const loadFilesZip = useCallback(async () => {
     try {
       const newAll = await getFile(session, { name: "all.zip" });
       setAllZip(base64toObjectUrl(newAll.file, "application/zip"));
     } catch (error) {
       console.error(error);
     }
-  }
+  }, [session, setAllZip]);
 
   useEffect(() => {
     if (!session.token) return;
     loadFilesZip();
-  }, [session.token]);
+  }, [session.token, loadFilesZip]);
 
   function onButtonClick(item) {
     if (item.document) {

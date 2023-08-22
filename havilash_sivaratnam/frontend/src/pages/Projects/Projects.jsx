@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import data from "src/data.js";
 
 import { Link } from "react-router-dom";
@@ -65,19 +65,22 @@ export default function Projects() {
   const [filteredProjects, setFilteredProjects] = useState(projects);
   const [sortBy, setSortBy] = useState(() => sortByNothing);
 
-  function filterProjects(searchTerm) {
-    const filtered = projects.filter((project) => {
-      const tags = project.tags.map((tag) => tag.toLowerCase());
-      return tags.some((tag) =>
-        tag.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    });
-    setFilteredProjects(filtered);
-  }
+  const filterProjects = useCallback(
+    (searchTerm) => {
+      const filtered = projects.filter((project) => {
+        const tags = project.tags.map((tag) => tag.toLowerCase());
+        return tags.some((tag) =>
+          tag.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      });
+      setFilteredProjects(filtered);
+    },
+    [projects]
+  );
 
   useEffect(() => {
     filterProjects(searchTerm);
-  }, [searchTerm, projects]);
+  }, [searchTerm, projects, filterProjects]);
 
   useEffect(() => {
     async function loadContributors(project) {

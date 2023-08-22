@@ -221,7 +221,7 @@ export async function combSort(arr, draw) {
   let gap = n;
   let swapped = true;
 
-  while (gap != 1 || swapped == true) {
+  while (gap != 1 || swapped === true) {
     gap = getNextGap(gap);
 
     swapped = false;
@@ -370,7 +370,7 @@ export async function gnomeSort(arr, draw) {
   let index = 0;
 
   while (index < n) {
-    if (index == 0) index++;
+    if (index === 0) index++;
     if (arr[index] >= arr[index - 1]) index++;
     else {
       let temp = 0;
@@ -394,7 +394,7 @@ export async function bitonicSort(arr, draw) {
       for (i = 0; i < N; i++) {
         let ixj = i ^ j;
         if (ixj > i) {
-          if ((i & k) == 0 && arr[i] > arr[ixj]) swap(arr, i, ixj);
+          if ((i & k) === 0 && arr[i] > arr[ixj]) swap(arr, i, ixj);
           if ((i & k) != 0 && arr[i] < arr[ixj]) swap(arr, i, ixj);
           draw();
           await sleep(1);
