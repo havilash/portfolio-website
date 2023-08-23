@@ -76,11 +76,11 @@ export default function Portfolio({ session }) {
                 document.documents.map((item, index) => (
                   <li
                     key={`document-${index}`}
-                    className="flex flex-row gap-2 w-full px-12"
+                    className="flex flex-row gap-2 w-full px-4 sm:px-12 text-center"
                   >
                     <Link
                       to={`/portfolio/${item.document}`}
-                      className="portfolio__button-alt w-full whitespace-nowrap"
+                      className="portfolio__button-alt w-full whitespace-wrap"
                     >
                       {item.title}
                     </Link>

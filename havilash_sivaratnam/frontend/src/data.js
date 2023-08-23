@@ -77,15 +77,17 @@ export default {
   career: [
     {
       date: "Aktuell",
-      description: "3. Schuljahr Informatikmittelschule (BWD, Gibb, BBC)",
+      description:
+        "3. Schuljahr IMS Informatikmittelschule Bern (Bwd, Gibb, Bbc)",
     },
     {
       date: "August 2021 - Juli 2023",
-      description: "1-2. Schuljahr Informatikmittelschule (BWD, Gibb, BBC)",
+      description:
+        "1-2. Schuljahr IMS Informatikmittelschule Bern (Bwd, Gibb, Bbc)",
     },
     {
       date: "August 2018 - Juli 2021",
-      description: "7-9. Schuljahr Sek, Dennigkofen Ostermundigen",
+      description: "7-9. Schuljahr Sekundarstufe 1, Dennigkofen Ostermundigen",
     },
     {
       date: "August 2012 - Juli 2018",
@@ -457,10 +459,16 @@ export default {
       {
         title: "Zeugnis",
         documents: [
-          { title: "Bbc", document: "report_card_bbc.pdf" },
-          { title: "Gibb", document: "report_card_gibb.pdf" },
-          { title: "Bwd", document: "report_card_bwd.pdf" },
-          { title: "Schule", document: "report_card_schule.pdf" },
+          {
+            title: "Überbetriebliche Kurse (Bbc)",
+            document: "report_card_bbc.pdf",
+          },
+          {
+            title: "Berufsfachschule (Gibb)",
+            document: "report_card_gibb.pdf",
+          },
+          { title: "Berufsmaturität (Bwd)", document: "report_card_bwd.pdf" },
+          { title: "Sekundarstufe 1", document: "report_card_schule.pdf" },
         ],
       },
       {

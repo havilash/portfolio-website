@@ -8,7 +8,7 @@
 
   .portfolio__button-alt {
     @apply flex flex-row items-center justify-evenly bg-white
-    py-2 px-16 text-xl text-black shadow-sm;
+    py-2 px-2 sm:px-12 text-xl text-black shadow-sm;
   }
 
   .portfolio__button__icon {
