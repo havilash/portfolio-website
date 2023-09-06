@@ -208,16 +208,16 @@ export default {
         icon: SiVim,
       },
       {
+        title: "CI/CD",
+        icon: SiGithubactions,
+      },
+      {
         title: "Blender",
         icon: SiBlender,
       },
       {
         title: "Laravel",
         icon: SiLaravel,
-      },
-      {
-        title: "CI/CD",
-        icon: SiGithubactions,
       },
       {
         title: "Spring Boot",
@@ -301,6 +301,7 @@ export default {
         "fitness",
       ],
       href: "https://github.com/TD99/planet-go",
+      repoDocument: "/docs/abstract.pdf",
     },
     {
       repo: "Havilash/Portfolio-Website-v1",
