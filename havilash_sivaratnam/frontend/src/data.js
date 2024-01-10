@@ -264,7 +264,7 @@ export default {
   // projects
   projects: [
     {
-      repo: "Havilash/Neural-Network",
+      repo: "Havilash/neural-network",
       title: "Neural-Network",
       image: "./assets/projects/neural-network.png",
       description:
@@ -277,7 +277,7 @@ export default {
         "python",
         "ai",
       ],
-      href: "https://github.com/Havilash/Neural-Network",
+      href: "https://github.com/Havilash/neural-network",
       repoDocument: "/docs/abstract.pdf",
     },
     {
@@ -304,7 +304,7 @@ export default {
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/Portfolio-Website-v1",
+      repo: "Havilash/portfolio-website-v1",
       title: "Portfolio-Website-v1",
       image: "./assets/projects/portfolio-website-v1.png",
       description:
@@ -318,12 +318,12 @@ export default {
         "react",
         "tailwindcss",
       ],
-      href: "https://github.com/Havilash/Portfolio-Website-v1",
+      href: "https://github.com/Havilash/portfolio-website-v1",
       repoDocument: "/docs/abstract.pdf",
       demo: "https://havilash-portfolio-website-v1.netlify.app/",
     },
     {
-      repo: "Havilash/LetsGo-AI",
+      repo: "Havilash/letsgo-ai",
       title: "LetsGo-AI",
       image: "./assets/projects/letsgo-ai.png",
       description:
@@ -338,7 +338,7 @@ export default {
         "node express",
         "mongodb",
       ],
-      href: "https://github.com/Havilash/LetsGo-AI",
+      href: "https://github.com/Havilash/letsgo-ai",
       repoDocument: "/docs/abstract.pdf",
       authors: [
         { name: "Havilash", href: "https://github.com/Havilash" },
@@ -347,38 +347,38 @@ export default {
       ],
     },
     {
-      repo: "Havilash/Softbody-Simulation",
+      repo: "Havilash/softbody-simulation",
       title: "Softbody-Simulation",
       image: "./assets/projects/softbody-simulation.png",
       description:
         "A project that simulates soft deformable objects using soft-body dynamics.",
       tags: ["softbody simulation", "python", "pygame", "physics"],
-      href: "https://github.com/Havilash/Softbody-Simulation",
+      href: "https://github.com/Havilash/softbody-simulation",
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/Golf-Game",
+      repo: "Havilash/golf-game",
       title: "Golf-Game",
       image: "./assets/projects/golf-game.png",
       description:
         "A golf game with custom physics engine for realistic ball movement.",
       tags: ["golf game", "physics", "python", "ball", "pygame"],
-      href: "https://github.com/Havilash/Golf-Game",
+      href: "https://github.com/Havilash/golf-game",
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/Chess-HTML5",
+      repo: "Havilash/chess-html5",
       title: "Chess-HTML5",
       image: "./assets/projects/chess-html5.png",
       description:
         "Chess-HTML5 is a simple chess game built using HTML5, JavaScript, and CSS. Playable directly in your web browser, it features intuitive controls and a clean design.",
       tags: ["chess html5", "javascript", "html", "css"],
-      href: "https://github.com/Havilash/Chess-HTML5",
+      href: "https://github.com/Havilash/chess-html5",
       demo: "https://havilash-chess-html5.netlify.app/",
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/TRex-Runner-AI",
+      repo: "Havilash/trex-runner-ai",
       title: "TRex-Runner-AI",
       image: "./assets/projects/trex-runner-ai.png",
       description:
@@ -391,21 +391,21 @@ export default {
         "ai",
         "neural network",
       ],
-      href: "https://github.com/Havilash/TRex-Runner-AI",
+      href: "https://github.com/Havilash/trex-runner-ai",
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/A-Star-Algorithm",
+      repo: "Havilash/a-star-algorithm",
       title: "A-Star-Algorithm",
       image: "./assets/projects/a-star-algorithm.png",
       description:
         "A Pygame visualization of the A-Star pathfinding algorithm, demonstrating how it finds the shortest path between two points.",
       tags: ["a star algorithm", "python", "pygame", "pathfinding"],
-      href: "https://github.com/Havilash/A-Star-Algorithm",
+      href: "https://github.com/Havilash/a-star-algorithm",
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/Face-Recognition",
+      repo: "Havilash/face-recognition",
       title: "Face-Recognition",
       image: "./assets/projects/face-recognition.jpg",
       description:
@@ -419,11 +419,11 @@ export default {
         "label me",
         "data",
       ],
-      href: "https://github.com/Havilash/Face-Recognition",
+      href: "https://github.com/Havilash/face-recognition",
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/Hand-Tracking",
+      repo: "Havilash/hand-tracking",
       title: "Hand-Tracking",
       image: "./assets/projects/hand-tracking.png",
       description:
@@ -436,17 +436,17 @@ export default {
         "mediapipe",
         "mouse control",
       ],
-      href: "https://github.com/Havilash/Hand-Tracking",
+      href: "https://github.com/Havilash/hand-tracking",
       repoDocument: "/docs/abstract.pdf",
     },
     {
-      repo: "Havilash/Conways-Game-of-Life_Pygame",
+      repo: "Havilash/conways-game-of-life-pygame",
       title: "Conways-Game-of-Life",
       image: "./assets/projects/conways-game-of-life.png",
       description:
         "A Pygame implementation of Conway’s Game of Life, simulating the evolution of a cellular automaton based on rules.",
       tags: ["conways game of life", "python", "pygame"],
-      href: "https://github.com/Havilash/Conways-Game-of-Life_Pygame",
+      href: "https://github.com/Havilash/conways-game-of-life-pygame",
       repoDocument: "/docs/abstract.pdf",
     },
   ],
